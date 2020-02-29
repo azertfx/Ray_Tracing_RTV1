@@ -1,0 +1,18 @@
+//camera
+camera origin 0,0,100 target 0,0,0 fov 40
+
+//light
+light origin -30,0,100 color 255,255,255 power 400
+
+//plane
+plane origin 500,-100,0 color 19,168,235 axis 0,1,0 translation 0,0,0 rotation 0,0,0
+plane origin 0,100,-200 color 19,168,235 axis 0,0,1 translation 0,0,0 rotation 0,0,0
+
+//sphere
+sphere origin 40,0,0 color 245,100,36 ray 20 axis 0,0,0 translation 0,0,0 rotation 0,0,0
+
+//cylinder
+cylinder origin 0,0,-60 color 215,41,223 axis 0,1,0 ray 20 translation 0,0,0 rotation 0,0,0
+
+//cone
+cone origin -40,0,0 color 74,233,41 axis 0,1,0 ray 10 translation 0,0,0 rotation 0,0,0
