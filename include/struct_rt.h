@@ -1,9 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   struct_rt.h                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: hastid <marvin@42.fr>                      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/03/02 06:38:06 by hastid            #+#    #+#             */
+/*   Updated: 2020/03/02 06:39:32 by hastid           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef STRUCT_RT_H
 # define STRUCT_RT_H
-
-# define RAD(x) (x * M_PI / 180)
-# define PX_X(x) (1.0 - x * 2.0 / (double)IMG_H)
-# define PX_Y(y) (y * 2.0 / (double)IMG_W - 1.0)
 
 typedef struct	s_vect
 {
@@ -75,17 +83,6 @@ typedef struct	s_light
 	t_vect			col;
 	struct s_light	*next;
 }				t_light;
-
-typedef struct	s_inter
-{
-	double	t;
-	t_vect	poi;
-	t_vect	nor;
-	t_vect	col;
-	t_vect	amb; // delete
-	t_vect	def; // delete
-	t_vect	spc; // delete
-}				t_inter;
 
 typedef struct	s_plight
 {
