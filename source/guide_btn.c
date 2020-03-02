@@ -16,20 +16,20 @@ void	ft_btn_content(t_rt *v)
 {
 	mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 30, 113, 0xFFFFFF, "O");
 	mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 30, 163, 0xFFFFFF, "S");
-	mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 60, 113, 0xFFFFFF, ORI);
-	mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 60, 163, 0xFFFFFF, SPHERE);
+	// mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 60, 113, 0xFFFFFF, ORI);
+	// mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 60, 163, 0xFFFFFF, SPHERE);
 	mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 30, 213, 0xFFFFFF, "X");
 	mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 30, 263, 0xFFFFFF, "Y");
-	mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 60, 213, 0xFFFFFF, PLANE);
-	mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 60, 263, 0xFFFFFF, CONE);
+	// mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 60, 213, 0xFFFFFF, PLANE);
+	// mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 60, 263, 0xFFFFFF, CONE);
 	mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 30, 313, 0xFFFFFF, "Z");
 	mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 30, 363, 0xFFFFFF, "Q");
-	mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 60, 313, 0xFFFFFF, CYLINDR);
-	mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 60, 363, 0xFFFFFF, TRANS);
+	// mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 60, 313, 0xFFFFFF, CYLINDR);
+	// mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 60, 363, 0xFFFFFF, TRANS);
 	mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 30, 413, 0x00EAFF, "W");
 	mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 30, 463, 0xFFAA85, "P");
-	mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 60, 413, 0x00EAFF, ROT);
-	mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 60, 463, 0xFFAA85, CAMERA);
+	// mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 60, 413, 0x00EAFF, ROT);
+	// mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 60, 463, 0xFFAA85, CAMERA);
 	mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 30, 513, 0xFFC600, "L");
 	mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 60, 513, 0xFFC600, MULTIS);
 	mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 30, 563, 0x69FF97, "R");

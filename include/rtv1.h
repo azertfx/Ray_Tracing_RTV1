@@ -38,21 +38,21 @@
 # define R 15
 # define T 17
 # define ESC 53
-# define ORI "Original"
-# define SPHERE "sphere"
-# define PLANE "plane"
-# define CONE "cone"
-# define CYLINDR "cylinder"
-# define TRANS "translation"
-# define ROT "rotation"
-# define CAMERA "camera_y"
+// # define ORI "Original"
+// # define SPHERE "sphere"
+// # define PLANE "plane"
+// # define CONE "cone"
+// # define CYLINDR "cylinder"
+// # define TRANS "translation"
+// # define ROT "rotation"
+// # define CAMERA "camera_y"
 # define MULTIS "multi_spots"
 # define MULTI1 "multi_objs_1"
 # define MULTI2 "multi_objs_2"
 
 # define RAD(x) (x * M_PI / 180)
-# define PX_X(x) (1.0 - x * 2.0 / (double)IMG_H)
-# define PX_Y(y) (y * 2.0 / (double)IMG_W - 1.0)
+# define PX_X(x) (x * 2.0 / (double)IMG_W - 1.0)
+# define PX_Y(y) (1.0 - y * 2.0 / (double)IMG_H)
 
 //void			 free_all_object(t_rt *v);
 //int				parse_file(char *file, t_rt *v);

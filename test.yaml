@@ -7,7 +7,7 @@ camera:
 light:
 	origin: -30,0,100
 	color: 255,255,255
-	power: .4
+	power: 40
 
 
 plane:

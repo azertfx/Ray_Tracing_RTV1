@@ -17,13 +17,13 @@ double		objects_intersection(t_ray r, t_obj *obj)
 	double inter;
 
 	inter = 0;
-	if (obj->id == 3)
+	if (obj->id == SPHERE)
 		inter = sphere_intersection(r, obj);
-	else if (obj->id == 4)
+	else if (obj->id == CYLINDER)
 		inter = cylinder_intersection(r, obj);
-	else if (obj->id == 2)
+	else if (obj->id == PLANE)
 		inter = plane_intersection(r, obj);
-	else if (obj->id == 1)
+	else if (obj->id == CONE)
 		inter = cone_intersection(r, obj);
 	return (inter);
 }
