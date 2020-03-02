@@ -28,13 +28,13 @@ double		objects_intersection(t_ray r, t_obj *obj)
 	return (inter);
 }
 
-double		intersection_checker(t_var *v, t_ray r, t_point *point)
+double		intersection_checker(t_rt *v, t_ray r, t_point *point)
 {
 	t_obj	*head;
 	double	inter;
 	double	i;
 
-	head = v->obj;
+	head = v->o;
 	i = 0;
 	point->inter_min = MAX_NBR;
 	while (head)
@@ -55,22 +55,22 @@ double		intersection_checker(t_var *v, t_ray r, t_point *point)
 
 void		objects_normal(t_ray r, t_point *point)
 {
-	point->p_inter = ft_vector_add(r.o,
-				ft_vector_mult_nbr(r.dir, point->inter_min));
-	point->p_color = point->obj->color;
+	point->p_inter = ft_vect_add(r.ori,
+				ft_vect_mult_nbr(r.dir, point->inter_min));
+	point->p_color = point->obj->col;
 	if (point->obj->id == 3)
-		point->p_normal = ft_vector_sub(point->p_inter, point->obj->o);
+		point->p_normal = ft_vect_sub(point->p_inter, point->obj->ori);
 	else if (point->obj->id == 4 || point->obj->id == 1)
 	{
-		point->p_normal = ft_vector_sub(point->p_inter, point->obj->o);
-		point->p_normal = ft_vector_sub(point->p_normal, ft_vector_mult_nbr(
-		point->obj->axis, ft_vector_dot(point->obj->axis, point->p_normal)));
+		point->p_normal = ft_vect_sub(point->p_inter, point->obj->ori);
+		point->p_normal = ft_vect_sub(point->p_normal, ft_vect_mult_nbr(
+		point->obj->axi, ft_vect_dot(point->obj->axi, point->p_normal)));
 	}
 	else if (point->obj->id == 2)
-		point->p_normal = point->obj->axis;
+		point->p_normal = point->obj->axi;
 	if (point->obj->id == 1)
-		point->p_normal = ft_vector_add(ft_vector_mult_nbr(point->p_normal,
-		cos(point->obj->r * M_PI / 180)), ft_vector_mult_nbr(point->obj->axis,
-		sin(point->obj->r * M_PI / 180)));
-	ft_vector_norm(&point->p_normal);
+		point->p_normal = ft_vect_add(ft_vect_mult_nbr(point->p_normal,
+		cos(point->obj->ray * M_PI / 180)), ft_vect_mult_nbr(point->obj->axi,
+		sin(point->obj->ray * M_PI / 180)));
+	ft_vect_norm(&point->p_normal);
 }

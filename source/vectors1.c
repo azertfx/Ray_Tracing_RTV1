@@ -12,9 +12,9 @@
 
 #include "rtv1.h"
 
-t_vector	ft_vector_sub(t_vector u, t_vector v)
+t_vect	ft_vect_sub(t_vect u, t_vect v)
 {
-	t_vector vec;
+	t_vect vec;
 
 	vec.x = u.x - v.x;
 	vec.y = u.y - v.y;
@@ -22,9 +22,9 @@ t_vector	ft_vector_sub(t_vector u, t_vector v)
 	return (vec);
 }
 
-t_vector	ft_vector_mult_nbr(t_vector u, double t)
+t_vect	ft_vect_mult_nbr(t_vect u, double t)
 {
-	t_vector vec;
+	t_vect vec;
 
 	vec.x = u.x * t;
 	vec.y = u.y * t;
@@ -32,9 +32,9 @@ t_vector	ft_vector_mult_nbr(t_vector u, double t)
 	return (vec);
 }
 
-t_vector	ft_vector_div_nbr(t_vector u, double t)
+t_vect	ft_vect_div_nbr(t_vect u, double t)
 {
-	t_vector vec;
+	t_vect vec;
 
 	vec.x = u.x / t;
 	vec.y = u.y / t;
@@ -42,9 +42,9 @@ t_vector	ft_vector_div_nbr(t_vector u, double t)
 	return (vec);
 }
 
-t_vector	ft_vector_add(t_vector u, t_vector v)
+t_vect	ft_vect_add(t_vect u, t_vect v)
 {
-	t_vector vec;
+	t_vect vec;
 
 	vec.x = u.x + v.x;
 	vec.y = u.y + v.y;
@@ -52,9 +52,9 @@ t_vector	ft_vector_add(t_vector u, t_vector v)
 	return (vec);
 }
 
-t_vector	ft_vector_mult(t_vector u, t_vector v)
+t_vect	ft_vect_mult(t_vect u, t_vect v)
 {
-	t_vector vec;
+	t_vect vec;
 
 	vec.x = u.x * v.x;
 	vec.y = u.y * v.y;

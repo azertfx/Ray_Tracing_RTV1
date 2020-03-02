@@ -12,35 +12,35 @@
 
 #include "rtv1.h"
 
-void		generate_camera(t_var *v)
+void		generate_camera(t_rt *v)
 {
-	t_vector	up;
+	t_vect	up;
 	double		fov;
 
-	fov = v->cam->fov * M_PI / 180;
-	up = (t_vector){0, 1, 0};
-	v->cam->z = ft_vector_sub(v->cam->target, v->cam->o);
-	v->cam->z.z -= 0.001;
-	ft_vector_norm(&v->cam->z);
-	v->cam->x = ft_vector_cross(v->cam->z, up);
-	ft_vector_norm(&v->cam->x);
-	v->cam->y = ft_vector_cross(v->cam->x, v->cam->z);
-	v->cam->height = tan(fov / 2) * 2;
-	v->cam->width = v->cam->height * (IMG_W / IMG_H);
+	fov = RAD(v->c->fov);
+	up = (t_vect){0, 1, 0};
+	v->c->z = ft_vect_sub(v->c->tar, v->c->ori);
+	v->c->z.z -= 0.001;
+	ft_vect_norm(&v->c->z);
+	v->c->x = ft_vect_cross(v->c->z, up);
+	ft_vect_norm(&v->c->x);
+	v->c->y = ft_vect_cross(v->c->x, v->c->z);
+	v->c->height = tan(fov / 2) * 2;
+	v->c->width = v->c->height * (IMG_W / IMG_H);
 }
 
-void		generate_camera_ray(t_var *v, t_ray *r, double y, double x)
+void		generate_camera_ray(t_rt *v, t_ray *r, double y, double x)
 {
-	r->o = v->cam->o;
-	r->dir = ft_vector_add(
-		v->cam->z,
-		ft_vector_add(
-			ft_vector_mult_nbr(v->cam->x, (x * v->cam->width)),
-			ft_vector_mult_nbr(v->cam->y, (y * v->cam->height))));
-	ft_vector_norm(&r->dir);
+	r->ori = v->c->ori;
+	r->dir = ft_vect_add(
+		v->c->z,
+		ft_vect_add(
+			ft_vect_mult_nbr(v->c->x, (x * v->c->width)),
+			ft_vect_mult_nbr(v->c->y, (y * v->c->height))));
+	ft_vect_norm(&r->dir);
 }
 
-t_vector	ray_trace(t_var *v, t_ray *ray, t_vector *color)
+t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color)
 {
 	if (intersection_checker(v, *ray, &v->point))
 	{
@@ -50,19 +50,19 @@ t_vector	ray_trace(t_var *v, t_ray *ray, t_vector *color)
 	return (*color);
 }
 
-void		get_pixel_color(t_var *v, t_vector *light_color)
+void		get_pixel_color(t_rt *v, t_vect *light_color)
 {
 	t_light		*head;
 	double		i;
 
-	v->point.p_light.amb = (t_vector){0, 0, 0};
-	v->point.p_light.def = (t_vector){0, 0, 0};
-	v->point.p_light.spc = (t_vector){0, 0, 0};
-	head = v->light;
+	v->point.p_light.amb = (t_vect){0, 0, 0};
+	v->point.p_light.def = (t_vect){0, 0, 0};
+	v->point.p_light.spc = (t_vect){0, 0, 0};
+	head = v->l;
 	i = 1;
 	while (head)
 	{
-		if (head->power)
+		if (head->pow)
 		{
 			calculate_pixel_color(v, head, i);
 			i++;
@@ -70,8 +70,8 @@ void		get_pixel_color(t_var *v, t_vector *light_color)
 		head = head->next;
 	}
 	if (i == 1)
-		v->point.p_light.amb = (t_vector){1, 1, 1};
-	*light_color = ft_vector_mult(v->point.p_color, ft_vector_add(
-		ft_vector_add(v->point.p_light.def, v->point.p_light.amb),
+		v->point.p_light.amb = (t_vect){1, 1, 1};
+	*light_color = ft_vect_mult(v->point.p_color, ft_vect_add(
+		ft_vect_add(v->point.p_light.def, v->point.p_light.amb),
 						v->point.p_light.spc));
 }

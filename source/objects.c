@@ -37,12 +37,12 @@ double	sphere_intersection(t_ray r, t_obj *obj)
 	double		a;
 	double		b;
 	double		c;
-	t_vector	obj_center;
+	t_vect	obj_center;
 
-	obj_center = ft_vector_sub(r.o, obj->o);
-	a = ft_vector_dot(r.dir, r.dir);
-	b = 2 * ft_vector_dot(r.dir, obj_center);
-	c = ft_vector_dot(obj_center, obj_center) - obj->r * obj->r;
+	obj_center = ft_vect_sub(r.ori, obj->ori);
+	a = ft_vect_dot(r.dir, r.dir);
+	b = 2 * ft_vect_dot(r.dir, obj_center);
+	c = ft_vect_dot(obj_center, obj_center) - obj->ray * obj->ray;
 	return (equation_solve(a, b, c));
 }
 
@@ -51,29 +51,29 @@ double	cylinder_intersection(t_ray r, t_obj *obj)
 	double		a;
 	double		b;
 	double		c;
-	t_vector	obj_center;
+	t_vect	obj_center;
 
-	obj_center = ft_vector_sub(r.o, obj->o);
-	ft_vector_norm(&obj->axis);
-	a = ft_vector_dot(r.dir, r.dir) - ft_vector_dot(r.dir, obj->axis) *
-												ft_vector_dot(r.dir, obj->axis);
-	b = 2 * (ft_vector_dot(r.dir, obj_center) -
-	(ft_vector_dot(r.dir, obj->axis) * ft_vector_dot(obj_center, obj->axis)));
-	c = ft_vector_dot(obj_center, obj_center) -
-			ft_vector_dot(obj_center, obj->axis) *
-						ft_vector_dot(obj_center, obj->axis) - obj->r * obj->r;
+	obj_center = ft_vect_sub(r.ori, obj->ori);
+	ft_vect_norm(&obj->axi);
+	a = ft_vect_dot(r.dir, r.dir) - ft_vect_dot(r.dir, obj->axi) *
+												ft_vect_dot(r.dir, obj->axi);
+	b = 2 * (ft_vect_dot(r.dir, obj_center) -
+	(ft_vect_dot(r.dir, obj->axi) * ft_vect_dot(obj_center, obj->axi)));
+	c = ft_vect_dot(obj_center, obj_center) -
+			ft_vect_dot(obj_center, obj->axi) *
+						ft_vect_dot(obj_center, obj->axi) - obj->ray * obj->ray;
 	return (equation_solve(a, b, c));
 }
 
 double	plane_intersection(t_ray r, t_obj *obj)
 {
-	t_vector	obj_center;
+	t_vect	obj_center;
 	double		inter;
 	double		nor_dir;
 
-	obj_center = ft_vector_sub(obj->o, r.o);
-	if ((nor_dir = ft_vector_dot(r.dir, obj->axis)))
-		inter = ft_vector_dot(obj_center, obj->axis) / nor_dir;
+	obj_center = ft_vect_sub(obj->ori, r.ori);
+	if ((nor_dir = ft_vect_dot(r.dir, obj->axi)))
+		inter = ft_vect_dot(obj_center, obj->axi) / nor_dir;
 	else
 		return (0);
 	if (inter < MIN_NBR || inter > MAX_NBR)
@@ -86,15 +86,15 @@ double	cone_intersection(t_ray r, t_obj *obj)
 	double		a;
 	double		b;
 	double		c;
-	t_vector	obj_center;
+	t_vect	obj_center;
 
-	obj_center = ft_vector_sub(r.o, obj->o);
-	ft_vector_norm(&obj->axis);
-	a = ft_vector_dot(r.dir, r.dir) - (1 + pow(tan(obj->r), 2)) *
-										pow(ft_vector_dot(r.dir, obj->axis), 2);
-	b = 2 * (ft_vector_dot(r.dir, obj_center) - (1 + pow(tan(obj->r), 2)) *
-		ft_vector_dot(r.dir, obj->axis) * ft_vector_dot(obj_center, obj->axis));
-	c = ft_vector_dot(obj_center, obj_center) - (1 + pow(tan(obj->r), 2)) *
-								pow(ft_vector_dot(obj_center, obj->axis), 2);
+	obj_center = ft_vect_sub(r.ori, obj->ori);
+	ft_vect_norm(&obj->axi);
+	a = ft_vect_dot(r.dir, r.dir) - (1 + pow(tan(obj->ray), 2)) *
+										pow(ft_vect_dot(r.dir, obj->axi), 2);
+	b = 2 * (ft_vect_dot(r.dir, obj_center) - (1 + pow(tan(obj->ray), 2)) *
+		ft_vect_dot(r.dir, obj->axi) * ft_vect_dot(obj_center, obj->axi));
+	c = ft_vect_dot(obj_center, obj_center) - (1 + pow(tan(obj->ray), 2)) *
+								pow(ft_vect_dot(obj_center, obj->axi), 2);
 	return (equation_solve(a, b, c));
 }

@@ -13,7 +13,7 @@
 
 NAME = libft.a
 
-SRC = ft_lstmap.c ft_putstr_fd.c ft_strncmp.c \
+SRC_NAME = ft_lstmap.c ft_putstr_fd.c ft_strncmp.c \
 	ft_lstnew.c ft_strcat.c ft_strncpy.c \
 	first_spaces.c ft_memalloc.c ft_strchr.c \
 	ft_strnequ.c ft_atoi.c ft_memccpy.c \
@@ -37,23 +37,40 @@ SRC = ft_lstmap.c ft_putstr_fd.c ft_strncmp.c \
 	nbrtoabs.c nbrpower.c get_next_line.c ft_atof.c \
 	ft_str_to_dbl.c ft_sign.c ft_is_number.c ft_strmequ.c ft_skip_chars.c 
 
-OBJ = $(SRC:.c=.o)
+OBJ_NAME =	$(SRC_NAME:.c=.o)
+
+SRC_PATH =	src
+OBJ_PATH =	obj
+
+SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))
+OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_NAME))
 
 CC = gcc -Wall -Wextra -Werror
 
-all : $(NAME)
+INC = -I inc
 
-$(NAME) : $(OBJ)
-	@ar rc $(NAME) $(OBJ)
+DEPS = inc/libft.h
 
-%.o : %.c
-	@$(CC) -c $< -o $@
-	@echo "Libft   : $< \033[1;32mDone\033[0m"
+all: $(NAME)
 
+$(NAME): $(OBJ)
+	@clear
+	@echo "\033[1;34mCreating $(NAME)\033[0m"
+	@ar rc $@ $^
+	@ranlib $@
+
+$(OBJ_PATH)/%.o : $(SRC_PATH)/%.c $(DEPS)
+	@clear
+	@mkdir $(OBJ_PATH) 2>/dev/null || true
+	@echo "Compiling \033[1;33m[$<]\033[0m to \033[1;32m[$@]\033[0m"
+	@$(CC) $(INC) -o $@ -c $<
+	
 clean:
-	@rm -rf $(OBJ)
+	@echo "\033[1;34mRemoving libft's objects directory\033[0m"
+	@/bin/rm -rf $(OBJ_PATH) 2> /dev/null
 
 fclean: clean
-	@rm -rf $(NAME)
+	@echo "\033[1;34mRemovimg $(NAME)\033[0m"
+	@/bin/rm -f $(NAME)
 
 re: fclean all

@@ -15,43 +15,43 @@
 static void	*get_obj_property(t_obj *obj, char *property, int *p_type)
 {
 	if (ft_strequ(property, "origin") && (*p_type = 1))
-		return (&obj->o);
+		return (&obj->ori);
 	else if (ft_strequ(property, "color") && (*p_type = 1))
-		return (&obj->color);
+		return (&obj->col);
 	if (ft_strequ(property, "axis") && (*p_type = 1))
-		return (&obj->axis);
+		return (&obj->axi);
 	else if (ft_strequ(property, "translation") && (*p_type = 1))
-		return (&obj->trans);
+		return (&obj->tra);
 	if (ft_strequ(property, "rotation") && (*p_type = 1))
 		return (&obj->rot);
 	else if (ft_strequ(property, "ray") && (*p_type = 2))
-		return (&obj->r);
+		return (&obj->ray);
 	return (NULL);
 }
 
 static void	*get_light_property(t_light *light, char *property, int *p_type)
 {
 	if (ft_strequ(property, "origin") && (*p_type = 1))
-		return (&light->o);
+		return (&light->ori);
 	else if (ft_strequ(property, "color") && (*p_type = 1))
-		return (&light->color);
+		return (&light->col);
 	else if (ft_strequ(property, "power") && (*p_type = 2))
-		return (&light->power);
+		return (&light->pow);
 	return (NULL);
 }
 
 static void	*get_cam_property(t_cam *cam, char *property, int *p_type)
 {
 	if (ft_strequ(property, "origin") && (*p_type = 1))
-		return (&cam->o);
+		return (&cam->ori);
 	else if (ft_strequ(property, "target") && (*p_type = 1))
-		return (&cam->target);
+		return (&cam->tar);
 	else if (ft_strequ(property, "fov") && (*p_type = 2))
 		return (&cam->fov);
 	return (NULL);
 }
 
-static char	*parse_vector(t_vector *vec, char *line)
+static char	*parse_vector(t_vect *vec, char *line)
 {
 	vec->x = ft_atof(line);
 	ft_strchr("+-", *line) ? line++ : 0;

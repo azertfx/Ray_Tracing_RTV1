@@ -12,9 +12,9 @@
 
 #include "rtv1.h"
 
-t_vector	ft_vector_cross(t_vector u, t_vector v)
+t_vect	ft_vect_cross(t_vect u, t_vect v)
 {
-	t_vector vec;
+	t_vect vec;
 
 	vec.x = u.y * v.z - u.z * v.y;
 	vec.y = u.z * v.x - u.x * v.z;
@@ -22,7 +22,7 @@ t_vector	ft_vector_cross(t_vector u, t_vector v)
 	return (vec);
 }
 
-t_vector	ft_vector_norm(t_vector *vec)
+t_vect	ft_vect_norm(t_vect *vec)
 {
 	double	w;
 
@@ -34,21 +34,21 @@ t_vector	ft_vector_norm(t_vector *vec)
 		vec->z /= w;
 	}
 	else
-		*vec = (t_vector){0, 0, 0};
+		*vec = (t_vect){0, 0, 0};
 	return (*vec);
 }
 
-double		ft_vector_dot(t_vector u, t_vector v)
+double		ft_vect_dot(t_vect u, t_vect v)
 {
 	return (u.x * v.x + u.y * v.y + u.z * v.z);
 }
 
-double		ft_vector_length(t_vector vec)
+double		ft_vect_length(t_vect vec)
 {
 	return (vec.x * vec.x + vec.y * vec.y + vec.z * vec.z);
 }
 
-double		ft_vector_dist(t_vector u, t_vector v)
+double		ft_vect_dist(t_vect u, t_vect v)
 {
 	return ((u.x - v.x) * (u.x - v.x) +
 			(u.y - v.y) * (u.y - v.y) +

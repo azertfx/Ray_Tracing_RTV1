@@ -12,7 +12,7 @@
 
 #include "rtv1.h"
 
-void	ft_draw_rec(t_var *v)
+void	ft_draw_rec(t_rt *v)
 {
 	int i;
 
@@ -20,26 +20,26 @@ void	ft_draw_rec(t_var *v)
 	while (i < 700)
 	{
 		if (i % 5 == 0)
-			mlx_pixel_put(v->mlx.mlx_ptr, v->mlx.win_ptr, 210, i, 0xFFF000);
+			mlx_pixel_put(v->m.mlx_ptr, v->m.win_ptr, 210, i, 0xFFF000);
 		i++;
 	}
 	i = 20;
 	while (i < 85)
 	{
-		mlx_pixel_put(v->mlx.mlx_ptr, v->mlx.win_ptr, 20, i, 0x0FFFFF);
-		mlx_pixel_put(v->mlx.mlx_ptr, v->mlx.win_ptr, 190, i, 0x0FFFFF);
+		mlx_pixel_put(v->m.mlx_ptr, v->m.win_ptr, 20, i, 0x0FFFFF);
+		mlx_pixel_put(v->m.mlx_ptr, v->m.win_ptr, 190, i, 0x0FFFFF);
 		i += 3;
 	}
 	i = 20;
 	while (i < 190)
 	{
-		mlx_pixel_put(v->mlx.mlx_ptr, v->mlx.win_ptr, i, 20, 0x0FFFFF);
-		mlx_pixel_put(v->mlx.mlx_ptr, v->mlx.win_ptr, i, 85, 0x0FFFFF);
+		mlx_pixel_put(v->m.mlx_ptr, v->m.win_ptr, i, 20, 0x0FFFFF);
+		mlx_pixel_put(v->m.mlx_ptr, v->m.win_ptr, i, 85, 0x0FFFFF);
 		i += 3;
 	}
 }
 
-void	ft_logo_draw(t_var *v, int y, int x, int n)
+void	ft_logo_draw(t_rt *v, int y, int x, int n)
 {
 	int i;
 	int j;
@@ -55,7 +55,7 @@ void	ft_logo_draw(t_var *v, int y, int x, int n)
 			while (i < 5)
 			{
 				if (i % 3 == 0 && j % 3 == 0)
-					mlx_pixel_put(v->mlx.mlx_ptr, v->mlx.win_ptr, x +
+					mlx_pixel_put(v->m.mlx_ptr, v->m.win_ptr, x +
 							j + c * 5, y + i, 0xFFFFFF);
 				i++;
 			}
@@ -65,7 +65,7 @@ void	ft_logo_draw(t_var *v, int y, int x, int n)
 	}
 }
 
-void	ft_draw_logo_b(t_var *v)
+void	ft_draw_logo_b(t_rt *v)
 {
 	ft_logo_draw(v, 35, 110, 4);
 	ft_logo_draw(v, 40, 125, 1);
@@ -86,7 +86,7 @@ void	ft_draw_logo_b(t_var *v)
 	ft_logo_draw(v, 65, 155, 1);
 }
 
-void	ft_draw_logo_a(t_var *v)
+void	ft_draw_logo_a(t_rt *v)
 {
 	ft_logo_draw(v, 35, 50, 3);
 	ft_logo_draw(v, 40, 50, 1);
@@ -105,7 +105,7 @@ void	ft_draw_logo_a(t_var *v)
 	ft_logo_draw(v, 65, 80, 4);
 }
 
-void	ft_instruction(t_var *v)
+void	ft_instruction(t_rt *v)
 {
 	ft_draw_rec(v);
 	ft_draw_logo_a(v);

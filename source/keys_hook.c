@@ -12,19 +12,19 @@
 
 #include "rtv1.h"
 
-void	ft_clear_and_draw(t_var *v)
+void	ft_clear_and_draw(t_rt *v)
 {
-	mlx_destroy_image(v->mlx.mlx_ptr, v->mlx.img_ptr);
-	v->mlx.img_ptr = mlx_new_image(v->mlx.mlx_ptr, IMG_W, IMG_H);
-	mlx_clear_window(v->mlx.mlx_ptr, v->mlx.win_ptr);
+	mlx_destroy_image(v->m.mlx_ptr, v->m.img_ptr);
+	v->m.img_ptr = mlx_new_image(v->m.mlx_ptr, IMG_W, IMG_H);
+	mlx_clear_window(v->m.mlx_ptr, v->m.win_ptr);
 	ft_instruction(v);
 	if (check_file(v))
 		draw(*v);
-	mlx_put_image_to_window(v->mlx.mlx_ptr, v->mlx.win_ptr,
-							v->mlx.img_ptr, 210, 0);
+	mlx_put_image_to_window(v->m.mlx_ptr, v->m.win_ptr,
+							v->m.img_ptr, 210, 0);
 }
 
-void	other_files(int k, t_var *v)
+void	other_files(int k, t_rt *v)
 {
 	if (k == Q)
 		v->event.file = "scenes/translation";
@@ -40,11 +40,11 @@ void	other_files(int k, t_var *v)
 		v->event.file = "scenes/multi_objs_2";
 }
 
-int		ft_keys_hook(int k, t_var *v)
+int		ft_keys_hook(int k, t_rt *v)
 {
 	if (k == 53)
 	{
-		free_all_object(v);
+		// free_all_object(v);
 		exit(0);
 	}
 	else if (k == O)

@@ -12,56 +12,56 @@
 
 #include "rtv1.h"
 
-void		free_all_object(t_var *v)
+void		 free_all_object(t_rt *v)
 {
 	void	*ptr;
 	void	*tmp;
 
-	ptr = v->cam;
-	ft_memdel((void **)&v->cam);
-	ptr = v->light;
+	ptr = v->c;
+	ft_memdel((void **)&v->c);
+	ptr = v->l;
 	while (ptr)
 	{
 		tmp = ptr;
 		ptr = ((t_light *)ptr)->next;
 		free(tmp);
 	}
-	v->light = NULL;
-	ptr = v->obj;
+	v->l = NULL;
+	ptr = v->o;
 	while (ptr)
 	{
 		tmp = ptr;
 		ptr = ((t_obj *)ptr)->next;
 		free(tmp);
 	}
-	v->obj = NULL;
+	v->o = NULL;
 }
 
-static int	add_object_to_var(t_var *v, void *obj, int type)
+static int	add_object_to_var(t_rt *v, void *obj, int type)
 {
-	if (type == 0 && v->cam)
+	if (type == 0 && v->c)
 	{
 		ft_putstr("error : double camera in the scene\n");
 		return (-1);
 	}
 	if (type == 0)
-		v->cam = obj;
+		v->c = obj;
 	if (type == 1)
 	{
-		((t_light *)obj)->next = v->light;
-		v->light = obj;
+		((t_light *)obj)->next = v->l;
+		v->l = obj;
 	}
 	if (type == 2)
 	{
-		((t_obj *)obj)->o = ft_vector_add(((t_obj *)obj)->o,
-														((t_obj *)obj)->trans);
+		((t_obj *)obj)->ori = ft_vect_add(((t_obj *)obj)->ori,
+														((t_obj *)obj)->tra);
 		((t_obj *)obj)->rot.x *= M_PI / 180;
 		((t_obj *)obj)->rot.y *= M_PI / 180;
 		((t_obj *)obj)->rot.z *= M_PI / 180;
-		((t_obj *)obj)->axis = ft_vector_rotate(((t_obj *)obj)->axis,
+		((t_obj *)obj)->axi = ft_vect_rotate(((t_obj *)obj)->axi,
 														((t_obj *)obj)->rot);
-		((t_obj *)obj)->next = v->obj;
-		v->obj = obj;
+		((t_obj *)obj)->next = v->o;
+		v->o = obj;
 	}
 	return (type);
 }
@@ -94,7 +94,7 @@ static void	*parse_object(char *line, int size, int type)
 	return (obj);
 }
 
-static int	get_object(char *line, t_var *var)
+static int	get_object(char *line, t_rt *var)
 {
 	char	*tmp;
 	void	*obj;
@@ -123,7 +123,7 @@ static int	get_object(char *line, t_var *var)
 	return (-1);
 }
 
-int			parse_file(char *file, t_var *v)
+int			parse_file(char *file, t_rt *v)
 {
 	char	*line;
 	int		type[3];
