@@ -58,17 +58,17 @@ void		objects_normal(t_ray r, t_point *point)
 	point->p_inter = ft_vect_add(r.ori,
 				ft_vect_mult_nbr(r.dir, point->inter_min));
 	point->p_color = point->obj->col;
-	if (point->obj->id == 3)
+	if (point->obj->id == SPHERE)
 		point->p_normal = ft_vect_sub(point->p_inter, point->obj->ori);
-	else if (point->obj->id == 4 || point->obj->id == 1)
+	else if (point->obj->id == CONE || point->obj->id == CYLINDER)
 	{
 		point->p_normal = ft_vect_sub(point->p_inter, point->obj->ori);
 		point->p_normal = ft_vect_sub(point->p_normal, ft_vect_mult_nbr(
 		point->obj->axi, ft_vect_dot(point->obj->axi, point->p_normal)));
 	}
-	else if (point->obj->id == 2)
+	else if (point->obj->id == PLANE)
 		point->p_normal = point->obj->axi;
-	if (point->obj->id == 1)
+	if (point->obj->id == CONE)
 		point->p_normal = ft_vect_add(ft_vect_mult_nbr(point->p_normal,
 		cos(point->obj->ray * M_PI / 180)), ft_vect_mult_nbr(point->obj->axi,
 		sin(point->obj->ray * M_PI / 180)));

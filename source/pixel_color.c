@@ -58,7 +58,7 @@ void	pixel_specular(t_rt *v, t_light *light)
 	reflect = ft_vect_sub(v->point.p_dir, ft_vect_mult_nbr(
 		v->point.p_normal, 2 * ft_vect_dot(
 		v->point.p_normal, v->point.p_dir)));
-	str = light->pow * pow(fmax(ft_vect_dot(view_dir, reflect), 0.), 100);
+	str = light->pow * pow(fmax(ft_vect_dot(view_dir, reflect), 0.4), 100);
 	v->point.p_light.spc = ft_vect_add_nbr(v->point.p_light.spc, str);
 }
 
