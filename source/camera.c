@@ -6,7 +6,7 @@
 /*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:24:16 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/03/04 03:06:22 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/03/04 06:21:07 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void		generate_camera_ray(t_rt *v, t_ray *r, double y, double x)
 	ft_vect_norm(&r->dir);
 }
 
-t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color)
+t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color, int i)
 {
 	if (intersection_checker(v, *ray, &v->point))
 	{
@@ -49,9 +49,13 @@ t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color)
 			get_pixel_color(v, color);
 		else
 		{
+			i++;
 			ray->ori = ft_vect_add(v->point.p_inter, ft_vect_mult_nbr(v->point.p_normal, 0.5));
-			ray->dir = ft_vect_sub(ray->dir, ft_vect_mult_nbr(ft_vect_mult_nbr(v->point.p_normal, ft_vect_dot(ray->dir, v->point.p_normal)), 2));
-			ray_trace(v, ray, color);
+			// if (v->point.obj->id != SPHERE)
+			// 	ray->dir = ft_vect_sub(ray->dir, ft_vect_mult_nbr(ft_vect_mult_nbr(v->point.p_normal, ft_vect_dot(ray->dir, v->point.p_normal)), 2));
+			// else
+				ray->dir = ft_vect_add(ft_vect_mult_nbr(ray->dir, 1.5), ft_vect_mult_nbr(v->point.p_normal, 1.5 * ft_vect_dot(v->point.p_normal, ray->dir) - sqrt(1 - (1.5 * 1.5) * (1 - ft_vect_dot(v->point.p_normal, ray->dir) * ft_vect_dot(v->point.p_normal, ray->dir)))));
+			ray_trace(v, ray, color, i);
 		}
 	}
 	return (*color);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aait-ihi <aait-ihi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:23:37 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/02/29 01:01:40 by aait-ihi         ###   ########.fr       */
+/*   Updated: 2020/03/04 04:50:48 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ void	*draw_threads(void *t)
 			x = PX_X((double)i);
 			generate_camera_ray(v, &v->thread.ray, y, x);
 			v->thread.color = (t_vect){0, 0, 0};
-			v->thread.color = ray_trace(v, &v->thread.ray, &v->thread.color);
+			v->thread.color = ray_trace(v, &v->thread.ray, &v->thread.color, 1);
 			set_pixel_color(v, i, j, v->thread.color);
 			i++;
 		}
