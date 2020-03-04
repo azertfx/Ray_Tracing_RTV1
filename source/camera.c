@@ -6,7 +6,7 @@
 /*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:24:16 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/03/04 11:27:02 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/03/04 13:48:30 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,16 @@ t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color, int i)
 		{
 			i++;
 			ray->ori = ft_vect_add(v->point.p_inter, ft_vect_mult_nbr(v->point.p_normal, 0.5));
-			if (v->point.obj->id == SPHERE)
+			if (v->point.obj->id != SPHERE)
 				ray->dir = ft_vect_sub(ray->dir, ft_vect_mult_nbr(ft_vect_mult_nbr(v->point.p_normal, ft_vect_dot(ray->dir, v->point.p_normal)), 2));
 			else
 			{
 				double d;
 				double n;
 				d = ft_vect_dot(v->point.p_normal, ray->dir);
-				d *= -1;
 				n = n1 / n2;
-				if ((z = (n * n) * (1 - d * d)) > 1)
-					ray->dir = ft_vect_add(ft_vect_mult_nbr(ray->dir, n), ft_vect_mult_nbr(v->point.p_normal, d * n - sqrt(1 - z)));
+				if ((z = 1 - (n * n) * (1 - d * d)) > 0)
+					ray->dir = ft_vect_add(ft_vect_mult_nbr(ray->dir, n), ft_vect_mult_nbr(v->point.p_normal, d * n - sqrt(z)));
 			}
 			ray_trace(v, ray, color, i);
 		}
