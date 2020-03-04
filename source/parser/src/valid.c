@@ -44,6 +44,8 @@ int	objects_is_valid(t_obj *o)
 	{
 		if (!object_is_valid(tmp->opt, o->id))
 			return (ERROR);
+		tmp->ori = ft_vect_add(tmp->ori, tmp->tra);
+		tmp->axi = ft_vect_rotate(tmp->axi, tmp->rot);
 		tmp = tmp->next;
 	}
 	return (SUCCESS);

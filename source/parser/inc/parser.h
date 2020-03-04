@@ -16,6 +16,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 
+# include "rtv1.h"
 # include "libft.h"
 # include "struct_rt.h"
 

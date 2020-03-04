@@ -49,5 +49,10 @@ int	get_vect(t_vect *v, char *s, int t)
 		return (ERROR);
 	if (t == COLOR && !(V_COLOR(v->x) && V_COLOR(v->y) && V_COLOR(v->x)))
 		return (ERROR);
+		if (t != ROTAT)
+		return (SUCCESS);
+	v->x = RAD(v->x);
+	v->y = RAD(v->y);
+	v->z = RAD(v->z);
 	return (SUCCESS);
 }
