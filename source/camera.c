@@ -6,7 +6,7 @@
 /*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:24:16 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/03/04 10:05:45 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/03/04 11:08:47 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,8 +62,13 @@ t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color, int i)
 				ray->dir = ft_vect_sub(ray->dir, ft_vect_mult_nbr(ft_vect_mult_nbr(v->point.p_normal, ft_vect_dot(ray->dir, v->point.p_normal)), 2));
 			else
 			{
-				if ((z = 1 - ((n1 * n1) / (n2 * n2)) * (1 - ft_vect_dot(v->point.p_normal, ray->dir) * ft_vect_dot(v->point.p_normal, ray->dir))) > 0)
-					ray->dir = ft_vect_add(ft_vect_mult_nbr(ray->dir, (n1 / n2)), ft_vect_mult_nbr(v->point.p_normal, 1.5 * ft_vect_dot(v->point.p_normal, ray->dir) - sqrt(z)));
+				double d;
+				double n;
+				d = ft_vect_dot(v->point.p_normal, ray->dir);
+				d *= -1;
+				n = n1 / n2;
+				if ((z = (n * n) * (1 - d * d)) > 1)
+					ray->dir = ft_vect_add(ft_vect_mult_nbr(ray->dir, n), ft_vect_mult_nbr(v->point.p_normal, d * n - sqrt(1 - z)));
 			}
 			ray_trace(v, ray, color, i);
 		}
