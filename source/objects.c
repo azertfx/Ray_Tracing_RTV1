@@ -90,11 +90,11 @@ double	cone_intersection(t_ray r, t_obj *obj)
 
 	obj_center = ft_vect_sub(r.ori, obj->ori);
 	ft_vect_norm(&obj->axi);
-	a = ft_vect_dot(r.dir, r.dir) - (1 + pow(tan(obj->ray), 2)) *
+	a = ft_vect_dot(r.dir, r.dir) - (1 + pow(tan(RAD(obj->ray)), 2)) *
 										pow(ft_vect_dot(r.dir, obj->axi), 2);
-	b = 2 * (ft_vect_dot(r.dir, obj_center) - (1 + pow(tan(obj->ray), 2)) *
+	b = 2 * (ft_vect_dot(r.dir, obj_center) - (1 + pow(tan(RAD(obj->ray)), 2)) *
 		ft_vect_dot(r.dir, obj->axi) * ft_vect_dot(obj_center, obj->axi));
-	c = ft_vect_dot(obj_center, obj_center) - (1 + pow(tan(obj->ray), 2)) *
+	c = ft_vect_dot(obj_center, obj_center) - (1 + pow(tan(RAD(obj->ray)), 2)) *
 								pow(ft_vect_dot(obj_center, obj->axi), 2);
 	return (equation_solve(a, b, c));
 }

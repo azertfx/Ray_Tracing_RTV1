@@ -70,7 +70,7 @@ void		objects_normal(t_ray r, t_point *point)
 		point->p_normal = point->obj->axi;
 	if (point->obj->id == CONE)
 		point->p_normal = ft_vect_add(ft_vect_mult_nbr(point->p_normal,
-		cos(point->obj->ray * M_PI / 180)), ft_vect_mult_nbr(point->obj->axi,
-		sin(point->obj->ray * M_PI / 180)));
+		cos(RAD(point->obj->ray))), ft_vect_mult_nbr(point->obj->axi,
+		sin(RAD(point->obj->ray))));
 	ft_vect_norm(&point->p_normal);
 }
