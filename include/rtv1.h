@@ -6,7 +6,7 @@
 /*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:17:11 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/03/02 06:39:28 by hastid           ###   ########.fr       */
+/*   Updated: 2020/03/04 02:25:33 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,8 +54,6 @@
 # define PX_X(x) (x * 2.0 / (double)IMG_W - 1.0)
 # define PX_Y(y) (1.0 - y * 2.0 / (double)IMG_H)
 
-//void			 free_all_object(t_rt *v);
-//int				parse_file(char *file, t_rt *v);
 char			*parse_property(void *obj, char *line, int o_type);
 int				check_file(t_rt *v);
 void			ft_instruction(t_rt *v);

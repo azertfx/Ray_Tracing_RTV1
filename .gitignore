@@ -1,4 +1,5 @@
 */*.o
+*/.DS_Store
 libft/libft.a
 libft/obj/
 rtv1
