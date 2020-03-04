@@ -1,0 +1,6 @@
+*/*.o
+libft/libft.a
+libft/obj/
+rtv1
+source/parser/parser.a
+source/parser/obj/
