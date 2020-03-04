@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys_hook.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aait-ihi <aait-ihi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:37:06 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/02/29 00:56:52 by aait-ihi         ###   ########.fr       */
+/*   Updated: 2020/03/04 02:44:00 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,17 @@ void	ft_clear_and_draw(t_rt *v)
 void	other_files(int k, t_rt *v)
 {
 	if (k == Q)
-		v->event.file = "scenes/translation";
+		v->event.file = "scenes/translation.yaml";
 	else if (k == W)
-		v->event.file = "scenes/rotation";
+		v->event.file = "scenes/rotation.yaml";
 	else if (k == P)
-		v->event.file = "scenes/camera_y";
+		v->event.file = "scenes/camera_y.yaml";
 	else if (k == L)
-		v->event.file = "scenes/multi_spots";
+		v->event.file = "scenes/multi_spots.yaml";
 	else if (k == R)
-		v->event.file = "scenes/multi_objs_1";
+		v->event.file = "scenes/multi_objs_1.yaml";
 	else if (k == T)
-		v->event.file = "scenes/multi_objs_2";
+		v->event.file = "scenes/multi_objs_2.yaml";
 }
 
 int		ft_keys_hook(int k, t_rt *v)
@@ -50,13 +50,13 @@ int		ft_keys_hook(int k, t_rt *v)
 	else if (k == O)
 		v->event.file = v->event.file_origin;
 	else if (k == S)
-		v->event.file = "scenes/sphere";
+		v->event.file = "scenes/sphere.yaml";
 	else if (k == X)
-		v->event.file = "scenes/plane";
+		v->event.file = "scenes/plane.yaml";
 	else if (k == Y)
-		v->event.file = "scenes/cone";
+		v->event.file = "scenes/cone.yaml";
 	else if (k == Z)
-		v->event.file = "scenes/cylinder";
+		v->event.file = "scenes/cylinder.yaml";
 	else if (k == Q || k == W || k == P ||
 				k == L || k == R || k == T)
 		other_files(k, v);

@@ -6,7 +6,7 @@
 /*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:17:11 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/03/04 02:25:33 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/03/04 02:41:45 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,14 +38,14 @@
 # define R 15
 # define T 17
 # define ESC 53
-// # define ORI "Original"
-// # define SPHERE "sphere"
-// # define PLANE "plane"
-// # define CONE "cone"
-// # define CYLINDR "cylinder"
-// # define TRANS "translation"
-// # define ROT "rotation"
-// # define CAMERA "camera_y"
+# define ORI "Original"
+# define SPH "sphere"
+# define PLA "plane"
+# define CON "cone"
+# define CYL "cylinder"
+# define TRA "translation"
+# define ROT "rotation"
+# define CAM "camera_y"
 # define MULTIS "multi_spots"
 # define MULTI1 "multi_objs_1"
 # define MULTI2 "multi_objs_2"
