@@ -6,7 +6,7 @@
 /*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:17:11 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/03/04 02:41:45 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/03/04 03:07:45 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int				rtv1(t_rt *v, char *file);
 void			draw(t_rt v);
 double			intersection_checker(t_rt *v, t_ray r, t_point *point);
 void			calculate_pixel_color(t_rt *v, t_light *light, int i);
-t_vect		ray_trace(t_rt *v, t_ray *ray, t_vect *color);
+t_vect		    ray_trace(t_rt *v, t_ray *ray, t_vect *color);
 void			get_pixel_color(t_rt *v, t_vect *light_color);
 void			objects_normal(t_ray r, t_point *point);
 void			generate_camera_ray(t_rt *v, t_ray *r, double y, double x);
@@ -72,20 +72,20 @@ double			sphere_intersection(t_ray r, t_obj *obj);
 double			cylinder_intersection(t_ray r, t_obj *obj);
 double			plane_intersection(t_ray r, t_obj *obj);
 double			cone_intersection(t_ray r, t_obj *obj);
-t_vect		*check_vector(char *str);
-t_vect		ft_vect_sub(t_vect u, t_vect v);
-t_vect		ft_vect_mult_nbr(t_vect u, double t);
-t_vect		ft_vect_add(t_vect u, t_vect v);
-t_vect		ft_vect_mult(t_vect u, t_vect v);
-t_vect		ft_vect_add_nbr(t_vect u, double t);
+t_vect	    	*check_vector(char *str);
+t_vect	    	ft_vect_sub(t_vect u, t_vect v);
+t_vect	    	ft_vect_mult_nbr(t_vect u, double t);
+t_vect	    	ft_vect_add(t_vect u, t_vect v);
+t_vect	    	ft_vect_mult(t_vect u, t_vect v);
+t_vect	    	ft_vect_add_nbr(t_vect u, double t);
 void			ft_vect_init(t_vect *v, double x, double y, double z);
-t_vect		ft_vect_cross(t_vect u, t_vect v);
-t_vect		ft_vect_norm(t_vect *vec);
+t_vect	    	ft_vect_cross(t_vect u, t_vect v);
+t_vect	    	ft_vect_norm(t_vect *vec);
 double			ft_vect_dot(t_vect u, t_vect v);
 double			ft_vect_length(t_vect vec);
-t_vect		ft_vect_div_nbr(t_vect u, double t);
+t_vect		    ft_vect_div_nbr(t_vect u, double t);
 double			ft_vect_dist(t_vect u, t_vect v);
-t_vect		ft_vect_rotate(t_vect v, t_vect r);
+t_vect		    ft_vect_rotate(t_vect v, t_vect r);
 int				ft_keys_hook(int k, t_rt *v);
 
 #endif
