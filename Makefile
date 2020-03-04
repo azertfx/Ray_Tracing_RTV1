@@ -28,7 +28,7 @@ CC = gcc -Wall -Wextra -Werror
 
 LIB =  libft/libft.a \
 	   source/parser/parser.a \
-	   -lmlx -framework OpenGL -framework AppKit
+	   -L ./miniLibX -lmlx -framework OpenGL -framework AppKit
 		
 DEPS = include/rtv1.h
 
