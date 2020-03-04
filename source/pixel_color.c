@@ -6,7 +6,7 @@
 /*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:12:38 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/02/25 20:48:00 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/03/04 10:06:12 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ double	shadow_checker(t_rt *v, t_light *light)
 	ft_vect_norm(&r.dir);
 	if (intersection_checker(v, r, &point))
 	{
+		// if (point.obj->id == SPHERE)
+		// 	return (0);
 		objects_normal(r, &point);
 		dist_light = ft_vect_dist(v->point.p_inter, light->ori);
 		dist_object = ft_vect_dist(v->point.p_inter, point.p_inter);

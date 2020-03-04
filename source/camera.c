@@ -6,7 +6,7 @@
 /*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:24:16 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/03/04 06:21:07 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/03/04 10:05:45 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,24 +43,27 @@ void		generate_camera_ray(t_rt *v, t_ray *r, double y, double x)
 t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color, int i)
 {
 	double z;
+	double n1;
+	double n2;
 
+	n1 = 1;
+	n2 = 1.5;
 	z = 0;
 	if (intersection_checker(v, *ray, &v->point))
 	{
 		objects_normal(*ray, &v->point);
-		if (v->point.obj->id != SPHERE && v->point.obj->id != CYLINDER)
+		if (v->point.obj->id != SPHERE)
 			get_pixel_color(v, color);
 		else
 		{
 			i++;
 			ray->ori = ft_vect_add(v->point.p_inter, ft_vect_mult_nbr(v->point.p_normal, 0.5));
-			if (v->point.obj->id == SPHERE)
+			if (v->point.obj->id != SPHERE)
 				ray->dir = ft_vect_sub(ray->dir, ft_vect_mult_nbr(ft_vect_mult_nbr(v->point.p_normal, ft_vect_dot(ray->dir, v->point.p_normal)), 2));
 			else
 			{
-				if ((z = 1 - (1.5 * 1.5) * (1 - ft_vect_dot(v->point.p_normal, ray->dir) * ft_vect_dot(v->point.p_normal, ray->dir))) < 0)
-					z *= -1;
-				ray->dir = ft_vect_add(ft_vect_mult_nbr(ray->dir, 1.5), ft_vect_mult_nbr(v->point.p_normal, 1.5 * ft_vect_dot(v->point.p_normal, ray->dir) - sqrt(z)));
+				if ((z = 1 - ((n1 * n1) / (n2 * n2)) * (1 - ft_vect_dot(v->point.p_normal, ray->dir) * ft_vect_dot(v->point.p_normal, ray->dir))) > 0)
+					ray->dir = ft_vect_add(ft_vect_mult_nbr(ray->dir, (n1 / n2)), ft_vect_mult_nbr(v->point.p_normal, 1.5 * ft_vect_dot(v->point.p_normal, ray->dir) - sqrt(z)));
 			}
 			ray_trace(v, ray, color, i);
 		}
