@@ -46,7 +46,7 @@ t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color, int i)
 	double n1;
 	double n2;
 
-	n1 = 1;
+	n1 = 1.;
 	n2 = 1.5;
 	z = 0;
 	if (intersection_checker(v, *ray, &v->point))
@@ -58,7 +58,7 @@ t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color, int i)
 		{
 			i++;
 			ray->ori = ft_vect_add(v->point.p_inter, ft_vect_mult_nbr(v->point.p_normal, 0.5));
-			if (v->point.obj->id != SPHERE)
+			if (v->point.obj->id == SPHERE)
 				ray->dir = ft_vect_sub(ray->dir, ft_vect_mult_nbr(ft_vect_mult_nbr(v->point.p_normal, ft_vect_dot(ray->dir, v->point.p_normal)), 2));
 			else
 			{
@@ -94,8 +94,7 @@ void		get_pixel_color(t_rt *v, t_vect *light_color)
 		}
 		head = head->next;
 	}
-	if (i == 1)
-		v->point.p_light.amb = (t_vect){1, 1, 1};
+
 	*light_color = ft_vect_mult(v->point.p_color, ft_vect_add(
 		ft_vect_add(v->point.p_light.def, v->point.p_light.amb),
 						v->point.p_light.spc));
