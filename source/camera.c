@@ -6,7 +6,7 @@
 /*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:24:16 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/03/04 13:48:30 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/03/05 22:53:15 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,8 @@ void		generate_camera_ray(t_rt *v, t_ray *r, double y, double x)
 	r->dir = ft_vect_add(
 		v->c->z,
 		ft_vect_add(
-			ft_vect_mult_nbr(v->c->x, (x)),
-			ft_vect_mult_nbr(v->c->y, (y))));
+			ft_vect_mult_nbr(v->c->x, (x * v->c->width / 2)),
+			ft_vect_mult_nbr(v->c->y, (y * v->c->height / 2))));
 	ft_vect_norm(&r->dir);
 }
 

@@ -6,7 +6,7 @@
 /*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:17:11 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/03/04 05:27:03 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/03/05 22:14:53 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,8 @@
 # define MULTI2 "multi_objs_2"
 
 # define RAD(x) (x * M_PI / 180)
-# define PX_X(x) (x * 2.0 / (double)IMG_W - 1.0)
-# define PX_Y(y) (1.0 - y * 2.0 / (double)IMG_H)
+# define PX_X(x) ((x + 0.5) * 2.0 / (double)IMG_W - 1.0)
+# define PX_Y(y) (1.0 - (y + 0.5) * 2.0 / (double)IMG_H)
 
 char			*parse_property(void *obj, char *line, int o_type);
 int				check_file(t_rt *v);

@@ -6,7 +6,7 @@
 /*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:23:37 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/03/04 04:50:48 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/03/05 23:49:19 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,23 +47,22 @@ void	*draw_threads(void *t)
 	j = v->thread.start;
 	while (j < v->thread.end)
 	{
-		y = PX_Y((double)j + 0.5);
+		y = PX_Y((double)j);
 		i = 0;
 		while (i < IMG_W)
 		{
 			z = 0;
 			v->thread.color = (t_vect){0, 0, 0};
-			while (z < 8)
+			while (z < 10)
 			{
-				r1 = ft_random(0., 1.);
-				r2 = ft_random(0., 1.);
+				r1 = ft_random(0, 1.);
+				r2 = ft_random(0, 1.);
 				ss = sqrt(-2 * log(r1));
 				dx = ss * cos(2 * M_PI * r2);
 				dy = ss * sin(2 * M_PI * r2);
-				x = PX_X((double)i + 0.5);
-				// printf("r = %f\n", dx);
+				x = PX_X((double)i);
 				generate_camera_ray(v, &v->thread.ray, y + dy, x + dx);
-				v->thread.color = ft_vect_div_nbr(v->thread.color, 8);
+				v->thread.color = ft_vect_div_nbr(v->thread.color, 10);
 				v->thread.color = ft_vect_add(v->thread.color, ray_trace(v, &v->thread.ray, &v->thread.color, 1));
 				z++;
 			}
