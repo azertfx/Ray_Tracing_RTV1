@@ -35,8 +35,8 @@ void		generate_camera_ray(t_rt *v, t_ray *r, double y, double x)
 	r->dir = ft_vect_add(
 		v->c->z,
 		ft_vect_add(
-			ft_vect_mult_nbr(v->c->x, (x * v->c->width)),
-			ft_vect_mult_nbr(v->c->y, (y * v->c->height))));
+			ft_vect_mult_nbr(v->c->x, (x)),
+			ft_vect_mult_nbr(v->c->y, (y))));
 	ft_vect_norm(&r->dir);
 }
 

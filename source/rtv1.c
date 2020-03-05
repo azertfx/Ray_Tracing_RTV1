@@ -24,26 +24,49 @@ void	set_pixel_color(t_rt *v, int i, int j, t_vect color)
 							0;
 }
 
+double	ft_random(double	a,	double b){
+	return (rand() / (double)RAND_MAX) * (b - a) + a;
+}
+
 void	*draw_threads(void *t)
 {
 	t_rt		*v;
-	int			i;
-	int			j;
+	double		i;
+	double		j;
 	double		x;
 	double		y;
+
+	double r1;
+    double r2;
+    double dx;
+    double dy;
+    double ss;
+    int z;
 
 	v = (t_rt *)t;
 	j = v->thread.start;
 	while (j < v->thread.end)
 	{
-		y = PX_Y((double)j);
+		y = PX_Y((double)j + 0.5);
 		i = 0;
 		while (i < IMG_W)
 		{
-			x = PX_X((double)i);
-			generate_camera_ray(v, &v->thread.ray, y, x);
+			z = 0;
 			v->thread.color = (t_vect){0, 0, 0};
-			v->thread.color = ray_trace(v, &v->thread.ray, &v->thread.color, 1);
+			while (z < 8)
+			{
+				r1 = ft_random(0., 1.);
+				r2 = ft_random(0., 1.);
+				ss = sqrt(-2 * log(r1));
+				dx = ss * cos(2 * M_PI * r2);
+				dy = ss * sin(2 * M_PI * r2);
+				x = PX_X((double)i + 0.5);
+				// printf("r = %f\n", dx);
+				generate_camera_ray(v, &v->thread.ray, y + dy, x + dx);
+				v->thread.color = ft_vect_div_nbr(v->thread.color, 8);
+				v->thread.color = ft_vect_add(v->thread.color, ray_trace(v, &v->thread.ray, &v->thread.color, 1));
+				z++;
+			}
 			set_pixel_color(v, i, j, v->thread.color);
 			i++;
 		}
