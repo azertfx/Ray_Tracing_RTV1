@@ -12,16 +12,61 @@
 
 #include "rtv1.h"
 
+void filters(t_vect *color, int filter)
+{
+	double avg;
+
+	
+	color->x = fmin(255, fmax(0, pow(color->x, 1 / 2.2)));;
+	color->y = fmin(255, fmax(0, pow(color->y, 1 / 2.2)));;
+	color->z = fmin(255, fmax(0, pow(color->z, 1 / 2.2)));;
+	//black_white
+	if (filter == 0)
+	{
+		avg = ((color->x + color->y + color->z) / 3);
+		color->x = avg;
+		color->y = avg;
+		color->z = avg;
+	}
+	//negative
+	if (filter == 1)
+	{
+		color->x = 255. - color->x;
+		color->y = 255. - color->y;
+		color->z = 255. - color->z;
+		//printf("%f , %f , %f\n", color->x, color->y, color->z);
+	}
+	//spia
+	if (filter == 2)
+	{
+		double tr;
+		double tg;
+		double tb;
+		tr = (0.393 * color->x + 0.769 * color->y + 0.189 * color->z);
+		tg = (0.349 * color->x + 0.686 * color->y + 0.168 * color->z);
+		tb = (0.272 * color->x + 0.534 * color->y + 0.131 * color->z);
+		if (tr > 255)
+			color->x = 255;
+		else
+			color->x = tr;
+		if (tg > 255)
+			color->y = 255;
+		else
+			color->y = tg;
+		if (tb > 255)
+			color->z = 255;
+		else
+			color->z = tb;
+	}
+}
+
 void	set_pixel_color(t_rt *v, int i, int j, t_vect color)
 {
-	v->m.img_data[(j * IMG_W + i) * 4 + 0] =
-							fmin(255, fmax(0, pow(color.z, 1 / 2.2)));
-	v->m.img_data[(j * IMG_W + i) * 4 + 1] =
-							fmin(255, fmax(0, pow(color.y, 1 / 2.2)));
-	v->m.img_data[(j * IMG_W + i) * 4 + 2] =
-							fmin(255, fmax(0, pow(color.x, 1 / 2.2)));
-	v->m.img_data[(j * IMG_W + i) * 4 + 3] =
-							0;
+	filters(&color, 0);
+	v->m.img_data[(j * IMG_W + i) * 4 + 0] = color.z;
+	v->m.img_data[(j * IMG_W + i) * 4 + 1] = color.y;
+	v->m.img_data[(j * IMG_W + i) * 4 + 2] = color.x;
+	v->m.img_data[(j * IMG_W + i) * 4 + 3] = 0;
 }
 
 double	ft_random(double	a,	double b){
@@ -36,12 +81,12 @@ void	*draw_threads(void *t)
 	double		x;
 	double		y;
 
-	double r1;
-    double r2;
-    double dx;
-    double dy;
-    double ss;
-    int z;
+	// double r1;
+    // double r2;
+    // double dx;
+    // double dy;
+    // double ss;
+    // int z;
 
 	v = (t_rt *)t;
 	j = v->thread.start;
@@ -51,21 +96,21 @@ void	*draw_threads(void *t)
 		i = 0;
 		while (i < IMG_W)
 		{
-			z = 0;
-			v->thread.color = (t_vect){0, 0, 0};
-			while (z < 10)
-			{
-				r1 = ft_random(0, 1.);
-				r2 = ft_random(0, 1.);
-				ss = sqrt(-2 * log(r1));
-				dx = ss * cos(2 * M_PI * r2);
-				dy = ss * sin(2 * M_PI * r2);
+			// z = 0;
+			// v->thread.color = (t_vect){0, 0, 0};
+			// while (z < 10)
+			// {
+			// 	r1 = ft_random(0, 1.);
+			// 	r2 = ft_random(0, 1.);
+			// 	ss = sqrt(-2 * log(r1));
+			// 	dx = ss * cos(2 * M_PI * r2);
+			// 	dy = ss * sin(2 * M_PI * r2);
+			// 	v->thread.color = ft_vect_div_nbr(v->thread.color, 10);
+			// 	z++;
+			// }
 				x = PX_X((double)i);
-				generate_camera_ray(v, &v->thread.ray, y + dy, x + dx);
-				v->thread.color = ft_vect_div_nbr(v->thread.color, 10);
-				v->thread.color = ft_vect_add(v->thread.color, ray_trace(v, &v->thread.ray, &v->thread.color, 1));
-				z++;
-			}
+				generate_camera_ray(v, &v->thread.ray, y , x);
+				v->thread.color = ray_trace(v, &v->thread.ray, &v->thread.color, 1);
 			set_pixel_color(v, i, j, v->thread.color);
 			i++;
 		}
