@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:17:11 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/03/07 02:19:08 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/03/07 02:34:29 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define R 15
 # define T 17
 # define ESC 53
-# define ESPACE 49
+# define SPACE 49
 # define ORI "Original"
 # define SPH "sphere"
 # define PLA "plane"

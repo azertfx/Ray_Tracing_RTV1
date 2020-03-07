@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys_hook.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:37:06 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/03/07 02:18:37 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/03/07 02:34:22 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ int		ft_keys_hook(int k, t_rt *v)
 	else if (k == Z)
 		v->event.file = "scenes/cylinder.yaml";
 	else if (k == Q || k == W || k == P ||
-				k == L || k == R || k == T)
+				k == L || k == R || k == T || k == SPACE)
 		other_files(k, v);
 	ft_clear_and_draw(v);
 	return (0);
