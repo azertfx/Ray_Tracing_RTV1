@@ -29,8 +29,12 @@ void		generate_camera(t_rt *v)
 	v->c->width = v->c->height * (IMG_W / IMG_H);
 }
 
-void		generate_camera_ray(t_rt *v, t_ray *r, double y, double x)
+void		generate_camera_ray(t_rt *v, t_ray *r, double y, double x, double z)
 {
+	double tab[13][2] = {
+		{0,0},
+		{0,0},
+	};
 	r->ori = v->c->ori;
 	r->dir = ft_vect_add(
 		v->c->z,
