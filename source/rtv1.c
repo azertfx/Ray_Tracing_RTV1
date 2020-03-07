@@ -69,17 +69,25 @@ void	set_pixel_color(t_rt *v, int i, int j, t_vect color)
 	v->m.img_data[(j * IMG_W + i) * 4 + 3] = 0;
 }
 
-double	ft_random(double	a,	double b){
+double ft_random(double a, double b)
+{
 	return (rand() / (double)RAND_MAX) * (b - a) + a;
 }
 
-void	*draw_threads(void *t)
+void *draw_threads(void *t)
 {
-	t_rt		*v;
-	double		i;
-	double		j;
-	double		x;
-	double		y;
+	t_rt *v;
+	int i;
+	int j;
+	double x;
+	double y;
+
+	double r1;
+	double r2;
+	double dx;
+	double dy;
+	double ss;
+	int z;
 
 	v = (t_rt *)t;
 	j = v->thread.start;
@@ -90,9 +98,23 @@ void	*draw_threads(void *t)
 		while (i < IMG_W)
 		{
 			x = PX_X((double)i);
-			generate_camera_ray(v, &v->thread.ray, y, x);
 			v->thread.color = (t_vect){0, 0, 0};
-			ray_trace(v, &v->thread.ray, &v->thread.color, 1);
+			t_vect color2 = (t_vect){0, 0, 0};
+			z = 0;
+			while (z < 50)
+			{
+				r1 = ft_random(0., (2. / IMG_H));
+				r2 = ft_random(0., (2. / IMG_H));
+				ss = sqrt(-2 * log(r1) * (2. / IMG_H));
+				dy = ss * cos(2 * M_PI * r2 * (2. / IMG_H));
+				dx = ss * sin(2 * M_PI * r2 * (2. / IMG_H));
+				generate_camera_ray(v, &v->thread.ray, y + dy , x + dx);
+				color2 = ft_vect_add(color2, ray_trace(v, &v->thread.ray, &v->thread.color));
+				v->thread.color = ft_vect_div_nbr(color2, 50);
+				z++;
+			}
+			// generate_camera_ray(v, &v->thread.ray, y , x );
+			// v->thread.color = ray_trace(v, &v->thread.ray, &v->thread.color);
 			set_pixel_color(v, i, j, v->thread.color);
 			i++;
 		}
@@ -101,12 +123,12 @@ void	*draw_threads(void *t)
 	return (NULL);
 }
 
-void	draw(t_rt v)
+void draw(t_rt v)
 {
-	t_rt		t[THREADS];
-	pthread_t	id[THREADS];
-	int			i;
-	int			j;
+	t_rt t[THREADS];
+	pthread_t id[THREADS];
+	int i;
+	int j;
 
 	i = 0;
 	v.thread.start = 0;
@@ -128,7 +150,7 @@ void	draw(t_rt v)
 	}
 }
 
-int		check_file(t_rt *v)
+int check_file(t_rt *v)
 {
 	// free_all_object(v);
 	if (!v->event.file || !parse_file(v->event.file, v))
@@ -140,7 +162,7 @@ int		check_file(t_rt *v)
 	return (1);
 }
 
-int		rtv1(t_rt *v, char *file)
+int rtv1(t_rt *v, char *file)
 {
 	ft_bzero(v, sizeof(t_rt));
 	v->event.file = file;
@@ -151,12 +173,12 @@ int		rtv1(t_rt *v, char *file)
 	v->m.win_ptr = mlx_new_window(v->m.mlx_ptr, WIN_W, IMG_H, "1337 RTV1");
 	v->m.img_ptr = mlx_new_image(v->m.mlx_ptr, IMG_W, IMG_H);
 	v->m.img_data = (unsigned char *)mlx_get_data_addr(
-			v->m.img_ptr, &v->m.bpp, &v->m.size_l, &v->m.endian);
+		v->m.img_ptr, &v->m.bpp, &v->m.size_l, &v->m.endian);
 	ft_instruction(v);
 	draw(*v);
 	mlx_hook(v->m.win_ptr, 2, 0, ft_keys_hook, v);
 	mlx_put_image_to_window(v->m.mlx_ptr, v->m.win_ptr, v->m.img_ptr,
-				210, 0);
+							210, 0);
 	mlx_loop(v->m.mlx_ptr);
 	return (1);
 }
