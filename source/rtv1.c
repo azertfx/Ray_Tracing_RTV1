@@ -6,7 +6,7 @@
 /*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:23:37 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/03/06 22:33:07 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/03/07 02:26:32 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,20 +101,18 @@ void *draw_threads(void *t)
 			v->thread.color = (t_vect){0, 0, 0};
 			t_vect color2 = (t_vect){0, 0, 0};
 			z = 0;
-			while (z < 50)
+			while (z < 1)
 			{
 				r1 = ft_random(0., (2. / IMG_H));
 				r2 = ft_random(0., (2. / IMG_H));
-				ss = sqrt(-2 * log(r1) * (2. / IMG_H));
-				dy = ss * cos(2 * M_PI * r2 * (2. / IMG_H));
-				dx = ss * sin(2 * M_PI * r2 * (2. / IMG_H));
+				ss = sqrt(-1 * log(r1) * (2. / IMG_H));
+				dy = ss * cos(1 * M_PI * r2 * (2. / IMG_H));
+				dx = ss * sin(1 * M_PI * r2 * (2. / IMG_W));
 				generate_camera_ray(v, &v->thread.ray, y + dy , x + dx);
 				color2 = ft_vect_add(color2, ray_trace(v, &v->thread.ray, &v->thread.color));
-				v->thread.color = ft_vect_div_nbr(color2, 50);
 				z++;
 			}
-			// generate_camera_ray(v, &v->thread.ray, y , x );
-			// v->thread.color = ray_trace(v, &v->thread.ray, &v->thread.color);
+			v->thread.color = ft_vect_div_nbr(color2, 1);
 			set_pixel_color(v, i, j, v->thread.color);
 			i++;
 		}
