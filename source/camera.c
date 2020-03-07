@@ -35,12 +35,12 @@ void		generate_camera_ray(t_rt *v, t_ray *r, double y, double x)
 	r->dir = ft_vect_add(
 		v->c->z,
 		ft_vect_add(
-			ft_vect_mult_nbr(v->c->x, (x)),
-			ft_vect_mult_nbr(v->c->y, (y))));
+			ft_vect_mult_nbr(v->c->x, x * v->c->width / 2.),
+			ft_vect_mult_nbr(v->c->y, y * v->c->height / 2.)));
 	ft_vect_norm(&r->dir);
 }
 
-t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color, int i)
+t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color)
 {
 	double z;
 	double n1;
@@ -56,7 +56,6 @@ t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color, int i)
 			get_pixel_color(v, color);
 		else
 		{
-			i++;
 			ray->ori = ft_vect_add(v->point.p_inter, ft_vect_mult_nbr(v->point.p_normal, 0.5));
 			if (v->point.obj->id == SPHERE)
 				ray->dir = ft_vect_sub(ray->dir, ft_vect_mult_nbr(ft_vect_mult_nbr(v->point.p_normal, ft_vect_dot(ray->dir, v->point.p_normal)), 2));
@@ -69,7 +68,7 @@ t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color, int i)
 				if ((z = 1 - (n * n) * (1 - d * d)) > 0)
 					ray->dir = ft_vect_add(ft_vect_mult_nbr(ray->dir, n), ft_vect_mult_nbr(v->point.p_normal, d * n - sqrt(z)));
 			}
-			ray_trace(v, ray, color, i);
+			ray_trace(v, ray, color);
 		}
 	}
 	return (*color);
