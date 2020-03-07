@@ -29,18 +29,29 @@ void		generate_camera(t_rt *v)
 	v->c->width = v->c->height * (IMG_W / IMG_H);
 }
 
-void		generate_camera_ray(t_rt *v, t_ray *r, double y, double x)
+void		generate_camera_ray(t_rt *v, t_ray *r, double y, double x, int t)
 {
+	static double		tab[13][2] = {
+		{0, 0},
+		{1. / 6., -1. / 6.},
+		{-1. / 6., -1. / 6.},
+		{-1. / 6., 1. / 6.},
+		{1. / 6., 1. / 6.},
+		{1. / 3., -1. / 3.},
+		{-1. / 3., -1. / 3.},
+		{-1. / 3., 1. / 3.},
+		{1. / 3., 1. / 3.}
+	};
 	r->ori = v->c->ori;
 	r->dir = ft_vect_add(
 		v->c->z,
 		ft_vect_add(
-			ft_vect_mult_nbr(v->c->x, x * v->c->width / 2.),
-			ft_vect_mult_nbr(v->c->y, y * v->c->height / 2.)));
+			ft_vect_mult_nbr(v->c->x, PX_X((x + tab[t][0] + 0.5)) * v->c->width / 2.),
+			ft_vect_mult_nbr(v->c->y, PX_Y((y + tab[t][1] + 0.5)) * v->c->height / 2.)));
 	ft_vect_norm(&r->dir);
 }
 
-t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color)
+t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color, double *c)
 {
 	double z;
 	double n1;
@@ -52,24 +63,14 @@ t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color)
 	if (intersection_checker(v, *ray, &v->point))
 	{
 		objects_normal(*ray, &v->point);
-		if (v->point.obj->id != SPHERE)
-			get_pixel_color(v, color);
-		else
+		if (v->point.obj->id == SPHERE)
 		{
 			ray->ori = ft_vect_add(v->point.p_inter, ft_vect_mult_nbr(v->point.p_normal, 0.5));
-			if (v->point.obj->id == SPHERE)
-				ray->dir = ft_vect_sub(ray->dir, ft_vect_mult_nbr(ft_vect_mult_nbr(v->point.p_normal, ft_vect_dot(ray->dir, v->point.p_normal)), 2));
-			else
-			{
-				double d;
-				double n;
-				d = ft_vect_dot(v->point.p_normal, ray->dir);
-				n = n1 / n2;
-				if ((z = 1 - (n * n) * (1 - d * d)) > 0)
-					ray->dir = ft_vect_add(ft_vect_mult_nbr(ray->dir, n), ft_vect_mult_nbr(v->point.p_normal, d * n - sqrt(z)));
-			}
-			ray_trace(v, ray, color);
+			ray->dir = ft_vect_sub(ray->dir, ft_vect_mult_nbr(ft_vect_mult_nbr(v->point.p_normal, ft_vect_dot(ray->dir, v->point.p_normal)), 2));
+			(*c)++;
+			ray_trace(v, ray, color, c);
 		}
+		get_pixel_color(v, color);
 	}
 	return (*color);
 }

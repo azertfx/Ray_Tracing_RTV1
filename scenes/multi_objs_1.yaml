@@ -49,20 +49,20 @@ plane:
 	translation: 0,0,0
 
 sphere:
-	origin: 0,10,30
-	color: 0,0,0
-	ray: 20
+	origin: -16,-8,10
+	color: 50,142,120
+	ray: 14
 	axis: 0,1,0
 	rotation: 0,0,0
 	translation: 0,0,0
 
-# cylinder:
-# 	origin:  -25,0,-40
-# 	color: 255,255,0
-# 	ray: 10
-# 	axis: 1,1,0
-# 	rotation: 0,0,0
-# 	translation: 0,0,0
+cylinder:
+	origin:  -25,0,-40
+	color: 255,255,0
+	ray: 10
+	axis: 1,1,0
+	rotation: 0,0,0
+	translation: 0,0,0
 
 # cylinder:
 # 	origin:  25,0,-40
