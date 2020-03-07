@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:17:11 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/03/05 22:14:53 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/03/07 02:19:08 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include "libft.h"
 # include "parser.h"
 # include "struct_rt.h"
+# include "bmp.h"
 
 # define IMG_H 700
 # define IMG_W 700
@@ -38,6 +39,7 @@
 # define R 15
 # define T 17
 # define ESC 53
+# define ESPACE 49
 # define ORI "Original"
 # define SPH "sphere"
 # define PLA "plane"
@@ -87,5 +89,5 @@ t_vect		    ft_vect_div_nbr(t_vect u, double t);
 double			ft_vect_dist(t_vect u, t_vect v);
 t_vect		    ft_vect_rotate(t_vect v, t_vect r);
 int				ft_keys_hook(int k, t_rt *v);
-
+int				save_bmp_image(t_mlx image);
 #endif
