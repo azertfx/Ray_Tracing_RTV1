@@ -6,22 +6,67 @@
 /*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:23:37 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/03/04 04:50:48 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/03/06 22:31:23 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void set_pixel_color(t_rt *v, int i, int j, t_vect color)
+void filters(t_vect *color, int filter)
 {
-	v->m.img_data[(j * IMG_W + i) * 4 + 0] =
-		fmin(255, fmax(0, pow(color.z, 1 / 2.2)));
-	v->m.img_data[(j * IMG_W + i) * 4 + 1] =
-		fmin(255, fmax(0, pow(color.y, 1 / 2.2)));
-	v->m.img_data[(j * IMG_W + i) * 4 + 2] =
-		fmin(255, fmax(0, pow(color.x, 1 / 2.2)));
-	v->m.img_data[(j * IMG_W + i) * 4 + 3] =
-		0;
+	double avg;
+
+	
+	color->x = fmin(255, fmax(0, pow(color->x, 1 / 2.2)));;
+	color->y = fmin(255, fmax(0, pow(color->y, 1 / 2.2)));;
+	color->z = fmin(255, fmax(0, pow(color->z, 1 / 2.2)));;
+	//black_white
+	if (filter == 0)
+	{
+		avg = ((color->x + color->y + color->z) / 3);
+		color->x = avg;
+		color->y = avg;
+		color->z = avg;
+	}
+	//negative
+	if (filter == 1)
+	{
+		color->x = 255. - color->x;
+		color->y = 255. - color->y;
+		color->z = 255. - color->z;
+		//printf("%f , %f , %f\n", color->x, color->y, color->z);
+	}
+	//spia
+	if (filter == 2)
+	{
+		double tr;
+		double tg;
+		double tb;
+		tr = (0.393 * color->x + 0.769 * color->y + 0.189 * color->z);
+		tg = (0.349 * color->x + 0.686 * color->y + 0.168 * color->z);
+		tb = (0.272 * color->x + 0.534 * color->y + 0.131 * color->z);
+		if (tr > 255)
+			color->x = 255;
+		else
+			color->x = tr;
+		if (tg > 255)
+			color->y = 255;
+		else
+			color->y = tg;
+		if (tb > 255)
+			color->z = 255;
+		else
+			color->z = tb;
+	}
+}
+
+void	set_pixel_color(t_rt *v, int i, int j, t_vect color)
+{
+	filters(&color, 0);
+	v->m.img_data[(j * IMG_W + i) * 4 + 0] = color.z;
+	v->m.img_data[(j * IMG_W + i) * 4 + 1] = color.y;
+	v->m.img_data[(j * IMG_W + i) * 4 + 2] = color.x;
+	v->m.img_data[(j * IMG_W + i) * 4 + 3] = 0;
 }
 
 double ft_random(double a, double b)
