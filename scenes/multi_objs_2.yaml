@@ -1,11 +1,7 @@
 camera:
 	origin: 0,0,100
 	target: 0,0,0
-<<<<<<< HEAD
-	fov: 150
-=======
 	fov: 60
->>>>>>> 5b9360138b9981bf4cdbb5115235c525e85b9946
 
 
 light:
