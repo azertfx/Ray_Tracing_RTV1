@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys_hook.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:37:06 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/03/04 02:44:00 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/03/07 02:18:37 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ void	other_files(int k, t_rt *v)
 		v->event.file = "scenes/multi_objs_1.yaml";
 	else if (k == T)
 		v->event.file = "scenes/multi_objs_2.yaml";
+	else if (k == 49)
+		save_bmp_image(v->m);
 }
 
 int		ft_keys_hook(int k, t_rt *v)

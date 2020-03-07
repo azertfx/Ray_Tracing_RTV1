@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+         #
+#    By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/06 03:38:58 by anabaoui          #+#    #+#              #
-#    Updated: 2020/02/29 02:55:13 by anabaoui         ###   ########.fr        #
+#    Updated: 2020/03/07 02:20:07 by hezzahir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = rtv1
 
 SRC_NAME = main.c rtv1.c intersection.c keys_hook.c\
 			objects.c vectors1.c vectors2.c vectors3.c pixel_color.c camera.c\
-			guide_btn.c instruction.c
+			guide_btn.c instruction.c bmp.c
 
 OBJ_NAME =	$(SRC_NAME:.c=.o)
 
