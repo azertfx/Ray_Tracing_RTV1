@@ -6,7 +6,7 @@
 /*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:23:37 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/03/06 22:31:23 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/03/06 22:33:07 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void filters(t_vect *color, int filter)
 
 void	set_pixel_color(t_rt *v, int i, int j, t_vect color)
 {
-	filters(&color, 0);
+	filters(&color, 3);
 	v->m.img_data[(j * IMG_W + i) * 4 + 0] = color.z;
 	v->m.img_data[(j * IMG_W + i) * 4 + 1] = color.y;
 	v->m.img_data[(j * IMG_W + i) * 4 + 2] = color.x;

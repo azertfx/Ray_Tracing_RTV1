@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:54:38 by hastid            #+#    #+#             */
-/*   Updated: 2020/03/01 04:56:38 by hastid           ###   ########.fr       */
+/*   Updated: 2020/03/06 23:21:39 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	get_double(double *p, char *v, int t)
 	res = sscanf(v, "%lf%n", p, &i);
 	if (res != 1 || v[i] != '\0' || *p < 0)
 		return (ERROR);
-	if (t == FOV && *p > 120)
+	if (t == FOV && *p > 360)
 		return (ERROR);
 	return (SUCCESS);
 }
