@@ -27,8 +27,16 @@ plane:
 	translation: 0,0,0
 
 sphere:
-	origin: 40,0,0 
-	color: 245,100,36
+	origin: 0,0,50 
+	color: 80,1,1
+	ray: 20
+	axis: 0,0,0
+	rotation: 0,0,0
+	translation: 0,0,0
+
+sphere:
+	origin: 0,0,200 
+	color: 255,255,255
 	ray: 20
 	axis: 0,0,0
 	rotation: 0,0,0
