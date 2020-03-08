@@ -31,7 +31,7 @@ void		generate_camera(t_rt *v)
 
 void		generate_camera_ray(t_rt *v, t_ray *r, double y, double x, int t)
 {
-	static double		tab[13][2] = {
+	static double		tab[9][2] = {
 		{0, 0},
 		{1. / 6., -1. / 6.},
 		{-1. / 6., -1. / 6.},
@@ -42,12 +42,22 @@ void		generate_camera_ray(t_rt *v, t_ray *r, double y, double x, int t)
 		{-1. / 3., 1. / 3.},
 		{1. / 3., 1. / 3.}
 	};
+	double focus = 50;
+	t_vect destination;
+
 	r->ori = v->c->ori;
 	r->dir = ft_vect_add(
 		v->c->z,
 		ft_vect_add(
 			ft_vect_mult_nbr(v->c->x, PX_X((x + tab[t][0] + 0.5)) * v->c->width / 2.),
 			ft_vect_mult_nbr(v->c->y, PX_Y((y + tab[t][1] + 0.5)) * v->c->height / 2.)));
+	ft_vect_norm(&r->dir);
+	destination = ft_vect_add(r->ori, ft_vect_mult_nbr(r->dir, focus));
+	r->ori = (t_vect){
+		r->ori.x + tab[t][0],
+		r->ori.y + tab[t][1],
+		r->ori.z};
+	r->dir = ft_vect_sub(destination, r->ori);
 	ft_vect_norm(&r->dir);
 }
 
@@ -63,7 +73,7 @@ t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color, double *c)
 	if (intersection_checker(v, *ray, &v->point))
 	{
 		objects_normal(*ray, &v->point);
-		if (v->point.obj->id == SPHERE)
+		if (v->point.obj->id == SPHERE && *c <= 1)
 		{
 			ray->ori = ft_vect_add(v->point.p_inter, ft_vect_mult_nbr(v->point.p_normal, 0.5));
 			ray->dir = ft_vect_sub(ray->dir, ft_vect_mult_nbr(ft_vect_mult_nbr(v->point.p_normal, ft_vect_dot(ray->dir, v->point.p_normal)), 2));
