@@ -6,7 +6,7 @@
 /*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:24:16 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/03/06 00:34:51 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/03/08 02:07:12 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,8 @@ t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color, double *c)
 			(*c)++;
 			ray_trace(v, ray, color, c);
 		}
-		get_pixel_color(v, color);
+		else
+			get_pixel_color(v, color);
 	}
 	return (*color);
 }
