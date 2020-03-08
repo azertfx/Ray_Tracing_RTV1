@@ -92,16 +92,16 @@ void *draw_threads(void *t)
 		{
 			x = (double)i;
 			v->thread.color = (t_vect){0, 0, 0};
-			double t = 0;
+			double k = 0;
 			t_vect color2 = (t_vect){0, 0, 0};
 			double c = 1;
-			while (t < 9)
+			while (k < 1)
 			{
-				generate_camera_ray(v, &v->thread.ray, y, x, t);
+				generate_camera_ray(v, &v->thread.ray, y, x, k);
 				color2 = ft_vect_add(color2, ray_trace(v, &v->thread.ray, &v->thread.color, &c));
-				t++;
+				k++;
 			}
-			v->thread.color = ft_vect_div_nbr(color2, 9);
+			v->thread.color = ft_vect_div_nbr(color2, 1);
 			//printf("c = %f\n", c);
 			set_pixel_color(v, i, j, v->thread.color);
 			i++;

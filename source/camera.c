@@ -6,7 +6,7 @@
 /*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:24:16 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/03/08 05:12:14 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/03/08 07:17:44 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color, double *c)
 	if (intersection_checker(v, *ray, &v->point))
 	{
 		objects_normal(*ray, &v->point);
-		if (v->point.obj->id == SPHERE && *c < 2)
+		if (v->point.obj->id == SPHERE && *c <= 1 && NULL)
 		{
 			ray->ori = ft_vect_add(v->point.p_inter, ft_vect_mult_nbr(v->point.p_normal, 0.5));
 			if (0)
@@ -102,6 +102,7 @@ void		get_pixel_color(t_rt *v, t_vect *light_color)
 	v->point.p_light.amb = (t_vect){0, 0, 0};
 	v->point.p_light.def = (t_vect){0, 0, 0};
 	v->point.p_light.spc = (t_vect){0, 0, 0};
+	v->point.p_light.toon = (t_vect){0, 0, 0};
 	head = v->l;
 	i = 1;
 	while (head)
@@ -114,7 +115,7 @@ void		get_pixel_color(t_rt *v, t_vect *light_color)
 		head = head->next;
 	}
 
-	*light_color = ft_vect_mult(v->point.p_color, ft_vect_add(
+	*light_color = ft_vect_mult(v->point.p_color, ft_vect_mult(ft_vect_add(
 		ft_vect_add(v->point.p_light.def, v->point.p_light.amb),
-						v->point.p_light.spc));
+						v->point.p_light.spc),v->point.p_light.toon));
 }

@@ -89,7 +89,8 @@ typedef struct	s_plight
 	t_vect	amb;
 	t_vect	def;
 	t_vect	spc;
-	double	light;
+	t_vect toon;
+	double light;
 }				t_plight;
 
 typedef struct	s_point
