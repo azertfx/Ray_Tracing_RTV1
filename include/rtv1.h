@@ -53,8 +53,8 @@
 # define MULTI2 "multi_objs_2"
 
 # define RAD(x) (x * M_PI / 180)
-# define PX_X(x) ((x + 0.5) * 2.0 / (double)IMG_W - 1.0)
-# define PX_Y(y) (1.0 - (y + 0.5) * 2.0 / (double)IMG_H)
+# define PX_X(x) (x * 2.0 / (double)IMG_W - 1.0)
+# define PX_Y(y) (1.0 - y * 2.0 / (double)IMG_H)
 
 char			*parse_property(void *obj, char *line, int o_type);
 int				check_file(t_rt *v);
@@ -65,10 +65,10 @@ int				rtv1(t_rt *v, char *file);
 void			draw(t_rt v);
 double			intersection_checker(t_rt *v, t_ray r, t_point *point);
 void			calculate_pixel_color(t_rt *v, t_light *light, int i);
-t_vect		    ray_trace(t_rt *v, t_ray *ray, t_vect *color);
+t_vect		    ray_trace(t_rt *v, t_ray *ray, t_vect *color, double *c);
 void			get_pixel_color(t_rt *v, t_vect *light_color);
 void			objects_normal(t_ray r, t_point *point);
-void			generate_camera_ray(t_rt *v, t_ray *r, double y, double x);
+void			generate_camera_ray(t_rt *v, t_ray *r, double y, double x, int t);
 void			generate_camera(t_rt *v);
 double			sphere_intersection(t_ray r, t_obj *obj);
 double			cylinder_intersection(t_ray r, t_obj *obj);
