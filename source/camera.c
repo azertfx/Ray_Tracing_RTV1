@@ -94,6 +94,7 @@ void		get_pixel_color(t_rt *v, t_vect *light_color)
 	v->point.p_light.amb = (t_vect){0, 0, 0};
 	v->point.p_light.def = (t_vect){0, 0, 0};
 	v->point.p_light.spc = (t_vect){0, 0, 0};
+	v->point.p_light.toon = (t_vect){0, 0, 0};
 	head = v->l;
 	i = 1;
 	while (head)
@@ -106,7 +107,7 @@ void		get_pixel_color(t_rt *v, t_vect *light_color)
 		head = head->next;
 	}
 
-	*light_color = ft_vect_mult(v->point.p_color, ft_vect_add(
+	*light_color = ft_vect_mult(v->point.p_color, ft_vect_mult(ft_vect_add(
 		ft_vect_add(v->point.p_light.def, v->point.p_light.amb),
-						v->point.p_light.spc));
+						v->point.p_light.spc),v->point.p_light.toon));
 }

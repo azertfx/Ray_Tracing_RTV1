@@ -12,15 +12,15 @@
 
 #include "rtv1.h"
 
-double	shadow_checker(t_rt *v, t_light *light)
+double shadow_checker(t_rt *v, t_light *light)
 {
-	t_point		point;
-	t_ray		r;
-	double		dist_light;
-	double		dist_object;
+	t_point point;
+	t_ray r;
+	double dist_light;
+	double dist_object;
 
 	r.ori = ft_vect_add(v->point.p_inter,
-			(ft_vect_mult_nbr(v->point.p_normal, 0.5)));
+						(ft_vect_mult_nbr(v->point.p_normal, 0.5)));
 	r.dir = ft_vect_sub(light->ori, r.ori);
 	ft_vect_norm(&r.dir);
 	if (intersection_checker(v, r, &point))
@@ -36,42 +36,42 @@ double	shadow_checker(t_rt *v, t_light *light)
 	return (0);
 }
 
-void	pixel_ambient(t_rt *v, int i)
+void pixel_ambient(t_rt *v, int i)
 {
 	v->point.p_light.amb = ft_vect_div_nbr(
 		ft_vect_add_nbr(v->point.p_light.amb, 80), i);
 }
 
-void	pixel_diffuse(t_rt *v, t_light *light)
+void pixel_diffuse(t_rt *v, t_light *light)
 {
 	double diff_pow;
 
 	diff_pow = fmax(0, ft_vect_dot(v->point.p_dir, v->point.p_normal));
-	// if(diff_pow > 0.95)
-	// 	diff_pow = 0.95;
-	// else if(diff_pow > 0.5)
-	// 	diff_pow = 0.5;
-	// else if(diff_pow > 0.25)
-	// 	diff_pow = 0.25;
-	// else
-	// 	diff_pow = 0.1;
+	if (diff_pow > 0.95)
+		diff_pow = 0.95;
+	else if (diff_pow > 0.5)
+		diff_pow = 0.5;
+	else if (diff_pow > 0.25)
+		diff_pow = 0.25;
+	else
+		diff_pow = 0.1;
 	v->point.p_light.def = ft_vect_add_nbr(v->point.p_light.def,
 										   light->pow * diff_pow);
 }
 
-void	pixel_specular(t_rt *v, t_light *light)
+void pixel_specular(t_rt *v, t_light *light)
 {
-	t_vect	view_dir;
-	t_vect	reflect;
-	double		str;
+	t_vect view_dir;
+	t_vect reflect;
+	double str;
 	double spec_pow;
 
 	view_dir = ft_vect_sub(v->c->ori, v->point.p_inter);
 	ft_vect_norm(&view_dir);
 	v->point.p_dir = ft_vect_mult_nbr(v->point.p_dir, -1);
 	reflect = ft_vect_sub(v->point.p_dir, ft_vect_mult_nbr(
-		v->point.p_normal, 2 * ft_vect_dot(
-		v->point.p_normal, v->point.p_dir)));
+											  v->point.p_normal, 2 * ft_vect_dot(
+																		 v->point.p_normal, v->point.p_dir)));
 	spec_pow = fmax(ft_vect_dot(view_dir, reflect), 0.4);
 	// if(spec_pow > 0.5)
 	// 	spec_pow = 0.9;
@@ -83,7 +83,23 @@ void	pixel_specular(t_rt *v, t_light *light)
 	v->point.p_light.spc = ft_vect_add_nbr(v->point.p_light.spc, str);
 }
 
-void	calculate_pixel_color(t_rt *v, t_light *light, int i)
+void pixel_outline(t_rt *v)
+{
+	t_vect view_dir;
+	double outline_pow;
+
+	view_dir = ft_vect_sub(v->c->ori, v->point.p_inter);
+	ft_vect_norm(&view_dir);
+	outline_pow = ft_vect_dot(view_dir, v->point.p_normal);
+	// printf("outline_pow = %f\n", outline_pow);
+	if (outline_pow > 0.3)
+		outline_pow = 1;
+	else
+		outline_pow = 0;
+	v->point.p_light.toon = ft_vect_add_nbr(v->point.p_light.toon, outline_pow);
+}
+
+void calculate_pixel_color(t_rt *v, t_light *light, int i)
 {
 	pixel_ambient(v, i);
 	if (!shadow_checker(v, light))
@@ -91,6 +107,7 @@ void	calculate_pixel_color(t_rt *v, t_light *light, int i)
 		v->point.p_dir = ft_vect_sub(light->ori, v->point.p_inter);
 		ft_vect_norm(&v->point.p_dir);
 		pixel_diffuse(v, light);
-		pixel_specular(v, light);
+		// pixel_specular(v, light);
 	}
+	pixel_outline(v);
 }
