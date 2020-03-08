@@ -6,7 +6,7 @@
 /*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:23:37 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/03/07 05:37:25 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/03/08 02:12:33 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ void *draw_threads(void *t)
 			}
 			v->thread.color = ft_vect_div_nbr(color2, 9);
 			//printf("c = %f\n", c);
-			v->thread.color = ft_vect_add_nbr(v->thread.color, c * 20);
+			//v->thread.color = ft_vect_add_nbr(v->thread.color, c * 20);
 			set_pixel_color(v, i, j, v->thread.color);
 			i++;
 		}
