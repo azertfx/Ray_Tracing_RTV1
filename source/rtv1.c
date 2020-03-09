@@ -17,9 +17,9 @@ void filters(t_vect *color, int filter)
 	double avg;
 
 	
-	color->x = fmin(255, fmax(0, pow(color->x, 1 / 2.2)));;
-	color->y = fmin(255, fmax(0, pow(color->y, 1 / 2.2)));;
-	color->z = fmin(255, fmax(0, pow(color->z, 1 / 2.2)));;
+	color->x = fmin(255, fmax(0, pow(color->x, 1 / 2.2)));
+	color->y = fmin(255, fmax(0, pow(color->y, 1 / 2.2)));
+	color->z = fmin(255, fmax(0, pow(color->z, 1 / 2.2)));
 	//black_white
 	if (filter == 0)
 	{
@@ -34,7 +34,6 @@ void filters(t_vect *color, int filter)
 		color->x = 255. - color->x;
 		color->y = 255. - color->y;
 		color->z = 255. - color->z;
-		//printf("%f , %f , %f\n", color->x, color->y, color->z);
 	}
 	//spia
 	if (filter == 2)
@@ -94,16 +93,33 @@ void *draw_threads(void *t)
 			v->thread.color = (t_vect){0, 0, 0};
 			double t = 0;
 			t_vect color2 = (t_vect){0, 0, 0};
+			t_vect col2 = (t_vect){0, 0, 0};
+			t_vect color = (t_vect){0, 0, 0};
 			double c = 1;
-			while (t < 9)
+			double ll = 0;
+			while (t < 1)
 			{
 				generate_camera_ray(v, &v->thread.ray, y, x, t);
-				color2 = ft_vect_add(color2, ray_trace(v, &v->thread.ray, &v->thread.color, &c));
+				if (intersection_checker(v, v->thread.ray, &v->point))
+				{
+					objects_normal(v->thread.ray, &v->point);
+					if (!ll)
+						color = v->point.obj->col;
+					ll++;
+					col2 = get_pixel_color(v, c);
+					col2 = ft_vect_add(col2, ray_trace(v, &v->thread.ray, v->thread.color, &c));
+					if (v->point.inter_min != MAX_NBR)
+					{
+						color2 = ft_vect_mult(v->point.obj->col, col2);
+						//color = ft_vect_mult(color, col2);
+						color = ft_vect_add(color, color2);
+					}
+				}
 				t++;
 			}
-			v->thread.color = ft_vect_div_nbr(color2, 9);
-			//printf("c = %f\n", c);
-			v->thread.color = ft_vect_add_nbr(v->thread.color, c * 20);
+			if (c != 1)
+				color2 = ft_vect_div_nbr(color, 1);
+			v->thread.color = ft_vect_div_nbr(color2, 1);
 			set_pixel_color(v, i, j, v->thread.color);
 			i++;
 		}

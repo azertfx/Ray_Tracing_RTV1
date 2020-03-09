@@ -51,52 +51,101 @@ void		generate_camera_ray(t_rt *v, t_ray *r, double y, double x, int t)
 	ft_vect_norm(&r->dir);
 }
 
-t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color, double *c)
+t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect color, double *c)
 {
-	double z;
-	double n1;
-	double n2;
-
-	n1 = 1.;
-	n2 = 1.3;
-	z = 0;
-	if (intersection_checker(v, *ray, &v->point))
+	if (v->point.obj->id == SPHERE && *c < 10)
 	{
-		objects_normal(*ray, &v->point);
-
-		if (v->point.obj->id == SPHERE)
+		ray->ori = ft_vect_add_nbr(v->point.p_inter, MIN_NBR);
+		ray->dir = ft_vect_sub(ray->dir, ft_vect_mult_nbr(v->point.p_normal,
+			2 * ft_vect_dot(ray->dir, v->point.p_normal)));
+		ft_vect_norm(&ray->dir);
+		(*c)++;
+		if (intersection_checker(v, v->thread.ray, &v->point))
 		{
-			//printf("%f\n", *c);
-			ray->ori = ft_vect_add(v->point.p_inter, ft_vect_mult_nbr(v->point.p_normal, 0.5));
-			if (0)
-			{
-				ray->dir = ft_vect_sub(ray->dir, ft_vect_mult_nbr(ft_vect_mult_nbr(v->point.p_normal, ft_vect_dot(ray->dir, v->point.p_normal)), 2));
-				(*c)++;
-			}
-			else
-			{
-				double d;
-				double n;
-				d = ft_vect_dot(v->point.p_normal, ray->dir);
-				// printf("d = %f\n", d);
-				//d *= -1;
-				n = n1 / n2;
-				// if ((z = (n * n) * (1 - d * d)) > 1)
-				// 	ray->dir = ft_vect_add(ft_vect_mult_nbr(ray->dir, n), ft_vect_mult_nbr(v->point.p_normal, d * n - sqrt(1 - z)));
-				// if ((z = 1 - (n * n) * (1 - d * d)) > 0)
-				ray->dir = ft_vect_add(ft_vect_mult_nbr(ray->dir, n), ft_vect_mult_nbr(v->point.p_normal, d * (n - 1)));
-				(*c)++;
-			}
-			ray_trace(v, ray, color, c);
+			objects_normal(v->thread.ray, &v->point);
+			color = ft_vect_add(color, get_pixel_color(v, *c));
+			color = ray_trace(v, ray, color, c);
 		}
-		get_pixel_color(v, color);
 	}
-	return (*color);
+	return (color);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	// double z;
+	// double n1;
+	// double n2;
+	// t_vect col;
+
+	// n1 = 1.;
+	// n2 = 1.3;
+	// z = 0;
+	// col = (t_vect){0,0,0};
+	// if (intersection_checker(v, *ray, &v->point))
+	// {
+		//objects_normal(*ray, &v->point);
+		// col = ft_vect_add(col, get_pixel_color(v, color));
+		// if (v->point.obj->id == SPHERE && *c < 10)
+		// {
+		// 	ray->ori = v->point.p_inter;
+		// 	if (1)
+		// 	{
+		// 		ray->dir = ft_vect_mult_nbr(ray->dir, -1);
+		// 		// ray->dir = ft_vect_sub(ray->dir, ft_vect_mult_nbr(ft_vect_mult_nbr(v->point.p_normal, ft_vect_dot(ray->dir, v->point.p_normal)), 2));
+		// 		ray->dir = ft_vect_sub(ft_vect_mult_nbr(v->point.p_normal, 2 * ft_vect_dot(ray->dir, v->point.p_normal)), ray->dir);
+		// 		(*c)++;
+		// 	}
+		// 	else
+		// 	{
+		// 		double d;
+		// 		double n;
+		// 		d = ft_vect_dot(v->point.p_normal, ray->dir);
+		// 		// printf("d = %f\n", d);
+		// 		//d *= -1;
+		// 		n = n1 / n2;
+		// 		// if ((z = (n * n) * (1 - d * d)) > 1)
+		// 		// 	ray->dir = ft_vect_add(ft_vect_mult_nbr(ray->dir, n), ft_vect_mult_nbr(v->point.p_normal, d * n - sqrt(1 - z)));
+		// 		// if ((z = 1 - (n * n) * (1 - d * d)) > 0)
+		// 		ray->dir = ft_vect_add(ft_vect_mult_nbr(ray->dir, n), ft_vect_mult_nbr(v->point.p_normal, d * (n - 1)));
+		// 		(*c)++;
+		// 	}
+		// 	ray_trace(v, ray, col, c);
+		// }
+	// }
+	//return (col);
+	
+	
+	
+	// t_vect col;
+	
+	// objects_normal(*ray, &v->point);
+	// col = get_pixel_color(v, color);
+	// if (v->point.obj->id == SPHERE)
+	// {
+	// 	col = reflection(v, col, c);
+	// }
+	// return (col);
 }
 
-void		get_pixel_color(t_rt *v, t_vect *light_color)
+t_vect		get_pixel_color(t_rt *v, double c)
 {
 	t_light		*head;
+	t_vect light_color;
 	double		i;
 
 	v->point.p_light.amb = (t_vect){0, 0, 0};
@@ -113,8 +162,11 @@ void		get_pixel_color(t_rt *v, t_vect *light_color)
 		}
 		head = head->next;
 	}
-
-	*light_color = ft_vect_mult(v->point.p_color, ft_vect_add(
-		ft_vect_add(v->point.p_light.def, v->point.p_light.amb),
-						v->point.p_light.spc));
+	// (void) c;
+	if (c != 1)
+		v->point.p_light.def = (t_vect){0, 0, 0};
+	light_color = ft_vect_add(
+		ft_vect_add(ft_vect_mult_nbr(v->point.p_light.def, 2), v->point.p_light.amb),
+						v->point.p_light.spc);
+	return (light_color);
 }

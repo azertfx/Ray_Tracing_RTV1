@@ -4,73 +4,81 @@ camera:
 	fov: 60
 
 light:
-	origin: 5,80,20
+	origin: 20,100,60
 	color: 255,255,255
-	power: 400
+	power: 300
 
 plane:
 	origin: 0,-30,0
-	color: 0,0,255
+	color: 255,0,0
 	ray: 20
 	axis: 0,1,0
 	rotation: 0,0,0
 	translation: 0,0,0
 
-plane:
-	origin: 0,80,0
-	color: 255,0,255
-	ray: 20
-	axis: 0,1,0
-	rotation: 0,0,0
-	translation: 0,0,0
+# plane:
+# 	origin: 0,120,0
+# 	color: 60,60,60
+# 	ray: 20
+# 	axis: 0,-1,0
+# 	rotation: 20,0,0
+# 	translation: 0,0,0
 
-plane:
-	origin: 0,0,-50
+# plane:
+# 	origin: 0,0,-60
+# 	color: 0,200,200
+# 	ray: 20
+# 	axis: 0,0,1
+# 	rotation: 0,0,0
+# 	translation: 0,0,0
+
+# plane:
+# 	origin: -80,0,0
+# 	color: 0,255,0
+# 	ray: 20
+# 	axis: 1,0,0
+# 	rotation: 0,-20,0
+# 	translation: 0,0,0
+
+# plane:
+# 	origin: 80,0,0
+# 	color: 0,0,255
+# 	ray: 20
+# 	axis: -1,0,0
+# 	rotation: 0,20,0
+# 	translation: 0,0,0
+
+sphere:
+	origin: 0,-10,0
 	color: 0,255,255
 	ray: 20
-	axis: 0,0,1
-	rotation: 0,0,0
-	translation: 0,0,0
-
-plane:
-	origin: -50,0,0
-	color: 255,255,0
-	ray: 20
-	axis: 1,0,0
-	rotation: 0,0,0
-	translation: 0,0,0
-
-plane:
-	origin: 50,0,0
-	color: 0,255,0
-	ray: 20
-	axis: -1,0,0
+	axis: 0,1,0
 	rotation: 0,0,0
 	translation: 0,0,0
 
 sphere:
-	origin: -16,-8,10
-	color: 50,142,120
-	ray: 14
+	origin: 0,-10,120
+	color: 255,255,255
+	ray: 10
 	axis: 0,1,0
 	rotation: 0,0,0
 	translation: 0,0,0
 
 cylinder:
-	origin:  -25,0,-40
+	origin:  0,0,-50
 	color: 255,255,0
 	ray: 10
-	axis: 1,1,0
-	rotation: 0,0,0
-	translation: 0,0,0
-
-cylinder:
-	origin:  -16,-8,-10
-	color: 255,0,0
-	ray: 4
 	axis: 0,1,0
 	rotation: 0,0,0
 	translation: 0,0,0
+
+# cylinder:
+# 	origin:  -16,-8,-10
+# 	color: 255,0,0
+# 	ray: 4
+# 	axis: 0,1,0
+# 	rotation: 0,0,0
+# 	translation: 0,0,0
 
 # cylinder:
 # 	origin:  25,0,-40
