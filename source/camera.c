@@ -31,7 +31,7 @@ void		generate_camera(t_rt *v)
 
 void		generate_camera_ray(t_rt *v, t_ray *r, double y, double x, int t)
 {
-	static double		tab[13][2] = {
+	static double		tab[9][2] = {
 		{0, 0},
 		{1. / 6., -1. / 6.},
 		{-1. / 6., -1. / 6.},
@@ -58,16 +58,35 @@ t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color, double *c)
 	double n2;
 
 	n1 = 1.;
-	n2 = 1.5;
+	n2 = 1.3;
 	z = 0;
 	if (intersection_checker(v, *ray, &v->point))
 	{
 		objects_normal(*ray, &v->point);
+
 		if (v->point.obj->id == SPHERE)
 		{
+			//printf("%f\n", *c);
 			ray->ori = ft_vect_add(v->point.p_inter, ft_vect_mult_nbr(v->point.p_normal, 0.5));
-			ray->dir = ft_vect_sub(ray->dir, ft_vect_mult_nbr(ft_vect_mult_nbr(v->point.p_normal, ft_vect_dot(ray->dir, v->point.p_normal)), 2));
-			(*c)++;
+			if (0)
+			{
+				ray->dir = ft_vect_sub(ray->dir, ft_vect_mult_nbr(ft_vect_mult_nbr(v->point.p_normal, ft_vect_dot(ray->dir, v->point.p_normal)), 2));
+				(*c)++;
+			}
+			else
+			{
+				double d;
+				double n;
+				d = ft_vect_dot(v->point.p_normal, ray->dir);
+				// printf("d = %f\n", d);
+				//d *= -1;
+				n = n1 / n2;
+				// if ((z = (n * n) * (1 - d * d)) > 1)
+				// 	ray->dir = ft_vect_add(ft_vect_mult_nbr(ray->dir, n), ft_vect_mult_nbr(v->point.p_normal, d * n - sqrt(1 - z)));
+				// if ((z = 1 - (n * n) * (1 - d * d)) > 0)
+				ray->dir = ft_vect_add(ft_vect_mult_nbr(ray->dir, n), ft_vect_mult_nbr(v->point.p_normal, d * (n - 1)));
+				(*c)++;
+			}
 			ray_trace(v, ray, color, c);
 		}
 		get_pixel_color(v, color);
