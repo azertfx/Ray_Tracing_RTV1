@@ -43,7 +43,8 @@ typedef struct	s_ray
 {
 	t_vect	ori;
 	t_vect	dir;
-}				t_ray;
+	double time;
+} t_ray;
 
 typedef struct	s_cam
 {
@@ -89,7 +90,6 @@ typedef struct	s_plight
 	t_vect	amb;
 	t_vect	def;
 	t_vect	spc;
-	t_vect toon;
 	double light;
 }				t_plight;
 

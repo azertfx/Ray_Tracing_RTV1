@@ -16,7 +16,6 @@ void filters(t_vect *color, int filter)
 {
 	double avg;
 
-	
 	color->x = fmin(255, fmax(0, pow(color->x, 1 / 2.2)));;
 	color->y = fmin(255, fmax(0, pow(color->y, 1 / 2.2)));;
 	color->z = fmin(255, fmax(0, pow(color->z, 1 / 2.2)));;
@@ -34,7 +33,6 @@ void filters(t_vect *color, int filter)
 		color->x = 255. - color->x;
 		color->y = 255. - color->y;
 		color->z = 255. - color->z;
-		//printf("%f , %f , %f\n", color->x, color->y, color->z);
 	}
 	//spia
 	if (filter == 2)
@@ -69,11 +67,6 @@ void	set_pixel_color(t_rt *v, int i, int j, t_vect color)
 	v->m.img_data[(j * IMG_W + i) * 4 + 3] = 0;
 }
 
-double ft_random(double a, double b)
-{
-	return (rand() / (double)RAND_MAX) * (b - a) + a;
-}
-
 void *draw_threads(void *t)
 {
 	t_rt *v;
@@ -81,6 +74,7 @@ void *draw_threads(void *t)
 	double j;
 	double x;
 	double y;
+	int aa = 9;
 
 	v = (t_rt *)t;
 	j = v->thread.start;
@@ -95,14 +89,13 @@ void *draw_threads(void *t)
 			double k = 0;
 			t_vect color2 = (t_vect){0, 0, 0};
 			double c = 1;
-			while (k < 1)
+			while (k < aa)
 			{
 				generate_camera_ray(v, &v->thread.ray, y, x, k);
 				color2 = ft_vect_add(color2, ray_trace(v, &v->thread.ray, &v->thread.color, &c));
 				k++;
 			}
-			v->thread.color = ft_vect_div_nbr(color2, 1);
-			//printf("c = %f\n", c);
+			v->thread.color = ft_vect_div_nbr(color2, aa);
 			set_pixel_color(v, i, j, v->thread.color);
 			i++;
 		}

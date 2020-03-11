@@ -28,18 +28,23 @@ double		objects_intersection(t_ray r, t_obj *obj)
 	return (inter);
 }
 
-double		intersection_checker(t_rt *v, t_ray r, t_point *point)
+double		intersection_checker(t_rt *v, t_ray *r, t_point *point)
 {
 	t_obj	*head;
 	double	inter;
 	double	i;
+	t_vect trans = (t_vect){30, 30, 0};
 
 	head = v->o;
 	i = 0;
 	point->inter_min = MAX_NBR;
 	while (head)
 	{
-		if ((inter = objects_intersection(r, head)))
+		if(head->id == SPHERE)
+		{
+			r->ori = ft_vect_sub(r->ori, ft_vect_mult_nbr(trans, r->time));
+		}
+		if ((inter = objects_intersection(*r, head)))
 		{
 			i = 1;
 			if (inter <= point->inter_min)

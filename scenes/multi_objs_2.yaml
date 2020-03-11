@@ -27,33 +27,9 @@ plane:
 	translation: 0,0,0
 
 sphere:
-	origin: 0,0,50 
+	origin: 0,0,20 
 	color: 80,1,1
-	ray: 20
-	axis: 0,0,0
-	rotation: 0,0,0
-	translation: 0,0,0
-
-sphere:
-	origin: 0,0,200 
-	color: 255,255,255
-	ray: 20
-	axis: 0,0,0
-	rotation: 0,0,0
-	translation: 0,0,0
-
-cylinder:
-	origin:  0,0,-60
-	color: 215,41,223
-	ray: 20
-	axis: 0,1,0
-	rotation: 0,0,0
-	translation: 0,0,0
-
-cone:
-	origin: -40,0,0 
-	color: 74,233,41
 	ray: 10
-	axis: 0,1,0
+	axis: 0,0,0
 	rotation: 0,0,0
 	translation: 0,0,0
