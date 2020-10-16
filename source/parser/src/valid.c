@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   valid.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:56:51 by hastid            #+#    #+#             */
-/*   Updated: 2020/03/01 04:58:03 by hastid           ###   ########.fr       */
+/*   Updated: 2020/10/17 00:19:12 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,19 +14,19 @@
 
 int	object_is_valid(int opt, int t)
 {
-	if (t == CONE || t == PLANE || t == SPHERE || t == CYLINDER)
+	if (t == CONE || t == PLANE || t == SPHERE || t == CYLINDER || t == PARABOL)
 	{
 		if (!IS_SET(opt, ORI_SET))
 			return (ERROR);
 		if (!IS_SET(opt, COL_SET))
-			return (ERROR);
-		if (!IS_SET(opt, AXI_SET))
 			return (ERROR);
 		if (!IS_SET(opt, ROT_SET))
 			return (ERROR);
 		if (!IS_SET(opt, TRA_SET))
 			return (ERROR);
 		if (t != PLANE && !IS_SET(opt, RAY_SET))
+			return (ERROR);
+		if (t != SPHERE && !IS_SET(opt, AXI_SET))
 			return (ERROR);
 		return (SUCCESS);
 	}
@@ -46,19 +46,9 @@ int	objects_is_valid(t_obj *o)
 			return (ERROR);
 		tmp->ori = ft_vect_add(tmp->ori, tmp->tra);
 		tmp->axi = ft_vect_rotate(tmp->axi, tmp->rot);
+		ft_vect_norm(&tmp->axi);
 		tmp = tmp->next;
 	}
-	return (SUCCESS);
-}
-
-int	light_is_valid(int opt)
-{
-	if (!IS_SET(opt, ORI_SET))
-		return (ERROR);
-	if (!IS_SET(opt, COL_SET))
-		return (ERROR);
-	if (!IS_SET(opt, POW_SET))
-		return (ERROR);
 	return (SUCCESS);
 }
 
@@ -71,7 +61,15 @@ int	lights_is_valid(t_light *l)
 	tmp = l;
 	while (tmp)
 	{
-		if (!light_is_valid(tmp->opt))
+		if (!IS_SET(tmp->opt, ORI_SET))
+			return (ERROR);
+		if (!IS_SET(tmp->opt, COL_SET))
+			return (ERROR);
+		if (!IS_SET(tmp->opt, POW_SET))
+			return (ERROR);
+		if (tmp->id == DIRECT && !IS_SET(tmp->opt, AXI_SET))
+			return (ERROR);
+		if (tmp->id == DIRECT && !IS_SET(tmp->opt, ANG_SET))
 			return (ERROR);
 		tmp = tmp->next;
 	}

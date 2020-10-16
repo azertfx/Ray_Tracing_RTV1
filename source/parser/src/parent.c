@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parent.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:50:16 by hastid            #+#    #+#             */
-/*   Updated: 2020/03/01 04:54:26 by hastid           ###   ########.fr       */
+/*   Updated: 2020/10/17 00:16:44 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,9 @@ int	add_object(t_rt *r)
 	tmp = r->o;
 	r->o = o;
 	o->opt = 0;
+	o->neg = 0;
+	o->width = -1;
+	o->height = -1;
 	o->next = tmp;
 	return (SUCCESS);
 }
@@ -47,9 +50,23 @@ int	add_light(t_rt *r)
 	tmp = r->l;
 	r->l = l;
 	l->opt = 0;
+	l->ang = 0;
+	l->id = POINT;
 	l->next = tmp;
 	return (SUCCESS);
 }
+
+// int	add_scene(t_rt *r)
+// {
+// 	r->sce.opt = 0;
+// 	r->sce.aa = 0;
+// 	r->sce.ce = 0;
+// 	r->sce.df = 0;
+// 	r->sce.fil = 0;
+// 	r->sce.eff = 0;
+// 	r->sce.amb = 0.2;
+// 	return (SUCCESS);
+// }
 
 int	parse_parent(char *line, t_rt *r)
 {
@@ -61,6 +78,8 @@ int	parse_parent(char *line, t_rt *r)
 		{"plane:", &add_object},
 		{"sphere:", &add_object},
 		{"cylinder:", &add_object},
+		{"paraboloid:", &add_object},
+		// {"scene:", &add_scene},
 	};
 
 	i = -1;

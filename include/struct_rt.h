@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_rt.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <marvin@42.fr>                      +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 06:38:06 by hastid            #+#    #+#             */
-/*   Updated: 2020/03/02 06:39:32 by hastid           ###   ########.fr       */
+/*   Updated: 2020/10/17 00:16:40 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,22 +65,32 @@ typedef struct	s_obj
 {
 	int 			id;
 	int				opt;
+	int				neg;
+	int				trs;
+	int				rfl;
 	double			ray;
 	t_vect			ori;
 	t_vect			col;
 	t_vect			axi;
 	t_vect			tra;
 	t_vect			rot;
+	double			width;
+	double			height;
+	double			nbr_t;
+	double			t_max;
 	struct s_obj	*next;
 }				t_obj;
 
 
 typedef struct	s_light
 {
+	int				id;
 	int				opt;
 	double			pow;
 	t_vect			ori;
 	t_vect			col;
+	t_vect			axi;
+	double			ang;
 	struct s_light	*next;
 }				t_light;
 

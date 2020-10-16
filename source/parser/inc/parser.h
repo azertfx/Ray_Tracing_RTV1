@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:19:20 by hastid            #+#    #+#             */
-/*   Updated: 2020/03/04 04:39:47 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/10/17 00:18:21 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,7 @@
 # include "libft.h"
 # include "struct_rt.h"
 
-# define P_COUNT 6
-# define CAMERA_C_C 3
-# define SPHERE_C_C 3
-# define LIGHT_C_C 3
+# define P_COUNT 7
 # define ORI_SET 1
 # define TAR_SET 1 << 1
 # define FOV_SET 1 << 2
@@ -33,14 +30,28 @@
 # define AXI_SET 1 << 6
 # define TRA_SET 1 << 7
 # define ROT_SET 1 << 8
+# define LIGHt_T 1 << 9
+# define WID_SET 1 << 10
+# define HEI_SET 1 << 11
+# define NEG_SET 1 << 12
+# define REF_SET 1 << 13
+# define TCP_SET 1 << 14
+# define AMB_SET 1 << 15
+# define FIL_SET 1 << 16
+# define AAL_SET 1 << 17
+# define CAE_SET 1 << 18
+# define DOF_SET 1 << 19
+# define ANG_SET 1 << 20
 # define IS_SET(apts, apt) (apts & apt)
 # define V_COLOR(a) (a >= 0 && a <= 255)
 
 # define BUFF_SIZE 100
 
 enum {ERROR, SUCCESS};
-enum {LIGHT, CAMERA, CONE, PLANE, SPHERE, CYLINDER};
-enum {ORIGIN, COLOR, POWER, RAY, FOV, AXIS, TRANS, ROTAT};
+enum {POINT, DIRECT, PARALLEL};
+enum {NOTING, COLOR, ROTAT, DIST, ANGL};
+enum {NONE, SEPIA, BLACK_WHITE, NEGATIVE, STEREO};
+enum {LIGHT, CAMERA, CONE, PLANE, SPHERE, CYLINDER, PARABOL, SCENE};
 
 typedef struct	s_parent
 {
@@ -54,9 +65,15 @@ typedef struct	s_child
 	int			(*f)(t_rt *r, char *l);
 }				t_child;
 
+int	parse_scene(t_rt *r, char **tab);
+int	parse_camera(t_rt *r, char **tab);
+int	parse_lights(t_rt *r, char **tab);
+int	parse_objects(t_rt *r, char **tab);
+
+
 int				get_int(int *p, char *v, int t);
 int				get_double(double *p, char *v, int t);
-int				get_vect(t_vect *v, char *s, int t);
+int				get_vector(t_vect *v, char *s, int t);
 int				get_next_line(const int fd, char **line);
 
 int				data_is_valid(t_rt *r);
@@ -67,9 +84,12 @@ int				add_power(t_rt *r, char *v);
 int				add_origin(t_rt *r, char *v);
 int				add_target(t_rt *r, char *v);
 
-int				add_child(t_rt *r, char *l);
+int				add_child(t_rt *r, char **tab);
 int				parse_parent(char *line, t_rt *r);
 
 int				parse_file(char *file, t_rt *r);
+
+int				free_rt(t_rt *r);
+int				free_tab(char **t, int ret);
 
 #endif
