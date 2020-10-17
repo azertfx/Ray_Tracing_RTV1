@@ -3,33 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   objects.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aait-ihi <aait-ihi@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:27:32 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/02/27 23:37:36 by aait-ihi         ###   ########.fr       */
+/*   Updated: 2020/10/17 03:07:36 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-double	equation_solve(double a, double b, double c)
+double	equation_solve(double a, double b, double c, t_obj *obj)
 {
 	double	delta;
 	double	inter1;
 	double	inter2;
 
 	delta = b * b - 4 * a * c;
-	if (delta < 0)
+	if (delta < 0 || a == 0)
 		return (0);
 	inter1 = (-b - sqrt(delta)) / (2 * a);
 	inter2 = (-b + sqrt(delta)) / (2 * a);
 	if ((inter2 < MIN_NBR && inter1 < MIN_NBR))
 		return (0);
-	if ((inter2 < MIN_NBR))
-		return (inter1);
-	if ((inter1 < MIN_NBR))
-		return (inter2);
-	return (fmin(inter1, inter2));
+	if ((inter1 < inter2 && inter1 > MIN_NBR) || (inter2 < inter1 && inter2 > MIN_NBR))
+	{
+		obj->t_max = fmax(inter1, inter2);
+		return (fmin(inter1, inter2));
+	}
+	return (0);
 }
 
 double	sphere_intersection(t_ray r, t_obj *obj)
@@ -43,7 +44,7 @@ double	sphere_intersection(t_ray r, t_obj *obj)
 	a = ft_vect_dot(r.dir, r.dir);
 	b = 2 * ft_vect_dot(r.dir, obj_center);
 	c = ft_vect_dot(obj_center, obj_center) - obj->ray * obj->ray;
-	return (equation_solve(a, b, c));
+	return (equation_solve(a, b, c, obj));
 }
 
 double	cylinder_intersection(t_ray r, t_obj *obj)
@@ -62,7 +63,7 @@ double	cylinder_intersection(t_ray r, t_obj *obj)
 	c = ft_vect_dot(obj_center, obj_center) -
 			ft_vect_dot(obj_center, obj->axi) *
 						ft_vect_dot(obj_center, obj->axi) - obj->ray * obj->ray;
-	return (equation_solve(a, b, c));
+	return (equation_solve(a, b, c, obj));
 }
 
 double	plane_intersection(t_ray r, t_obj *obj)
@@ -96,5 +97,5 @@ double	cone_intersection(t_ray r, t_obj *obj)
 		ft_vect_dot(r.dir, obj->axi) * ft_vect_dot(obj_center, obj->axi));
 	c = ft_vect_dot(obj_center, obj_center) - (1 + pow(tan(RAD(obj->ray)), 2)) *
 								pow(ft_vect_dot(obj_center, obj->axi), 2);
-	return (equation_solve(a, b, c));
+	return (equation_solve(a, b, c, obj));
 }

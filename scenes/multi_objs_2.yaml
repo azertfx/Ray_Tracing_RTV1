@@ -5,8 +5,11 @@ camera:
 
 
 light:
-	origin: -30,0,100
+	type: DIRECT
+	origin: 0,0,200
 	color: 255,255,255
+	axis: 0,0,-1
+	angle: 20
 	power: 400
 
 
@@ -38,6 +41,7 @@ cylinder:
 	origin:  0,0,-60
 	color: 215,41,223
 	ray: 20
+	negative: 1
 	axis: 0,1,0
 	rotation: 0,0,0
 	translation: 0,0,0
