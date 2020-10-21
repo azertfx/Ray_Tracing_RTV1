@@ -4,7 +4,7 @@ camera:
 	fov: 60
 
 light:
-	origin: 5,80,20
+	origin: 20,40,60
 	color: 255,255,255
 	power: 400
 
@@ -15,6 +15,7 @@ plane:
 	axis: 0,1,0
 	rotation: 0,0,0
 	translation: 0,0,0
+	reflection: 0
 
 plane:
 	origin: 0,80,0
@@ -23,6 +24,7 @@ plane:
 	axis: 0,1,0
 	rotation: 0,0,0
 	translation: 0,0,0
+	reflection: 0
 
 plane:
 	origin: 0,0,-50
@@ -39,6 +41,7 @@ plane:
 	axis: 1,0,0
 	rotation: 0,0,0
 	translation: 0,0,0
+	reflection: 0
 
 plane:
 	origin: 50,0,0
@@ -47,17 +50,49 @@ plane:
 	axis: -1,0,0
 	rotation: 0,0,0
 	translation: 0,0,0
+	reflection: 0
+
+# plane:
+# 	origin: 0,0,30
+# 	color: 0,255,0
+# 	ray: 20
+# 	axis: 0,0,1
+# 	rotation: 0,0,0
+# 	translation: 0,0,0
+# 	transparence: 1
 
 sphere:
 	origin: 0,10,30
-	color: 0,0,0
-	ray: 20
+	color: 255,255,255
+	ray: 14
 	axis: 0,1,0
 	rotation: 0,0,0
 	translation: 0,0,0
+	reflection: 1
+	transparence: 1
+
+sphere:
+	origin: 25,10,0
+	color: 0,255,0
+	ray: 14
+	axis: 0,1,0
+	rotation: 0,0,0
+	translation: 0,0,0
+	reflection: 0
+	transparence: 1
+
+sphere:
+	origin: -25,10,0
+	color: 0,0,255
+	ray: 14
+	axis: 0,1,0
+	rotation: 0,0,0
+	translation: 0,0,0
+	reflection: 0
+	transparence: 0
 
 # cylinder:
-# 	origin:  -25,0,-40
+# 	origin:  0,0,-40
 # 	color: 255,255,0
 # 	ray: 10
 # 	axis: 1,1,0

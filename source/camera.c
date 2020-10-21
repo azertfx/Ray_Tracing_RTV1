@@ -6,7 +6,7 @@
 /*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:24:16 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/03/06 00:34:51 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/10/21 20:32:29 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,35 +40,45 @@ void		generate_camera_ray(t_rt *v, t_ray *r, double y, double x)
 	ft_vect_norm(&r->dir);
 }
 
-t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color)
+t_vect	obj_reflection(t_vect ray_dir, t_vect p_normal)
 {
-	double z;
-	double n1;
-	double n2;
+	return ft_vect_add(ray_dir, ft_vect_mult_nbr(p_normal, (2 * (-1 * ft_vect_dot(p_normal, ray_dir)))));
+}
 
-	n1 = 1.;
-	n2 = 1.5;
-	z = 0;
-	if (intersection_checker(v, *ray, &v->point))
+t_vect	obj_refraction(t_vect ray_dir, t_vect p_normal)
+{
+	double ior = 1.0 / 1.0;
+	double cost1 = ft_vect_dot(p_normal, ft_vect_mult_nbr(ray_dir, -1));
+	double cost2 = 1 - ior * ior * (1 - cost1 * cost1);
+	if (cost2 >= 0)
+	{
+		cost2 = sqrtf(cost2);
+		if (cost1 >= 0)
+			cost2 = -cost2;
+		return ft_vect_add(ft_vect_mult_nbr(ray_dir, ior), ft_vect_mult_nbr(p_normal, ior * cost1 + cost2));
+	}
+	return (ray_dir);
+}
+
+t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color, int depth)
+{
+	if (intersection_checker(v, *ray, &v->point) && (depth < 4))
 	{
 		objects_normal(*ray, &v->point);
-		if (v->point.obj->id != SPHERE)
-			get_pixel_color(v, color);
-		else
+		get_pixel_color(v, &v->point.p_color);
+		if (depth != 0)
+			v->point.p_color = ft_vect_div_nbr(v->point.p_color, 1);
+		*color = ft_vect_add(*color, v->point.p_color);
+		if (v->point.obj->rfl || v->point.obj->trs)
 		{
-			ray->ori = ft_vect_add(v->point.p_inter, ft_vect_mult_nbr(v->point.p_normal, 0.5));
-			if (v->point.obj->id == SPHERE)
-				ray->dir = ft_vect_sub(ray->dir, ft_vect_mult_nbr(ft_vect_mult_nbr(v->point.p_normal, ft_vect_dot(ray->dir, v->point.p_normal)), 2));
-			else
-			{
-				double d;
-				double n;
-				d = ft_vect_dot(v->point.p_normal, ray->dir);
-				n = n1 / n2;
-				if ((z = 1 - (n * n) * (1 - d * d)) > 0)
-					ray->dir = ft_vect_add(ft_vect_mult_nbr(ray->dir, n), ft_vect_mult_nbr(v->point.p_normal, d * n - sqrt(z)));
-			}
-			ray_trace(v, ray, color);
+			if (v->point.obj->rfl)
+				ray->dir = obj_reflection(ray->dir, v->point.p_normal);
+			if (v->point.obj->trs)
+				ray->dir = obj_refraction(ray->dir, v->point.p_normal);
+			depth++;
+			ft_vect_norm(&ray->dir);
+			ray->ori = ft_vect_add(v->point.p_inter, ft_vect_mult_nbr(ray->dir, 0.5));
+			ray_trace(v, ray, color, depth);
 		}
 	}
 	return (*color);

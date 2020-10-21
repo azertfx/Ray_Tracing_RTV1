@@ -6,7 +6,7 @@
 /*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:23:37 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/03/07 05:37:25 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/10/21 20:25:32 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void *draw_threads(void *t)
 			// }
 			// v->thread.color = ft_vect_div_nbr(color2, 10);
 			generate_camera_ray(v, &v->thread.ray, y, x);
-			ray_trace(v, &v->thread.ray, &v->thread.color);
+			ray_trace(v, &v->thread.ray, &v->thread.color, 0);
 			set_pixel_color(v, i, j, v->thread.color);
 			i++;
 		}

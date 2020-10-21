@@ -6,7 +6,7 @@
 /*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:12:38 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/03/04 13:44:14 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/10/21 17:56:56 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ double	shadow_checker(t_rt *v, t_light *light)
 void	pixel_ambient(t_rt *v, int i)
 {
 	v->point.p_light.amb = ft_vect_div_nbr(
-		ft_vect_add_nbr(v->point.p_light.amb, 80), i);
+		ft_vect_add_nbr(v->point.p_light.amb, 100), i);
 }
 
 void	pixel_diffuse(t_rt *v, t_light *light)

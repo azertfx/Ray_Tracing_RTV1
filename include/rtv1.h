@@ -6,7 +6,7 @@
 /*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:17:11 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/03/07 02:34:29 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/10/21 20:27:11 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int				rtv1(t_rt *v, char *file);
 void			draw(t_rt v);
 double			intersection_checker(t_rt *v, t_ray r, t_point *point);
 void			calculate_pixel_color(t_rt *v, t_light *light, int i);
-t_vect		    ray_trace(t_rt *v, t_ray *ray, t_vect *color);
+t_vect		    ray_trace(t_rt *v, t_ray *ray, t_vect *color, int depth);
 void			get_pixel_color(t_rt *v, t_vect *light_color);
 void			objects_normal(t_ray r, t_point *point);
 void			generate_camera_ray(t_rt *v, t_ray *r, double y, double x);

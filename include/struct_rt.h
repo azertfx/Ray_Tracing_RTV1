@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_rt.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 06:38:06 by hastid            #+#    #+#             */
-/*   Updated: 2020/10/17 00:16:40 by hastid           ###   ########.fr       */
+/*   Updated: 2020/10/17 01:39:25 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ typedef struct	s_rt
 {
 	int 		id;
 	t_mlx		m;
-	t_ray		r;
+	// t_ray		r;
 	t_cam		*c;
 	t_obj		*o;
 	t_light		*l;

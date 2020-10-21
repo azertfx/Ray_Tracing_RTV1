@@ -33,6 +33,7 @@ sphere:
 	axis: 0,0,0
 	rotation: 0,0,0
 	translation: 0,0,0
+	reflection: 0
 
 cylinder:
 	origin:  0,0,-60
