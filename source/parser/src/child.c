@@ -6,7 +6,11 @@
 /*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:18:26 by hastid            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/10/21 18:43:45 by anabaoui         ###   ########.fr       */
+=======
+/*   Updated: 2020/10/17 03:16:11 by hastid           ###   ########.fr       */
+>>>>>>> 2cf15e06b07181096a8ce20ce7d5f97942816474
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,6 +116,7 @@ int	add_negative(t_rt *r, char *v)
 	{
         if (get_int(&(r->o->neg), v, DIST) == ERROR)
             return (ERROR);
+			printf("%d", r->o->neg);
 		r->o->opt |= NEG_SET;
 		return (SUCCESS);
 	}

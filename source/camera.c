@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:24:16 by anabaoui          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/10/21 20:32:29 by anabaoui         ###   ########.fr       */
+=======
+/*   Updated: 2020/10/17 04:40:48 by hastid           ###   ########.fr       */
+>>>>>>> 2cf15e06b07181096a8ce20ce7d5f97942816474
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +69,7 @@ t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color, int depth)
 	if (intersection_checker(v, *ray, &v->point) && (depth < 4))
 	{
 		objects_normal(*ray, &v->point);
+<<<<<<< HEAD
 		get_pixel_color(v, &v->point.p_color);
 		if (depth != 0)
 			v->point.p_color = ft_vect_div_nbr(v->point.p_color, 1);
@@ -80,6 +85,26 @@ t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color, int depth)
 			ray->ori = ft_vect_add(v->point.p_inter, ft_vect_mult_nbr(ray->dir, 0.5));
 			ray_trace(v, ray, color, depth);
 		}
+=======
+		// if (v->point.obj->id != SPHERE)
+			get_pixel_color(v, color);
+		// else
+		// {
+		// 	ray->ori = ft_vect_add(v->point.p_inter, ft_vect_mult_nbr(v->point.p_normal, 0.5));
+		// 	if (v->point.obj->id == SPHERE)
+		// 		ray->dir = ft_vect_sub(ray->dir, ft_vect_mult_nbr(ft_vect_mult_nbr(v->point.p_normal, ft_vect_dot(ray->dir, v->point.p_normal)), 2));
+		// 	else
+		// 	{
+		// 		double d;
+		// 		double n;
+		// 		d = ft_vect_dot(v->point.p_normal, ray->dir);
+		// 		n = n1 / n2;
+		// 		if ((z = 1 - (n * n) * (1 - d * d)) > 0)
+		// 			ray->dir = ft_vect_add(ft_vect_mult_nbr(ray->dir, n), ft_vect_mult_nbr(v->point.p_normal, d * n - sqrt(z)));
+		// 	}
+		// 	ray_trace(v, ray, color);
+		// }
+>>>>>>> 2cf15e06b07181096a8ce20ce7d5f97942816474
 	}
 	return (*color);
 }

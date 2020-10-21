@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   pixel_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:12:38 by anabaoui          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/10/21 17:56:56 by anabaoui         ###   ########.fr       */
+=======
+/*   Updated: 2020/10/17 05:10:55 by hastid           ###   ########.fr       */
+>>>>>>> 2cf15e06b07181096a8ce20ce7d5f97942816474
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,14 +68,46 @@ void	pixel_specular(t_rt *v, t_light *light)
 	v->point.p_light.spc = ft_vect_add_nbr(v->point.p_light.spc, str);
 }
 
+double			cast_light(double min, double max, double x)
+{
+	if (x < min)
+		return (0);
+	if (x >= max)
+		return (1);
+	return (-2 * pow(((x - min) / (max - min)), 3) + 3 * pow(((x - min) / (max - min)), 2));
+}
+
+double			spotlight(t_vect p, t_light light, double cos_angle)
+{
+	t_vect		v;
+	double		cos_in;
+	double		cos_out;
+	double		cos_direction;
+
+	v = ft_vect_sub(p, light.ori);
+	ft_vect_norm(&v);
+	cos_in = fabs(cos(RAD(cos_angle)));
+	cos_out = cos_in - 0.07;
+	cos_direction = ft_vect_dot(v, light.axi);
+	return (cast_light(cos_out, cos_in, cos_direction));
+}
+
+
 void	calculate_pixel_color(t_rt *v, t_light *light, int i)
 {
+	double dir;
+
+	dir = 1.0;
+
 	pixel_ambient(v, i);
+	if (light->id == DIRECT && !(dir = spotlight(v->point.p_inter, *light, light->ang)))
+		return ;
 	if (!shadow_checker(v, light))
 	{
 		v->point.p_dir = ft_vect_sub(light->ori, v->point.p_inter);
 		ft_vect_norm(&v->point.p_dir);
 		pixel_diffuse(v, light);
+		v->point.p_light.def = ft_vect_mult_nbr(v->point.p_light.def, dir);
 		pixel_specular(v, light);
 	}
 }
