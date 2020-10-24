@@ -80,6 +80,9 @@ void *draw_threads(void *t)
 {
 	t_rt *v;
 	t_vect depth;
+	t_vect final_color;
+	int r;
+	int anti_aliasing;
 	double i;
 	double j;
 	double x;
@@ -96,30 +99,24 @@ void *draw_threads(void *t)
 	j = v->thread.start;
 	while (j < v->thread.end)
 	{
-		y = PX_Y((double)j);
+		y = (double)j;
 		i = 0;
 		while (i < IMG_W)
 		{
-			x = PX_X((double)i);
+			x = (double)i;
 			v->thread.color = (t_vect){0, 0, 0};
+			final_color = (t_vect){0, 0, 0};
 			depth = (t_vect){0, 0, 0};
-			// t_vect color2 = (t_vect){0, 0, 0};
-			// z = 0;
-			// while (z < 10)
-			// {
-			// 	r1 = ft_random(0, (2. / IMG_H));
-			// 	r2 = ft_random(0, (2. / IMG_W));
-			// 	ss = sqrt(-2 * log(r1) * (2. / IMG_H));
-			// 	dy = ss * cos(2 * M_PI * r2 * (2. / IMG_H));
-			// 	dx = ss * sin(2 * M_PI * r2 * (2. / IMG_W));
-			// 	generate_camera_ray(v, &v->thread.ray, fmax(fmin((y + dy), 1), -1) , x);
-			// 	//printf("old = %f ,  new = %f\n", y, fmax(fmin((y + dy), 1), -1));
-			// 	color2 = ft_vect_add(color2, ray_trace(v, &v->thread.ray, &v->thread.color));
-			// 	z++;
-			// }
-			// v->thread.color = ft_vect_div_nbr(color2, 10);
-			generate_camera_ray(v, &v->thread.ray, y, x);
-			ray_trace(v, &v->thread.ray, &v->thread.color, depth);
+			r = 0;
+			anti_aliasing = 1;
+			anti_aliasing ? (anti_aliasing = 9) : (anti_aliasing = 1);
+			while (r < anti_aliasing)
+			{
+				generate_camera_ray(v, &v->thread.ray, y, x, r);
+				final_color = ray_trace(v, &v->thread.ray, &v->thread.color, depth);
+				v->thread.color = ft_vect_div_nbr(final_color, (anti_aliasing == 1) ? 1 : 2);
+				r++;
+			}
 			set_pixel_color(v, i, j, v->thread.color);
 			i++;
 		}
