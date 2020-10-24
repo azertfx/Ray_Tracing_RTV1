@@ -23,6 +23,12 @@ int is_included(double a, double b)
 		return (1);
 	return (0);
 }
+int is_included2(double a, double b)
+{
+	if (a < 0 && b < 0 && a < b)
+		return (1);
+	return (0);
+}
 
 double ft_slice(t_ray r, double t)
 {
@@ -32,9 +38,9 @@ double ft_slice(t_ray r, double t)
 	** 						+ the up_down (up = 1 && down = 0)
 	**						+ the vector of limition / Slicing
 	*/
-	int slice = 1;			// slice YES or NO // obj->slice = 0 means no slice either = 1
-	int up_down = 0;		// slice from the up or down
-	t_vect lim = {0, 0, 0}; // the vector of limiting
+	int slice = 0;			// slice YES or NO // obj->slice = 0 means no slice either = 1
+	int up_down = 1;		// slice from the up or down
+	t_vect lim = {0, 1, 14}; // the vector of limiting
 	t_vect pt_inter = ft_vect_add(r.ori, ft_vect_mult_nbr(r.dir, t));
 	//show_vect(pt_inter);
 	if (slice)
@@ -46,6 +52,12 @@ double ft_slice(t_ray r, double t)
 			else if (is_included(pt_inter.y, lim.y))
 				return (0);
 			else if (is_included(pt_inter.z, lim.z))
+				return (0);
+			else if (is_included2(pt_inter.x, lim.x))
+				return (0);
+			else if (is_included2(pt_inter.y, lim.y))
+				return (0);
+			else if (is_included2(pt_inter.z, lim.z))
 				return (0);
 		}
 
