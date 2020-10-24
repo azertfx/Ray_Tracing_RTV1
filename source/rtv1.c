@@ -16,10 +16,12 @@ void filters(t_vect *color, int filter)
 {
 	double avg;
 
-	
-	color->x = fmin(255, fmax(0, pow(color->x, 1 / 2.2)));;
-	color->y = fmin(255, fmax(0, pow(color->y, 1 / 2.2)));;
-	color->z = fmin(255, fmax(0, pow(color->z, 1 / 2.2)));;
+	color->x = fmin(255, fmax(0, pow(color->x, 1 / 2.2)));
+	;
+	color->y = fmin(255, fmax(0, pow(color->y, 1 / 2.2)));
+	;
+	color->z = fmin(255, fmax(0, pow(color->z, 1 / 2.2)));
+	;
 	//black_white
 	if (filter == 0)
 	{
@@ -60,7 +62,7 @@ void filters(t_vect *color, int filter)
 	}
 }
 
-void	set_pixel_color(t_rt *v, int i, int j, t_vect color)
+void set_pixel_color(t_rt *v, int i, int j, t_vect color)
 {
 	filters(&color, 3);
 	v->m.img_data[(j * IMG_W + i) * 4 + 0] = color.z;
@@ -77,6 +79,7 @@ double ft_random(double a, double b)
 void *draw_threads(void *t)
 {
 	t_rt *v;
+	t_vect depth;
 	double i;
 	double j;
 	double x;
@@ -99,6 +102,7 @@ void *draw_threads(void *t)
 		{
 			x = PX_X((double)i);
 			v->thread.color = (t_vect){0, 0, 0};
+			depth = (t_vect){0, 0, 0};
 			// t_vect color2 = (t_vect){0, 0, 0};
 			// z = 0;
 			// while (z < 10)
@@ -115,7 +119,7 @@ void *draw_threads(void *t)
 			// }
 			// v->thread.color = ft_vect_div_nbr(color2, 10);
 			generate_camera_ray(v, &v->thread.ray, y, x);
-			ray_trace(v, &v->thread.ray, &v->thread.color, 0);
+			ray_trace(v, &v->thread.ray, &v->thread.color, depth);
 			set_pixel_color(v, i, j, v->thread.color);
 			i++;
 		}

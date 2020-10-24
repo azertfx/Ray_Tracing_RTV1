@@ -12,10 +12,10 @@
 
 #include "rtv1.h"
 
-void		generate_camera(t_rt *v)
+void generate_camera(t_rt *v)
 {
-	t_vect	up;
-	double		fov;
+	t_vect up;
+	double fov;
 
 	fov = RAD(v->c->fov);
 	up = (t_vect){0, 1, 0};
@@ -29,7 +29,7 @@ void		generate_camera(t_rt *v)
 	v->c->width = v->c->height * (IMG_W / IMG_H);
 }
 
-void		generate_camera_ray(t_rt *v, t_ray *r, double y, double x)
+void generate_camera_ray(t_rt *v, t_ray *r, double y, double x)
 {
 	r->ori = v->c->ori;
 	r->dir = ft_vect_add(
@@ -40,12 +40,12 @@ void		generate_camera_ray(t_rt *v, t_ray *r, double y, double x)
 	ft_vect_norm(&r->dir);
 }
 
-t_vect	obj_reflection(t_vect ray_dir, t_vect p_normal)
+t_vect obj_reflection(t_vect ray_dir, t_vect p_normal)
 {
 	return ft_vect_add(ray_dir, ft_vect_mult_nbr(p_normal, (2 * (-1 * ft_vect_dot(p_normal, ray_dir)))));
 }
 
-t_vect	obj_refraction(t_vect ray_dir, t_vect p_normal)
+t_vect obj_refraction(t_vect ray_dir, t_vect p_normal)
 {
 	double ior = 1.0 / 1.0;
 	double cost1 = ft_vect_dot(p_normal, ft_vect_mult_nbr(ray_dir, -1));
@@ -60,22 +60,30 @@ t_vect	obj_refraction(t_vect ray_dir, t_vect p_normal)
 	return (ray_dir);
 }
 
-t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color, int depth)
+t_vect ray_trace(t_rt *v, t_ray *ray, t_vect *color, t_vect depth)
 {
-	if (intersection_checker(v, *ray, &v->point) && (depth < 4))
+	if (intersection_checker(v, *ray, &v->point) && (depth.x < 4))
 	{
 		objects_normal(*ray, &v->point);
 		get_pixel_color(v, &v->point.p_color);
-		if (depth != 0)
-			v->point.p_color = ft_vect_div_nbr(v->point.p_color, 1);
+		if (depth.x != 0)
+			v->point.p_color = ft_vect_div_nbr(v->point.p_color, depth.y ? depth.y : depth.z);
 		*color = ft_vect_add(*color, v->point.p_color);
 		if (v->point.obj->rfl || v->point.obj->trs)
 		{
 			if (v->point.obj->rfl)
+			{
 				ray->dir = obj_reflection(ray->dir, v->point.p_normal);
+				depth.y = v->point.obj->rfl;
+				depth.z = 0;
+			}
 			if (v->point.obj->trs)
+			{
 				ray->dir = obj_refraction(ray->dir, v->point.p_normal);
-			depth++;
+				depth.z = v->point.obj->trs;
+				depth.y = 0;
+			}
+			depth.x++;
 			ft_vect_norm(&ray->dir);
 			ray->ori = ft_vect_add(v->point.p_inter, ft_vect_mult_nbr(ray->dir, 0.5));
 			ray_trace(v, ray, color, depth);
@@ -84,10 +92,10 @@ t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color, int depth)
 	return (*color);
 }
 
-void		get_pixel_color(t_rt *v, t_vect *light_color)
+void get_pixel_color(t_rt *v, t_vect *light_color)
 {
-	t_light		*head;
-	double		i;
+	t_light *head;
+	double i;
 
 	v->point.p_light.amb = (t_vect){0, 0, 0};
 	v->point.p_light.def = (t_vect){0, 0, 0};
@@ -105,6 +113,6 @@ void		get_pixel_color(t_rt *v, t_vect *light_color)
 	}
 
 	*light_color = ft_vect_mult(v->point.p_color, ft_vect_add(
-		ft_vect_add(v->point.p_light.def, v->point.p_light.amb),
-						v->point.p_light.spc));
+													  ft_vect_add(v->point.p_light.def, v->point.p_light.amb),
+													  v->point.p_light.spc));
 }
