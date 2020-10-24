@@ -6,7 +6,7 @@
 /*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:12:38 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/10/21 20:42:06 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/10/24 19:38:34 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,11 @@ double	shadow_checker(t_rt *v, t_light *light)
 		dist_light = ft_vect_dist(v->point.p_inter, light->ori);
 		dist_object = ft_vect_dist(v->point.p_inter, point.p_inter);
 		if (dist_object < dist_light)
+		{
+			if (point.obj->trs)
+				return (point.obj->trs + 1);
 			return (1);
+		}
 	}
 	return (0);
 }
@@ -92,18 +96,26 @@ double			spotlight(t_vect p, t_light light, double cos_angle)
 void	calculate_pixel_color(t_rt *v, t_light *light, int i)
 {
 	double dir;
+	int shadow;
 
 	dir = 1.0;
 
+	shadow = shadow_checker(v, light);
 	pixel_ambient(v, i);
 	if (light->id == DIRECT && !(dir = spotlight(v->point.p_inter, *light, light->ang)))
 		return ;
-	if (!shadow_checker(v, light))
+	if (!shadow || shadow > 1)
 	{
 		v->point.p_dir = ft_vect_sub(light->ori, v->point.p_inter);
 		ft_vect_norm(&v->point.p_dir);
 		pixel_diffuse(v, light);
 		v->point.p_light.def = ft_vect_mult_nbr(v->point.p_light.def, dir);
 		pixel_specular(v, light);
+		if (shadow > 1)
+		{
+			shadow--;
+			v->point.p_light.def = ft_vect_div_nbr(v->point.p_light.def, shadow);
+			v->point.p_light.spc = ft_vect_div_nbr(v->point.p_light.spc, shadow);
+		}
 	}
 }

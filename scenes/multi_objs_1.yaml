@@ -63,27 +63,37 @@ plane:
 
 sphere:
 	origin: 0,10,30
-	color: 255,255,255
-	ray: 14
-	axis: 0,1,0
-	rotation: 0,0,0
-	translation: 0,0,0
-	reflection: 1
-	transparence: 0
-
-sphere:
-	origin: 25,10,0
-	color: 0,255,0
+	color: 10,50,255
 	ray: 14
 	axis: 0,1,0
 	rotation: 0,0,0
 	translation: 0,0,0
 	reflection: 0
-	transparence: 10
+	transparence: 3
+
+sphere:
+	origin: 25,10,0
+	color: 255,255,0
+	ray: 14
+	axis: 0,1,0
+	rotation: 0,0,0
+	translation: 0,0,0
+	reflection: 0
+	transparence: 2
+
+# sphere:
+# 	origin: 25,10,0
+# 	color: 255,0,0
+# 	ray: 6
+# 	axis: 0,1,0
+# 	rotation: 0,0,0
+# 	translation: 0,0,0
+# 	reflection: 0
+# 	transparence: 0
 
 sphere:
 	origin: -25,10,0
-	color: 0,0,255
+	color: 0,255,0
 	ray: 14
 	axis: 0,1,0
 	rotation: 0,0,0
