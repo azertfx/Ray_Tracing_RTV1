@@ -32,7 +32,7 @@ void generate_camera(t_rt *v)
 void generate_camera_ray(t_rt *v, t_ray *r, double y, double x, int a)
 {
 	//table of anti aliasing
-	static double tab[21][2] = {
+	static double tab[9][2] = {
 		{0, 0},
 		{1. / 6., -1. / 6.},
 		{-1. / 6., -1. / 6.},
