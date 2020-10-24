@@ -88,13 +88,6 @@ void *draw_threads(void *t)
 	double x;
 	double y;
 
-	// double r1;
-	// double r2;
-	// double dx;
-	// double dy;
-	// double ss;
-	// int z;
-
 	v = (t_rt *)t;
 	j = v->thread.start;
 	while (j < v->thread.end)
@@ -108,8 +101,8 @@ void *draw_threads(void *t)
 			final_color = (t_vect){0, 0, 0};
 			depth = (t_vect){0, 0, 0};
 			r = 0;
-			anti_aliasing = 1;
-			anti_aliasing ? (anti_aliasing = 9) : (anti_aliasing = 1);
+			anti_aliasing = 1;										   //activate and desactivate anti aliasing
+			anti_aliasing ? (anti_aliasing = 9) : (anti_aliasing = 1); // 9 is number of anti aliasing repetition
 			while (r < anti_aliasing)
 			{
 				generate_camera_ray(v, &v->thread.ray, y, x, r);
