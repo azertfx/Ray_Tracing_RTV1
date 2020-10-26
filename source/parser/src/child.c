@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:18:26 by hastid            #+#    #+#             */
-/*   Updated: 2020/10/26 18:00:01 by hastid           ###   ########.fr       */
+/*   Updated: 2020/10/26 18:08:47 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ int	add_rotation(t_rt *r, char *v)
 
 int	add_reflection(t_rt *r, char *v)
 {
-	if (!IS_SET(r->o->opt, REF_SET) && !r->o->trs)
+	if (!IS_SET(r->o->opt, REF_SET))
 	{
         if (get_int(&(r->o->rfl), v, DIST) == ERROR)
             return (ERROR);
@@ -157,7 +157,7 @@ int	add_translation(t_rt *r, char *v)
 
 int	add_transparence(t_rt *r, char *v)
 {
-	if (!IS_SET(r->o->opt, TCP_SET) && !r->o->rfl)
+	if (!IS_SET(r->o->opt, TCP_SET))
 	{
         if (get_int(&(r->o->trs), v, DIST) == ERROR)
             return (ERROR);

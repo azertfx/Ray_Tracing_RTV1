@@ -6,7 +6,7 @@
 /*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:23:37 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/03/07 05:37:25 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/10/21 20:25:32 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@ void filters(t_vect *color, int filter)
 {
 	double avg;
 
-	
-	color->x = fmin(255, fmax(0, pow(color->x, 1 / 2.2)));;
-	color->y = fmin(255, fmax(0, pow(color->y, 1 / 2.2)));;
-	color->z = fmin(255, fmax(0, pow(color->z, 1 / 2.2)));;
+	color->x = fmin(255, fmax(0, pow(color->x, 1 / 2.2)));
+	;
+	color->y = fmin(255, fmax(0, pow(color->y, 1 / 2.2)));
+	;
+	color->z = fmin(255, fmax(0, pow(color->z, 1 / 2.2)));
+	;
 	//black_white
 	if (filter == 0)
 	{
@@ -60,7 +62,7 @@ void filters(t_vect *color, int filter)
 	}
 }
 
-void	set_pixel_color(t_rt *v, int i, int j, t_vect color)
+void set_pixel_color(t_rt *v, int i, int j, t_vect color)
 {
 	filters(&color, 3);
 	v->m.img_data[(j * IMG_W + i) * 4 + 0] = color.z;
@@ -77,45 +79,37 @@ double ft_random(double a, double b)
 void *draw_threads(void *t)
 {
 	t_rt *v;
+	t_vect depth;
+	t_vect final_color;
+	int r;
+	int anti_aliasing;
 	double i;
 	double j;
 	double x;
 	double y;
 
-	// double r1;
-	// double r2;
-	// double dx;
-	// double dy;
-	// double ss;
-	// int z;
-
 	v = (t_rt *)t;
 	j = v->thread.start;
 	while (j < v->thread.end)
 	{
-		y = PX_Y((double)j);
+		y = (double)j;
 		i = 0;
 		while (i < IMG_W)
 		{
-			x = PX_X((double)i);
+			x = (double)i;
 			v->thread.color = (t_vect){0, 0, 0};
-			// t_vect color2 = (t_vect){0, 0, 0};
-			// z = 0;
-			// while (z < 10)
-			// {
-			// 	r1 = ft_random(0, (2. / IMG_H));
-			// 	r2 = ft_random(0, (2. / IMG_W));
-			// 	ss = sqrt(-2 * log(r1) * (2. / IMG_H));
-			// 	dy = ss * cos(2 * M_PI * r2 * (2. / IMG_H));
-			// 	dx = ss * sin(2 * M_PI * r2 * (2. / IMG_W));
-			// 	generate_camera_ray(v, &v->thread.ray, fmax(fmin((y + dy), 1), -1) , x);
-			// 	//printf("old = %f ,  new = %f\n", y, fmax(fmin((y + dy), 1), -1));
-			// 	color2 = ft_vect_add(color2, ray_trace(v, &v->thread.ray, &v->thread.color));
-			// 	z++;
-			// }
-			// v->thread.color = ft_vect_div_nbr(color2, 10);
-			generate_camera_ray(v, &v->thread.ray, y, x);
-			ray_trace(v, &v->thread.ray, &v->thread.color);
+			final_color = (t_vect){0, 0, 0};
+			depth = (t_vect){0, 0, 0};
+			r = 0;
+			anti_aliasing = 1;										   //activate and desactivate anti aliasing
+			anti_aliasing ? (anti_aliasing = 9) : (anti_aliasing = 1); // 9 is number of anti aliasing repetition
+			while (r < anti_aliasing)
+			{
+				generate_camera_ray(v, &v->thread.ray, y, x, r);
+				final_color = ray_trace(v, &v->thread.ray, &v->thread.color, depth);
+				v->thread.color = ft_vect_div_nbr(final_color, (anti_aliasing == 1) ? 1 : 2);
+				r++;
+			}
 			set_pixel_color(v, i, j, v->thread.color);
 			i++;
 		}

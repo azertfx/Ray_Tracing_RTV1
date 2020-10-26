@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parent.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:50:16 by hastid            #+#    #+#             */
-/*   Updated: 2020/10/17 00:16:44 by hastid           ###   ########.fr       */
+/*   Updated: 2020/10/17 02:56:51 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ int	add_object(t_rt *r)
 	o->id = r->id;
 	tmp = r->o;
 	r->o = o;
+	o->rfl = 0;
+	o->trs = 0;
 	o->opt = 0;
 	o->neg = 0;
 	o->width = -1;

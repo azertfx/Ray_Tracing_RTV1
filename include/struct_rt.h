@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 06:38:06 by hastid            #+#    #+#             */
-/*   Updated: 2020/10/26 17:57:12 by hastid           ###   ########.fr       */
+/*   Updated: 2020/10/26 18:06:59 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ typedef struct	s_rt
 {
 	int 		id;
 	t_mlx		m;
-	t_ray		r;
+	// t_ray		r;
 	t_cam		*c;
 	t_obj		*o;
 	t_light		*l;

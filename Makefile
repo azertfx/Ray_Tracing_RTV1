@@ -14,7 +14,7 @@ NAME = rtv1
 
 SRC_NAME = main.c rtv1.c intersection.c keys_hook.c\
 			objects.c vectors1.c vectors2.c vectors3.c pixel_color.c camera.c\
-			guide_btn.c instruction.c bmp.c
+			guide_btn.c instruction.c bmp.c slice_xyz.c
 
 OBJ_NAME =	$(SRC_NAME:.c=.o)
 
@@ -29,7 +29,7 @@ CC = gcc -Wall -Wextra -Werror
 LIB =  libft/libft.a \
 	   source/parser/parser.a \
 	   -L ./miniLibX -lmlx -framework OpenGL -framework AppKit
-		
+
 DEPS = include/rtv1.h
 
 INC = -Iinclude -Ilibft/inc -Isource/parser/inc
@@ -50,7 +50,7 @@ par_ft :
 $(OBJ_PATH)/%.o : $(SRC_PATH)/%.c $(DEPS)
 	@clear
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	@$(CC) $(INC) -o $@ -c $< 
+	@$(CC) $(INC) -o $@ -c $<
 	@echo "Compiling \033[1;36m[$<]\033[0m to \033[1;32m[$@]\033[0m"
 
 clean :
