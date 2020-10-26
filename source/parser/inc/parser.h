@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:19:20 by hastid            #+#    #+#             */
-/*   Updated: 2020/10/17 00:18:21 by hastid           ###   ########.fr       */
+/*   Updated: 2020/10/26 17:57:09 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,12 @@
 # define CAE_SET 1 << 18
 # define DOF_SET 1 << 19
 # define ANG_SET 1 << 20
+# define ANG_SET 1 << 20
+# define SLC_SET 1 << 21
+# define UOD_SET 1 << 22
+# define LIM_SET 1 << 23
+# define DSP_SET 1 << 24
+
 # define IS_SET(apts, apt) (apts & apt)
 # define V_COLOR(a) (a >= 0 && a <= 255)
 

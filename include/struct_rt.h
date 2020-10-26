@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 06:38:06 by hastid            #+#    #+#             */
-/*   Updated: 2020/10/17 00:16:40 by hastid           ###   ########.fr       */
+/*   Updated: 2020/10/26 17:57:12 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,12 +68,16 @@ typedef struct	s_obj
 	int				neg;
 	int				trs;
 	int				rfl;
+	int				slc;
+	int				uod;
+	int				dsp;
 	double			ray;
 	t_vect			ori;
 	t_vect			col;
 	t_vect			axi;
 	t_vect			tra;
 	t_vect			rot;
+	t_vect			lim;
 	double			width;
 	double			height;
 	double			nbr_t;

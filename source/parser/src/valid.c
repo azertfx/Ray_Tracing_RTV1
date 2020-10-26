@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:56:51 by hastid            #+#    #+#             */
-/*   Updated: 2020/10/17 00:19:12 by hastid           ###   ########.fr       */
+/*   Updated: 2020/10/26 18:00:29 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,9 @@ int	object_is_valid(int opt, int t)
 			return (ERROR);
 		if (t != SPHERE && !IS_SET(opt, AXI_SET))
 			return (ERROR);
+		if (IS_SET(opt, SLC_SET))
+			if (!IS_SET(opt, UOD_SET) || !IS_SET(opt, LIM_SET))
+				return (ERROR);
 		return (SUCCESS);
 	}
 	return (ERROR);
