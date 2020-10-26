@@ -14,7 +14,7 @@ NAME = rtv1
 
 SRC_NAME = main.c rtv1.c intersection.c keys_hook.c\
 			objects.c vectors1.c vectors2.c vectors3.c pixel_color.c camera.c\
-			guide_btn.c instruction.c bmp.c slice_xyz.c
+			guide_btn.c instruction.c bmp.c slice_xyz.c noise.c
 
 OBJ_NAME =	$(SRC_NAME:.c=.o)
 

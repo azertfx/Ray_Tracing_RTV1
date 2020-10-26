@@ -91,4 +91,5 @@ t_vect ft_vect_rotate(t_vect v, t_vect r);
 int ft_keys_hook(int k, t_rt *v);
 int save_bmp_image(t_mlx image);
 double ft_slice(t_ray r, double t);
+void		apply_noise(t_point *p);
 #endif

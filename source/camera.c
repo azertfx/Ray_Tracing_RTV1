@@ -76,6 +76,7 @@ t_vect ray_trace(t_rt *v, t_ray *ray, t_vect *color, t_vect depth)
 	if (intersection_checker(v, *ray, &v->point) && (depth.x < 4))
 	{
 		objects_normal(*ray, &v->point);
+		apply_noise(&v->point);
 		get_pixel_color(v, &v->point.p_color);
 		if (depth.x != 0)
 			v->point.p_color = ft_vect_div_nbr(v->point.p_color, depth.y ? depth.y : depth.z);
