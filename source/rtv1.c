@@ -151,7 +151,7 @@ int check_file(t_rt *v)
 	if (!v->event.file || !parse_file(v->event.file, v))
 	{
 		// free_all_object(v);
-		ft_putendl("Try Again!");
+		ft_putendl("Try Again! 🙄");
 		return (0);
 	}
 	return (1);
