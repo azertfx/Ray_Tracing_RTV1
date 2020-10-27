@@ -42,7 +42,10 @@ void generate_camera_ray(t_rt *v, t_ray *r, double y, double x, int a)
 		{-1. / 3., -1. / 3.},
 		{-1. / 3., 1. / 3.},
 		{1. / 3., 1. / 3.}};
+	static double tabi[9] = {0.956711, 0.793204, 0.655412, 0.585694, 0.469953, 0.358863, 0.251319, 0.127367, 0.077593};
+	r->time = tabi[a];
 	r->ori = v->c->ori;
+	r->ori = ft_vect_sub(r->ori, ft_vect_mult_nbr((t_vect){8, 8, 0}, r->time));
 	r->dir = ft_vect_add(
 		v->c->z,
 		ft_vect_add(
