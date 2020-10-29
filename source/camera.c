@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hezzahir <hezzahir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:24:16 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/10/21 20:41:54 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/10/28 16:48:12 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void generate_camera_ray(t_rt *v, t_ray *r, double y, double x, int a)
 	static double tabi[9] = {0.956711, 0.793204, 0.655412, 0.585694, 0.469953, 0.358863, 0.251319, 0.127367, 0.077593};
 	r->time = tabi[a];
 	r->ori = v->c->ori;
-	r->ori = ft_vect_sub(r->ori, ft_vect_mult_nbr((t_vect){8, 8, 0}, r->time));
+	// r->ori = ft_vect_sub(r->ori, ft_vect_mult_nbr((t_vect){8, 8, 0}, r->time));
 	r->dir = ft_vect_add(
 		v->c->z,
 		ft_vect_add(

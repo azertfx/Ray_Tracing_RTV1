@@ -28,6 +28,7 @@ int	add_object(t_rt *r)
 	o->neg = 0;
 	o->width = -1;
 	o->height = -1;
+	o->dsp = -1;
 	o->next = tmp;
 	return (SUCCESS);
 }

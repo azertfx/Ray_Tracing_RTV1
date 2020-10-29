@@ -51,6 +51,11 @@
 #define MULTIS "multi_spots"
 #define MULTI1 "multi_objs_1"
 #define MULTI2 "multi_objs_2"
+#define noiseWidth 192
+#define noiseHeight 192
+#define noiseDepth 64
+
+double noise[noiseDepth][noiseHeight][noiseWidth];
 
 #define RAD(x) (x * M_PI / 180)
 #define PX_X(x) ((x + 0.5) * 2.0 / (double)IMG_W - 1.0)
