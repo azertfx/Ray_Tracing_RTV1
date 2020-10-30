@@ -75,7 +75,7 @@ double	limited_cone_intersection(t_ray r, t_obj *obj)
 		ft_vect_dot(r.dir, obj->axi) * ft_vect_dot(obj_center, obj->axi));
 	c = ft_vect_dot(obj_center, obj_center) - (1 + pow(tan(RAD(obj->ray)), 2)) *
 								pow(ft_vect_dot(obj_center, obj->axi), 2);
-	t = equation_solve(a, b, c);
+	t = equation_solve(r, a, b, c, obj);
 	if(t)
 	{
 		m = ft_vect_dot(r.dir, obj->axi) * t + ft_vect_dot(obj_center, obj->axi);
@@ -103,7 +103,7 @@ double	limited_cylinder_intersection(t_ray r, t_obj *obj)
 	c = ft_vect_dot(obj_center, obj_center) -
 			ft_vect_dot(obj_center, obj->axi) *
 						ft_vect_dot(obj_center, obj->axi) - obj->ray * obj->ray;
-	t = equation_solve(a, b, c);
+	t = equation_solve(r, a, b, c, obj);
 	if(t)
 	{
 		m = ft_vect_dot(r.dir, obj->axi) * t + ft_vect_dot(obj_center, obj->axi);
