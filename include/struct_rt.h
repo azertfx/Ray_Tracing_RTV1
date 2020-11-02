@@ -6,7 +6,7 @@
 /*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 06:38:06 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/03 00:13:11 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/03 00:39:20 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct s_delt
 	double	c;
 	double	delta;
 	double	t;
+	double	t1;
+	double	t2;
 } t_delt;
 
 typedef struct s_mlx
