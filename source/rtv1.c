@@ -3,80 +3,30 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:23:37 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/10/21 20:25:32 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/11/03 00:39:03 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-void filters(t_vect *color, int filter)
+void	set_pixel_color(t_rt *v, int i, int j, t_vect color)
 {
-	double avg;
-
-	color->x = fmin(255, fmax(0, pow(color->x, 1 / 2.2)));
-	;
-	color->y = fmin(255, fmax(0, pow(color->y, 1 / 2.2)));
-	;
-	color->z = fmin(255, fmax(0, pow(color->z, 1 / 2.2)));
-	;
-	//black_white
-	if (filter == 0)
-	{
-		avg = ((color->x + color->y + color->z) / 3);
-		color->x = avg;
-		color->y = avg;
-		color->z = avg;
-	}
-	//negative
-	if (filter == 1)
-	{
-		color->x = 255. - color->x;
-		color->y = 255. - color->y;
-		color->z = 255. - color->z;
-		//printf("%f , %f , %f\n", color->x, color->y, color->z);
-	}
-	//spia
-	if (filter == 2)
-	{
-		double tr;
-		double tg;
-		double tb;
-		tr = (0.393 * color->x + 0.769 * color->y + 0.189 * color->z);
-		tg = (0.349 * color->x + 0.686 * color->y + 0.168 * color->z);
-		tb = (0.272 * color->x + 0.534 * color->y + 0.131 * color->z);
-		if (tr > 255)
-			color->x = 255;
-		else
-			color->x = tr;
-		if (tg > 255)
-			color->y = 255;
-		else
-			color->y = tg;
-		if (tb > 255)
-			color->z = 255;
-		else
-			color->z = tb;
-	}
-}
-
-void set_pixel_color(t_rt *v, int i, int j, t_vect color)
-{
-	filters(&color, 3);
+	filters(&color, 53);
 	v->m.img_data[(j * IMG_W + i) * 4 + 0] = color.z;
 	v->m.img_data[(j * IMG_W + i) * 4 + 1] = color.y;
 	v->m.img_data[(j * IMG_W + i) * 4 + 2] = color.x;
 	v->m.img_data[(j * IMG_W + i) * 4 + 3] = 0;
 }
 
-double ft_random(double a, double b)
+double	ft_random(double a, double b)
 {
 	return (rand() / (double)RAND_MAX) * (b - a) + a;
 }
 
-void *draw_threads(void *t)
+void	*draw_threads(void *t)
 {
 	t_rt *v;
 	t_vect depth;
@@ -118,12 +68,12 @@ void *draw_threads(void *t)
 	return (NULL);
 }
 
-void draw(t_rt v)
+void	draw(t_rt v)
 {
-	t_rt t[THREADS];
-	pthread_t id[THREADS];
-	int i;
-	int j;
+	t_rt		t[THREADS];
+	pthread_t	id[THREADS];
+	int			i;
+	int			j;
 
 	i = 0;
 	v.thread.start = 0;
@@ -145,7 +95,7 @@ void draw(t_rt v)
 	}
 }
 
-int check_file(t_rt *v)
+int		check_file(t_rt *v)
 {
 	// free_all_object(v);
 	if (!v->event.file || !parse_file(v->event.file, v))
@@ -157,7 +107,7 @@ int check_file(t_rt *v)
 	return (1);
 }
 
-void generateNoise()
+void	generateNoise()
 {
   for(int z = 0; z < noiseDepth; z++)
   for(int y = 0; y < noiseHeight; y++)
@@ -167,7 +117,7 @@ void generateNoise()
   }
 }
 
-int rtv1(t_rt *v, char *file)
+int		rtv1(t_rt *v, char *file)
 {
 	ft_bzero(v, sizeof(t_rt));
 	v->event.file = file;

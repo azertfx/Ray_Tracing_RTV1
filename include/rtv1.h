@@ -3,63 +3,63 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:17:11 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/10/21 20:27:11 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/11/03 00:21:21 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef RTV1_H
-#define RTV1_H
+# define RTV1_H
 
-#include <pthread.h>
-#include "../miniLibX/mlx.h"
+# include <pthread.h>
+# include "../miniLibX/mlx.h"
 
-#include "libft.h"
-#include "parser.h"
-#include "struct_rt.h"
-#include "bmp.h"
+# include "libft.h"
+# include "parser.h"
+# include "struct_rt.h"
+# include "bmp.h"
 
-#define IMG_H 700
-#define IMG_W 700
-#define WIN_W 910
-#define MIN_NBR 1e-4
-#define MAX_NBR 1e8
-#define THREADS 4
-#define O 31
-#define S 1
-#define X 7
-#define Y 16
-#define Z 6
-#define Q 12
-#define W 13
-#define P 35
-#define L 37
-#define R 15
-#define T 17
-#define ESC 53
-#define SPACE 49
-#define ORI "Original"
-#define SPH "sphere"
-#define PLA "plane"
-#define CON "cone"
-#define CYL "cylinder"
-#define TRA "translation"
-#define ROT "rotation"
-#define CAM "camera_y"
-#define MULTIS "multi_spots"
-#define MULTI1 "multi_objs_1"
-#define MULTI2 "multi_objs_2"
-#define noiseWidth 192
-#define noiseHeight 192
-#define noiseDepth 64
+# define IMG_H 700
+# define IMG_W 700
+# define WIN_W 910
+# define MIN_NBR 1e-4
+# define MAX_NBR 1e8
+# define THREADS 4
+# define O 31
+# define S 1
+# define X 7
+# define Y 16
+# define Z 6
+# define Q 12
+# define W 13
+# define P 35
+# define L 37
+# define R 15
+# define T 17
+# define ESC 53
+# define SPACE 49
+# define ORI "Original"
+# define SPH "sphere"
+# define PLA "plane"
+# define CON "cone"
+# define CYL "cylinder"
+# define TRA "translation"
+# define ROT "rotation"
+# define CAM "camera_y"
+# define MULTIS "multi_spots"
+# define MULTI1 "multi_objs_1"
+# define MULTI2 "multi_objs_2"
+# define noiseWidth 192
+# define noiseHeight 192
+# define noiseDepth 64
 
 double noise[noiseDepth][noiseHeight][noiseWidth];
 
-#define RAD(x) (x * M_PI / 180)
-#define PX_X(x) ((x + 0.5) * 2.0 / (double)IMG_W - 1.0)
-#define PX_Y(y) (1.0 - (y + 0.5) * 2.0 / (double)IMG_H)
+# define RAD(x) (x * M_PI / 180)
+# define PX_X(x) ((x + 0.5) * 2.0 / (double)IMG_W - 1.0)
+# define PX_Y(y) (1.0 - (y + 0.5) * 2.0 / (double)IMG_H)
 
 char			*parse_property(void *obj, char *line, int o_type);
 int				check_file(t_rt *v);
@@ -97,4 +97,5 @@ int				ft_keys_hook(int k, t_rt *v);
 int				save_bmp_image(t_mlx image);
 double			ft_slice(t_ray r, double t);
 void			apply_noise(t_point *p);
+void	        filters(t_vect *color, int filter);
 #endif
