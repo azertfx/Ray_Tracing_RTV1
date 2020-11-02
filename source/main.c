@@ -22,6 +22,6 @@ int	main(int argc, char **argv)
 			return (1);
 	}
 	else
-		ft_putendl("Usage : ./rtv1 [Scene Path]");
+		ft_putendl("Usage : ./rt [Scene Path]");
 	return (0);
 }
