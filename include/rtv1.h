@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:17:11 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/10/21 20:27:11 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/11/03 00:43:07 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,8 @@ void			calculate_pixel_color(t_rt *v, t_light *light, int i);
 t_vect			ray_trace(t_rt *v, t_ray *ray, t_vect *color, t_vect depth);
 void			get_pixel_color(t_rt *v, t_vect *light_color);
 void			objects_normal(t_ray r, t_point *point);
-void			generate_camera_ray(t_rt *v, t_ray *r, double y, double x, int a);
+void			generate_camera_ray(t_rt *v, t_ray *r, double y,
+															double x, int a);
 void			generate_camera(t_rt *v);
 double			sphere_intersection(t_ray r, t_obj *obj);
 double			cylinder_intersection(t_ray r, t_obj *obj);
@@ -97,4 +98,6 @@ int				ft_keys_hook(int k, t_rt *v);
 int				save_bmp_image(t_mlx image);
 double			ft_slice(t_ray r, double t);
 void			apply_noise(t_point *p);
+void			generate_noise();
+
 #endif

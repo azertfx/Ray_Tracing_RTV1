@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:23:37 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/10/21 20:25:32 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/11/03 00:46:22 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -157,16 +157,6 @@ int check_file(t_rt *v)
 	return (1);
 }
 
-void generateNoise()
-{
-  for(int z = 0; z < noiseDepth; z++)
-  for(int y = 0; y < noiseHeight; y++)
-  for(int x = 0; x < noiseWidth; x++)
-  {
-    noise[z][y][x] = (rand() % 32768) / 32768.0;
-  }
-}
-
 int rtv1(t_rt *v, char *file)
 {
 	ft_bzero(v, sizeof(t_rt));
@@ -180,7 +170,7 @@ int rtv1(t_rt *v, char *file)
 	v->m.img_data = (unsigned char *)mlx_get_data_addr(
 		v->m.img_ptr, &v->m.bpp, &v->m.size_l, &v->m.endian);
 	ft_instruction(v);
-	generateNoise();
+	generate_noise();
 	draw(*v);
 	mlx_hook(v->m.win_ptr, 2, 0, ft_keys_hook, v);
 	mlx_put_image_to_window(v->m.mlx_ptr, v->m.win_ptr, v->m.img_ptr,

@@ -6,7 +6,7 @@
 /*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 11:05:07 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/10/20 11:05:11 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/03 00:43:56 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,16 @@
 **				*) id = 4 :
 */
 
+
+void generate_noise()
+{
+  for(int z = 0; z < noiseDepth; z++)
+  for(int y = 0; y < noiseHeight; y++)
+  for(int x = 0; x < noiseWidth; x++)
+  {
+    noise[z][y][x] = (rand() % 32768) / 32768.0;
+  }
+}
 
 /*
 ** Noice checkboard / Damier
