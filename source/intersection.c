@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:40:01 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/10/17 04:31:23 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/03 01:17:23 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-double      solve_equation_neg(t_delt d, double t_min, double t_max)
+double		solve_equation_neg(t_delt d, double t_min, double t_max)
 {
-    double	t1;
+	double	t1;
 	double	t2;
 	double	delta;
 
@@ -25,15 +25,14 @@ double      solve_equation_neg(t_delt d, double t_min, double t_max)
 	t2 = (-d.b + sqrt(delta)) / (2 * d.a);
 	if (t1 < MIN_NBR || t2 < MIN_NBR)
 		return (t_min);
-    if ((t_min > t1 && t_min < t2) || (t_min > t2 && t_min < t1))
+	if ((t_min > t1 && t_min < t2) || (t_min > t2 && t_min < t1))
 		return ((t1 < t_max && t2 < t_max) ? t_max : 0);
-    return (t_min);
+	return (t_min);
 }
 
 double		intersect_cone_neg(t_ray r, t_obj *obj, double t_min, double t_max)
 {
-
-	t_delt d;
+	t_delt	d;
 	t_vect	obj_center;
 
 	obj_center = ft_vect_sub(r.ori, obj->ori);
@@ -49,7 +48,7 @@ double		intersect_cone_neg(t_ray r, t_obj *obj, double t_min, double t_max)
 
 double		intersect_sphere_neg(t_ray r, t_obj *obj, double t_min, double t_max)
 {
-	t_delt d;
+	t_delt	d;
 	t_vect	obj_center;
 
 	obj_center = ft_vect_sub(r.ori, obj->ori);
@@ -61,7 +60,7 @@ double		intersect_sphere_neg(t_ray r, t_obj *obj, double t_min, double t_max)
 
 double		intersect_cylinder_neg(t_ray r, t_obj *obj, double t_min, double t_max)
 {
-	t_delt d;
+	t_delt	d;
 	t_vect	obj_center;
 
 	obj_center = ft_vect_sub(r.ori, obj->ori);
@@ -80,18 +79,17 @@ double		negative_objects(double t_min, t_ray r, double t_max, t_rt *rt)
 {
 	int		i;
 	double	dist;
-    t_obj   *obj;
+	t_obj	*obj;
 
 	i = 0;
-    obj = rt->o;
+	obj = rt->o;
 	if (!(dist = t_min))
 		return (0);
 	while (obj)
 	{
 		if (obj->neg)
 		{
-			// printf("%d", obj->neg);
-            if (obj->id == CONE)
+			if (obj->id == CONE)
 				dist = intersect_cone_neg(r, obj, t_min, t_max);
 			else if (obj->id == SPHERE)
 				dist = intersect_sphere_neg(r, obj, t_min, t_max);
@@ -100,7 +98,7 @@ double		negative_objects(double t_min, t_ray r, double t_max, t_rt *rt)
 			// else if (obj->id == PARABOL)
 			// 	dist = intersect_paraboloid_neg(r, obj, t_min, t_max);
 		}
-        obj = obj->next;
+		obj = obj->next;
 	}
 	return (dist);
 }
@@ -135,7 +133,7 @@ double		intersection_checker(t_rt *v, t_ray r, t_point *point)
 		if (!(head->neg) && (inter = objects_intersection(r, head, v)))
 		{
 			i = 1;
-			if (inter <= point->inter_min )
+			if (inter <= point->inter_min)
 			{
 				point->inter_min = inter;
 				point->obj = head;

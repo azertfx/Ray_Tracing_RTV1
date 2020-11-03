@@ -6,7 +6,7 @@
 /*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:23:37 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/03 00:49:38 by hhamdaou         ###   ########.fr       */
+/*   Updated: 2020/11/03 03:46:23 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,39 @@ double	ft_random(double a, double b)
 	return (rand() / (double)RAND_MAX) * (b - a) + a;
 }
 
+void	rt_core(t_rt *v, double x, double y)
+{
+	t_vect	depth;
+	t_vect	final_color;
+	int		r;
+	int		anti_aliasing;
+
+	v->thread.color = (t_vect){0, 0, 0};
+	final_color = (t_vect){0, 0, 0};
+	depth = (t_vect){0, 0, 0};
+	r = 0;
+	anti_aliasing = 0;
+	if (anti_aliasing)
+		anti_aliasing = 9;
+	else
+		anti_aliasing = 1;
+	while (r < anti_aliasing)
+	{
+		generate_camera_ray(v, &v->thread.ray, y, x, r);
+		final_color = ray_trace(v, &v->thread.ray, &v->thread.color, depth);
+		v->thread.color = ft_vect_div_nbr(final_color,
+							(anti_aliasing == 1) ? 1 : 2);
+		r++;
+	}
+}
+
 void	*draw_threads(void *t)
 {
-	t_rt *v;
-	t_vect depth;
-	t_vect final_color;
-	int r;
-	int anti_aliasing;
-	double i;
-	double j;
-	double x;
-	double y;
+	t_rt	*v;
+	double	i;
+	double	j;
+	double	x;
+	double	y;
 
 	v = (t_rt *)t;
 	j = v->thread.start;
@@ -47,19 +69,7 @@ void	*draw_threads(void *t)
 		while (i < IMG_W)
 		{
 			x = (double)i;
-			v->thread.color = (t_vect){0, 0, 0};
-			final_color = (t_vect){0, 0, 0};
-			depth = (t_vect){0, 0, 0};
-			r = 0;
-			anti_aliasing = 1;										   //activate and desactivate anti aliasing
-			anti_aliasing ? (anti_aliasing = 9) : (anti_aliasing = 1); // 9 is number of anti aliasing repetition
-			while (r < anti_aliasing)
-			{
-				generate_camera_ray(v, &v->thread.ray, y, x, r);
-				final_color = ray_trace(v, &v->thread.ray, &v->thread.color, depth);
-				v->thread.color = ft_vect_div_nbr(final_color, (anti_aliasing == 1) ? 1 : 2);
-				r++;
-			}
+			rt_core(v, x, y);
 			set_pixel_color(v, i, j, v->thread.color);
 			i++;
 		}
@@ -107,7 +117,7 @@ int		check_file(t_rt *v)
 	return (1);
 }
 
-int rtv1(t_rt *v, char *file)
+int		rtv1(t_rt *v, char *file)
 {
 	ft_bzero(v, sizeof(t_rt));
 	v->event.file = file;
