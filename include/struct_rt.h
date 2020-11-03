@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_rt.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 06:38:06 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/03 03:55:36 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/03 06:18:40 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef struct s_delt
 	double	t;
 	double	t1;
 	double	t2;
+	t_vect	v;
 } t_delt;
 
 typedef struct	s_texture
