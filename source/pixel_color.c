@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pixel_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:12:38 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/10/24 19:38:34 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/11/03 01:18:49 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-double	shadow_checker(t_rt *v, t_light *light)
+double		shadow_checker(t_rt *v, t_light *light)
 {
 	t_point		point;
 	t_ray		r;
@@ -40,23 +40,23 @@ double	shadow_checker(t_rt *v, t_light *light)
 	return (0);
 }
 
-void	pixel_ambient(t_rt *v, int i)
+void		pixel_ambient(t_rt *v, int i)
 {
 	v->point.p_light.amb = ft_vect_div_nbr(
 		ft_vect_add_nbr(v->point.p_light.amb, 100), i);
 }
 
-void	pixel_diffuse(t_rt *v, t_light *light)
+void		pixel_diffuse(t_rt *v, t_light *light)
 {
 	v->point.p_light.def = ft_vect_add_nbr(v->point.p_light.def,
 	light->pow * fmax(0, ft_vect_dot(v->point.p_dir, v->point.p_normal)));
 }
 
-void	pixel_specular(t_rt *v, t_light *light)
+void		pixel_specular(t_rt *v, t_light *light)
 {
 	t_vect	view_dir;
 	t_vect	reflect;
-	double		str;
+	double	str;
 
 	view_dir = ft_vect_sub(v->c->ori, v->point.p_inter);
 	ft_vect_norm(&view_dir);
@@ -68,7 +68,7 @@ void	pixel_specular(t_rt *v, t_light *light)
 	v->point.p_light.spc = ft_vect_add_nbr(v->point.p_light.spc, str);
 }
 
-double			cast_light(double min, double max, double x)
+double		cast_light(double min, double max, double x)
 {
 	if (x < min)
 		return (0);
@@ -77,7 +77,7 @@ double			cast_light(double min, double max, double x)
 	return (-2 * pow(((x - min) / (max - min)), 3) + 3 * pow(((x - min) / (max - min)), 2));
 }
 
-double			spotlight(t_vect p, t_light light, double cos_angle)
+double		spotlight(t_vect p, t_light light, double cos_angle)
 {
 	t_vect		v;
 	double		cos_in;
@@ -92,14 +92,12 @@ double			spotlight(t_vect p, t_light light, double cos_angle)
 	return (cast_light(cos_out, cos_in, cos_direction));
 }
 
-
-void	calculate_pixel_color(t_rt *v, t_light *light, int i)
+void		calculate_pixel_color(t_rt *v, t_light *light, int i)
 {
 	double dir;
 	int shadow;
 
 	dir = 1.0;
-
 	shadow = shadow_checker(v, light);
 	pixel_ambient(v, i);
 	if (light->id == DIRECT && !(dir = spotlight(v->point.p_inter, *light, light->ang)))

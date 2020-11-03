@@ -4,6 +4,7 @@
 libft/libft.a
 libft/obj/
 rtv1
+rt
 source/parser/parser.a
 source/parser/obj/
 scenes/test.yaml

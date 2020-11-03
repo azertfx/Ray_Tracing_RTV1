@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   vectors2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 02:26:28 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/02/23 13:50:16 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/11/03 00:14:25 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rtv1.h"
 
-t_vect	ft_vect_cross(t_vect u, t_vect v)
+t_vect		ft_vect_cross(t_vect u, t_vect v)
 {
 	t_vect vec;
 
@@ -22,7 +22,7 @@ t_vect	ft_vect_cross(t_vect u, t_vect v)
 	return (vec);
 }
 
-t_vect	ft_vect_norm(t_vect *vec)
+t_vect		ft_vect_norm(t_vect *vec)
 {
 	double	w;
 

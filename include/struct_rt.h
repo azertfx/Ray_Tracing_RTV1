@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 06:38:06 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/03 00:53:04 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/03 03:55:36 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ typedef struct s_delt
 	double	c;
 	double	delta;
 	double	t;
+	double	t1;
+	double	t2;
 } t_delt;
 
 typedef struct	s_texture

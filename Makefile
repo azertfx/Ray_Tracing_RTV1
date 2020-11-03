@@ -6,7 +6,7 @@
 #    By: hastid <hastid@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/06 03:38:58 by anabaoui          #+#    #+#              #
-#    Updated: 2020/11/03 00:53:45 by hastid           ###   ########.fr        #
+#    Updated: 2020/11/03 03:56:12 by hastid           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@ NAME = rt
 
 SRC_NAME = main.c rtv1.c intersection.c keys_hook.c\
 			objects.c vectors1.c vectors2.c vectors3.c pixel_color.c camera.c\
-			guide_btn.c instruction.c bmp.c slice_xyz.c noise.c texture.c
+			guide_btn.c instruction.c bmp.c slice_xyz.c noise.c texture.c filters.c
 
 OBJ_NAME =	$(SRC_NAME:.c=.o)
 
