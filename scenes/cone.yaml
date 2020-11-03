@@ -15,7 +15,4 @@ cone:
 	axis: 0,1,0
 	rotation: 0,0,0
 	translation: 0,0,0
-	slice: 1
-	upOrDown: 1
-	limit: 0,14,0
-	disruption: 0
+

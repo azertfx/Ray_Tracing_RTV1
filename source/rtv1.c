@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:23:37 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/10/21 20:25:32 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/11/03 02:31:38 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,6 +127,7 @@ void draw(t_rt v)
 
 	i = 0;
 	v.thread.start = 0;
+	add_texture(&v);
 	generate_camera(&v);
 	while (i < THREADS)
 	{

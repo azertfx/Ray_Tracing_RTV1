@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:40:01 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/10/17 04:31:23 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/03 00:54:33 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,7 +150,10 @@ void		objects_normal(t_ray r, t_point *point)
 {
 	point->p_inter = ft_vect_add(r.ori,
 				ft_vect_mult_nbr(r.dir, point->inter_min));
-	point->p_color = point->obj->col;
+	if (point->obj->txt.t)
+		getColorFromTexture(point);
+	else
+		point->p_color = point->obj->col;
 	if (point->obj->id == SPHERE)
 		point->p_normal = ft_vect_sub(point->p_inter, point->obj->ori);
 	else if (point->obj->id == CONE || point->obj->id == CYLINDER)

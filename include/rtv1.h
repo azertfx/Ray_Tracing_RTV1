@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rtv1.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:17:11 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/10/21 20:27:11 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/11/03 02:31:49 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,4 +97,8 @@ int				ft_keys_hook(int k, t_rt *v);
 int				save_bmp_image(t_mlx image);
 double			ft_slice(t_ray r, double t);
 void			apply_noise(t_point *p);
+
+int			add_texture(t_rt *rt);
+void   GetAngle(t_obj *obj , t_vect inter);
+int		getColorFromTexture(t_point *point);
 #endif

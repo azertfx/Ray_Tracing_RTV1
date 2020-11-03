@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_rt.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 06:38:06 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/03 00:13:11 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/03 00:53:04 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,18 @@ typedef struct s_delt
 	double	delta;
 	double	t;
 } t_delt;
+
+typedef struct	s_texture
+{
+
+	int		t;
+	int		*buf;
+	void	*img;
+	double	Um;
+	double	Vm;
+	int		width;
+	int		height;
+} t_texture;
 
 typedef struct s_mlx
 {
@@ -84,6 +96,7 @@ typedef struct s_obj
 	double height;
 	double nbr_t;
 	double t_max;
+	t_texture 	txt;
 	struct s_obj *next;
 } t_obj;
 
@@ -145,5 +158,7 @@ typedef struct s_rt
 	t_event event;
 	t_thread thread;
 } t_rt;
+
+
 
 #endif

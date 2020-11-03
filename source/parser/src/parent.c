@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parent.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:50:16 by hastid            #+#    #+#             */
-/*   Updated: 2020/10/17 02:56:51 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/11/03 03:51:59 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,9 +26,10 @@ int	add_object(t_rt *r)
 	o->trs = 0;
 	o->opt = 0;
 	o->neg = 0;
+	o->txt.t = 0;
+	o->dsp = -1;
 	o->width = -1;
 	o->height = -1;
-	o->dsp = -1;
 	o->next = tmp;
 	return (SUCCESS);
 }
