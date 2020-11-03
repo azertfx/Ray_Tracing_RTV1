@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   vectors3.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:48:53 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/03/04 05:26:53 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/11/04 00:50:49 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 t_vect	ft_vect_add_nbr(t_vect u, double t)
 {

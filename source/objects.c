@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   objects.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:27:32 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/10/17 03:07:36 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/04 00:50:15 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 double	equation_solve(t_ray ray,double a, double b, double c, t_obj *obj)
 {

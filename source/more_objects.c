@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   more_objects.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 01:00:56 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/03 06:23:41 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/04 00:50:06 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "rtv1.h"
+# include "rt.h"
 
 double		Disc_intersection(t_ray r, t_obj *obj)
 {

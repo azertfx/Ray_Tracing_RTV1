@@ -3,17 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   bmp.h                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/18 23:17:58 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/02/22 18:21:32 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/04 00:49:27 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef BMP_H
 # define BMP_H
 
-# include "rtv1.h"
+# include "rt.h"
 # pragma pack(push, 1)
 
 typedef struct	s_bmp

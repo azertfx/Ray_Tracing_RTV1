@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   noise2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 05:57:57 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/03 06:00:29 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/04 00:50:13 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 double smoothNoise(double x, double y, double z)
 {

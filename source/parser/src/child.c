@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:18:26 by hastid            #+#    #+#             */
-/*   Updated: 2020/10/26 18:08:47 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/04 00:44:24 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,6 @@ int	add_negative(t_rt *r, char *v)
 	{
         if (get_int(&(r->o->neg), v, DIST) == ERROR)
             return (ERROR);
-			printf("%d", r->o->neg);
 		r->o->opt |= NEG_SET;
 		return (SUCCESS);
 	}

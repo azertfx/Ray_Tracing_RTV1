@@ -1,4 +1,4 @@
-<h1 align="center">1337 RTV1</h1>
+<h1 align="center">1337 RT</h1>
 <h2 align="center">Multi Objects 1</h2>
 <img align="center" src="./screenshots/multi_objects_1.png">
 <h2 align="center">Sphere</h2>

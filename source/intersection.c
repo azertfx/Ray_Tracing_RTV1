@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:40:01 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/03 03:55:33 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/04 00:49:56 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 double		solve_equation_neg(t_delt d, double t_min, double t_max)
 {

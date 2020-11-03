@@ -6,11 +6,11 @@
 /*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:24:16 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/03 03:49:40 by hhamdaou         ###   ########.fr       */
+/*   Updated: 2020/11/04 00:49:40 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 void	generate_camera(t_rt *v)
 {
