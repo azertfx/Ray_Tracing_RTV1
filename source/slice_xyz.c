@@ -6,7 +6,7 @@
 /*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 19:06:26 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/04 05:07:57 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/04 05:32:24 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,23 @@ int		is_included2(double a, double b)
 	return (0);
 }
 
+double	check_up(t_vect pt_inter, t_vect lim, double t)
+{
+	if (is_included(pt_inter.x, lim.x))
+		return (0);
+	else if (is_included(pt_inter.y, lim.y))
+		return (0);
+	else if (is_included(pt_inter.z, lim.z))
+		return (0);
+	else if (is_included2(pt_inter.x, lim.x))
+		return (0);
+	else if (is_included2(pt_inter.y, lim.y))
+		return (0);
+	else if (is_included2(pt_inter.z, lim.z))
+		return (0);
+	return (t);
+}
+
 double	ft_slice(t_ray r, t_obj *obj, double t)
 {
 	t_vect pt_inter;
@@ -35,24 +52,11 @@ double	ft_slice(t_ray r, t_obj *obj, double t)
 	{
 		if (obj->uod)
 		{
-			if (is_included(pt_inter.x, obj->lim.x))
-				return (0);
-			else if (is_included(pt_inter.y, obj->lim.y))
-				return (0);
-			else if (is_included(pt_inter.z, obj->lim.z))
-				return (0);
-			else if (is_included2(pt_inter.x, obj->lim.x))
-				return (0);
-			else if (is_included2(pt_inter.y, obj->lim.y))
-				return (0);
-			else if (is_included2(pt_inter.z, obj->lim.z))
-				return (0);
+			return (check_up(pt_inter, obj->lim, t));
 		}
 		else
 		{
-/*
-** To DO : make it for up_down == 0
-*/
+			printf("here");
 		}
 	}
 	return (t);
