@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solver.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 01:00:37 by hezzahir          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2020/11/04 01:33:20 by hezzahir         ###   ########.fr       */
-=======
-/*   Updated: 2020/11/04 01:50:46 by hhamdaou         ###   ########.fr       */
->>>>>>> ffebfc1561b8f94eecb058d8a4965c45d4228882
+/*   Updated: 2020/11/04 02:32:43 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +27,17 @@ double	check_solution(double t1, double t2)
 	return (0);
 }
 
-double	equation_solve(t_ray ray, double a, double b, double c, t_obj *obj)
+double	equation_solve(t_ray ray, t_delt d, t_obj *obj)
 {
 	double	delta;
 	double	inter1;
 	double	inter2;
 
-	delta = b * b - 4 * a * c;
-	if (delta < 0 || a == 0)
+	delta = d.b * d.b - 4 * d.a * d.c;
+	if (delta < 0 || d.a == 0)
 		return (0);
-	inter1 = (-b - sqrt(delta)) / (2 * a);
-	inter2 = (-b + sqrt(delta)) / (2 * a);
+	inter1 = (-d.b - sqrt(delta)) / (2 * d.a);
+	inter2 = (-d.b + sqrt(delta)) / (2 * d.a);
 	if ((inter2 < MIN_NBR && inter1 < MIN_NBR))
 		return (0);
 	if ((inter1 < inter2 && inter1 > MIN_NBR)

@@ -6,7 +6,7 @@
 /*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 01:00:56 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/04 01:06:19 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/04 02:33:06 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ double		limited_cone_intersection(t_ray r, t_obj *obj)
 		* ft_vect_dot(r.dir, obj->axi) * ft_vect_dot(obj_center, obj->axi));
 	d.c = ft_vect_dot(obj_center, obj_center) - (1 + pow(tan(RAD(obj->ray)), 2))
 				* pow(ft_vect_dot(obj_center, obj->axi), 2);
-	d.t = equation_solve(r, d.a, d.b, d.c, obj);
+	d.t = equation_solve(r, d, obj);
 	if (d.t)
 	{
 		m = ft_vect_dot(r.dir, obj->axi) * d.t
@@ -98,7 +98,7 @@ double		limited_cylinder_intersection(t_ray r, t_obj *obj)
 	d.c = ft_vect_dot(obj_center, obj_center) -
 			ft_vect_dot(obj_center, obj->axi) *
 						ft_vect_dot(obj_center, obj->axi) - obj->ray * obj->ray;
-	d.t = equation_solve(r, d.a, d.b, d.c, obj);
+	d.t = equation_solve(r, d, obj);
 	if (d.t)
 	{
 		m = ft_vect_dot(r.dir, obj->axi) * d.t
