@@ -6,7 +6,7 @@
 /*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:27:32 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/04 02:32:32 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/04 02:42:10 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ double	cylinder_intersection(t_ray r, t_obj *obj)
 
 double	plane_intersection(t_ray r, t_obj *obj)
 {
-	t_vect	obj_center;
+	t_vect		obj_center;
 	double		inter;
 	double		nor_dir;
 

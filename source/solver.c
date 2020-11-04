@@ -6,7 +6,7 @@
 /*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 01:00:37 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/04 02:32:43 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/04 03:09:31 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,14 @@ double	equation_solve(t_ray ray, t_delt d, t_obj *obj)
 
 int		check_file(t_rt *v)
 {
-	// free_all_object(v);
+/*
+**	free_all_object(v);
+*/
 	if (!v->event.file || !parse_file(v->event.file, v))
 	{
-		// free_all_object(v);
+/*
+**	free_all_object(v);
+*/
 		ft_putendl("Try Again! 🙄");
 		return (0);
 	}

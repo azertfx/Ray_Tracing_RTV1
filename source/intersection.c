@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:40:01 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/04 00:49:56 by hhamdaou         ###   ########.fr       */
+/*   Updated: 2020/11/04 02:45:32 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-double		solve_equation_neg(t_delt d, double t_min, double t_max)
+double	solve_equation_neg(t_delt d, double t_min, double t_max)
 {
 	double	t1;
 	double	t2;
@@ -30,7 +30,7 @@ double		solve_equation_neg(t_delt d, double t_min, double t_max)
 	return (t_min);
 }
 
-double		intersect_cone_neg(t_ray r, t_obj *obj, double t_min, double t_max)
+double	intersect_cone_neg(t_ray r, t_obj *obj, double t_min, double t_max)
 {
 	t_delt	d;
 	t_vect	obj_center;
@@ -39,14 +39,14 @@ double		intersect_cone_neg(t_ray r, t_obj *obj, double t_min, double t_max)
 	ft_vect_norm(&obj->axi);
 	d.a = ft_vect_dot(r.dir, r.dir) - (1 + pow(tan(RAD(obj->ray)), 2)) *
 										pow(ft_vect_dot(r.dir, obj->axi), 2);
-	d.b = 2 * (ft_vect_dot(r.dir, obj_center) - (1 + pow(tan(RAD(obj->ray)), 2)) *
-		ft_vect_dot(r.dir, obj->axi) * ft_vect_dot(obj_center, obj->axi));
-	d.c = ft_vect_dot(obj_center, obj_center) - (1 + pow(tan(RAD(obj->ray)), 2)) *
-								pow(ft_vect_dot(obj_center, obj->axi), 2);
+	d.b = 2 * (ft_vect_dot(r.dir, obj_center) - (1 + pow(tan(RAD(obj->ray)), 2))
+			* ft_vect_dot(r.dir, obj->axi) * ft_vect_dot(obj_center, obj->axi));
+	d.c = ft_vect_dot(obj_center, obj_center) - (1 + pow(tan(RAD(obj->ray)), 2))
+				* pow(ft_vect_dot(obj_center, obj->axi), 2);
 	return (solve_equation_neg(d, t_min, t_max));
 }
 
-double		intersect_sphere_neg(t_ray r, t_obj *obj, double t_min, double t_max)
+double	intersect_sphere_neg(t_ray r, t_obj *obj, double t_min, double t_max)
 {
 	t_delt	d;
 	t_vect	obj_center;
@@ -58,7 +58,7 @@ double		intersect_sphere_neg(t_ray r, t_obj *obj, double t_min, double t_max)
 	return (solve_equation_neg(d, t_min, t_max));
 }
 
-double		intersect_cylinder_neg(t_ray r, t_obj *obj, double t_min, double t_max)
+double	intersect_cylinder_neg(t_ray r, t_obj *obj, double t_min, double t_max)
 {
 	t_delt	d;
 	t_vect	obj_center;
@@ -75,7 +75,7 @@ double		intersect_cylinder_neg(t_ray r, t_obj *obj, double t_min, double t_max)
 	return ((solve_equation_neg(d, t_min, t_max)));
 }
 
-double		negative_objects(double t_min, t_ray r, double t_max, t_rt *rt)
+double	negative_objects(double t_min, t_ray r, double t_max, t_rt *rt)
 {
 	int		i;
 	double	dist;
@@ -105,18 +105,18 @@ double		negative_objects(double t_min, t_ray r, double t_max, t_rt *rt)
 
 double		objects_intersection(t_ray r, t_obj *obj, t_rt *rt)
 {
-	double inter;
+	double t;
 
-	inter = 0;
+	t = 0;
 	if (obj->id == SPHERE)
-		inter = negative_objects(sphere_intersection(r, obj), r, obj->t_max, rt);
+		t = negative_objects(sphere_intersection(r, obj), r, obj->t_max, rt);
 	else if (obj->id == CYLINDER)
-		inter = negative_objects(cylinder_intersection(r, obj), r, obj->t_max, rt);
+		t = negative_objects(cylinder_intersection(r, obj), r, obj->t_max, rt);
 	else if (obj->id == PLANE)
-		inter = negative_objects(plane_intersection(r, obj), r, obj->t_max, rt);
+		t = negative_objects(plane_intersection(r, obj), r, obj->t_max, rt);
 	else if (obj->id == CONE)
-		inter = negative_objects(cone_intersection(r, obj), r, obj->t_max, rt);
-	return (inter);
+		t = negative_objects(cone_intersection(r, obj), r, obj->t_max, rt);
+	return (t);
 }
 
 double		intersection_checker(t_rt *v, t_ray r, t_point *point)

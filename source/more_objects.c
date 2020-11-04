@@ -6,11 +6,11 @@
 /*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 01:00:56 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/04 02:33:06 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/04 02:41:32 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "rt.h"
+#include "rt.h"
 
 double		disc_intersection(t_ray r, t_obj *obj)
 {
@@ -35,7 +35,9 @@ double		disc_intersection(t_ray r, t_obj *obj)
 
 double		square_intersection(t_ray r, t_obj *obj)
 {
-	t_inter s;
+	t_inter	s;
+	t_vect	e1 = {7, 0, 0};
+	t_vect	e2 = {0, -7, 0};
 
 	s.obj_center = ft_vect_sub(obj->ori, r.ori);
 	if ((s.nor_dir = ft_vect_dot(r.dir, obj->axi)))
@@ -46,8 +48,6 @@ double		square_intersection(t_ray r, t_obj *obj)
 		return (0);
 	s.pt = ft_vect_add(r.ori, ft_vect_mult_nbr(r.dir, s.inter));
 	s.pt = ft_vect_sub(s.pt, obj->ori);
-	t_vect e1 = {7,0,0};
-	t_vect e2 = {0,-7,0};
 	s.width = ft_vect_length(e1);
 	s.height = ft_vect_length(e2);
 	s.proj1 = ft_vect_dot(s.pt, e1) / s.width;
