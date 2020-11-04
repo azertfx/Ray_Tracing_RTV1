@@ -6,7 +6,11 @@
 /*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 01:00:37 by hezzahir          #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/11/04 04:51:38 by hhamdaou         ###   ########.fr       */
+=======
+/*   Updated: 2020/11/04 04:31:49 by hezzahir         ###   ########.fr       */
+>>>>>>> 7d1273c2d15007ede20b07851d15f8fd41e0fb09
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +48,7 @@ double	equation_solve(t_ray ray, t_delt d, t_obj *obj)
 								|| (inter2 < inter1 && inter2 > MIN_NBR))
 	{
 		obj->t_max = fmax(inter1, inter2);
-		return (ft_slice(ray, fmin(inter1, inter2)));
+		return (ft_slice(ray, obj, fmin(inter1, inter2)));
 	}
 	return (0);
 }
