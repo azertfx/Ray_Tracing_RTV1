@@ -6,7 +6,7 @@
 /*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:24:16 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/04 01:35:37 by hhamdaou         ###   ########.fr       */
+/*   Updated: 2020/11/04 04:07:24 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,10 @@ void	generate_camera(t_rt *v)
 	t_vect up;
 	double fov;
 
+	v->c->ori.z += v->event.move_z;
+	v->c->ori.x += v->event.move_x;
+	v->c->tar.y += v->event.rot_y;
+	v->c->tar.x += v->event.rot_x;
 	fov = RAD(v->c->fov);
 	up = (t_vect){0, 1, 0};
 	v->c->z = ft_vect_sub(v->c->tar, v->c->ori);

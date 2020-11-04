@@ -6,7 +6,7 @@
 /*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:23:37 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/04 01:41:25 by hhamdaou         ###   ########.fr       */
+/*   Updated: 2020/11/04 04:55:01 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,23 +41,23 @@ void	rt_core(t_rt *v, double *axis)
 	t_vect	depth;
 	t_vect	final_color;
 	int		r;
-	int		anti_aliasing;
+	int		visual_effect;
 
 	v->thread.color = (t_vect){0, 0, 0};
 	final_color = (t_vect){0, 0, 0};
 	depth = (t_vect){0, 0, 0};
 	r = 0;
-	anti_aliasing = 0;
-	if (anti_aliasing)
-		anti_aliasing = 9;
+	visual_effect = 0;
+	if (visual_effect)
+		visual_effect = 9;
 	else
-		anti_aliasing = 1;
-	while (r < anti_aliasing)
+		visual_effect = 1;
+	while (r < visual_effect)
 	{
 		generate_camera_ray(v, &v->thread.ray, axis, r);
 		final_color = ray_trace(v, &v->thread.ray, &v->thread.color, depth);
 		v->thread.color = ft_vect_div_nbr(final_color,
-							(anti_aliasing == 1) ? 1 : 2);
+							(visual_effect == 1) ? 1 : 2);
 		r++;
 	}
 }
@@ -118,15 +118,10 @@ void	draw(t_rt v)
 int		rt(t_rt *v, char *file)
 {
 	ft_bzero(v, sizeof(t_rt));
-	v->event.file = file;
-	v->event.file_origin = file;
+	init_event(v, file);
 	if (!check_file(v))
 		return (0);
-	v->m.mlx_ptr = mlx_init();
-	v->m.win_ptr = mlx_new_window(v->m.mlx_ptr, WIN_W, IMG_H, "1337 RT");
-	v->m.img_ptr = mlx_new_image(v->m.mlx_ptr, IMG_W, IMG_H);
-	v->m.img_data = (unsigned char *)mlx_get_data_addr(
-		v->m.img_ptr, &v->m.bpp, &v->m.size_l, &v->m.endian);
+	init_mlx(v);
 	ft_instruction(v);
 	generate_noise();
 	draw(*v);

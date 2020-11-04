@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solver.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 01:00:37 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/04 03:09:31 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/04 04:51:38 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,20 +47,4 @@ double	equation_solve(t_ray ray, t_delt d, t_obj *obj)
 		return (ft_slice(ray, fmin(inter1, inter2)));
 	}
 	return (0);
-}
-
-int		check_file(t_rt *v)
-{
-/*
-**	free_all_object(v);
-*/
-	if (!v->event.file || !parse_file(v->event.file, v))
-	{
-/*
-**	free_all_object(v);
-*/
-		ft_putendl("Try Again! 🙄");
-		return (0);
-	}
-	return (1);
 }

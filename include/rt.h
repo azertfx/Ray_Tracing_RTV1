@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:48:32 by hhamdaou          #+#    #+#             */
-/*   Updated: 2020/11/04 02:32:06 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/04 04:59:24 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ void		pixel_specular(t_rt *v, t_light *light);
 double		spotlight(t_vect p, t_light light, double cos_angle);
 void	anti_aliasing(t_rt *v, t_ray *r, double *axis, int a);
 void	motion_blur(t_ray *r, int a);
-
-
+void    init_event(t_rt *v, char *file);
+void    init_mlx(t_rt *v);
 
 #endif

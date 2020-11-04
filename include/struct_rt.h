@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_rt.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 06:38:06 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/04 00:23:27 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/04 04:47:53 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ typedef struct s_cam
 	t_vect x;
 	t_vect y;
 	t_vect z;
-
 	double i;
 	double j;
 	double fov;
@@ -144,7 +143,6 @@ typedef struct s_point
 	t_vect p_normal;
 	t_vect p_color;
 	t_plight p_light;
-
 	double inter_min;
 } t_point;
 
@@ -152,6 +150,10 @@ typedef struct s_event
 {
 	char *file;
 	char *file_origin;
+	int	move_z;
+	int	move_x;
+	int	rot_y;
+	int	rot_x;
 } t_event;
 
 typedef struct s_thread
@@ -166,7 +168,6 @@ typedef struct s_rt
 {
 	int id;
 	t_mlx m;
-	// t_ray		r;
 	t_cam *c;
 	t_obj *o;
 	t_light *l;
