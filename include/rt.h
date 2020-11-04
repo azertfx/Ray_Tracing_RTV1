@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:48:32 by hhamdaou          #+#    #+#             */
-/*   Updated: 2020/11/04 05:03:11 by hhamdaou         ###   ########.fr       */
+/*   Updated: 2020/11/04 05:07:15 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ double			sphere_intersection(t_ray r, t_obj *obj);
 double			cylinder_intersection(t_ray r, t_obj *obj);
 double			plane_intersection(t_ray r, t_obj *obj);
 double			cone_intersection(t_ray r, t_obj *obj);
-double			equation_solve(t_ray ray,t_delt d, t_obj *obj);
+double			equation_solve(t_ray ray, t_delt d, t_obj *obj);
 double			check_solution(double t1, double t2);
 /*
 ** Pixel
@@ -119,7 +119,8 @@ void			check_refl_refr(t_rt *v, t_ray *ray, t_vect *depth);
 */
 int				ft_keys_hook(int k, t_rt *v);
 int				save_bmp_image(t_mlx image);
-
+void			init_event(t_rt *v, char *file);
+void			init_mlx(t_rt *v);
 /*
 ** Noise
 */
@@ -143,20 +144,5 @@ void			motion_blur(t_ray *r, int a);
 int				add_texture(t_rt *rt);
 void			GetAngle(t_obj *obj , t_vect inter);
 int				getColorFromTexture(t_point *point);
-void			filters(t_vect *color, int filter);
-void			generate_noise();
-void			wood(t_vect pt, t_vect *color);
-double			equation_solve(t_ray ray,t_delt d, t_obj *obj);
-double			check_solution(double t1, double t2);
-void	check_refl_refr(t_rt *v, t_ray *ray, t_vect *depth);
-void	set_pixel_color(t_rt *v, int i, int j, t_vect color);
-void		pixel_ambient(t_rt *v, int i);
-void		pixel_diffuse(t_rt *v, t_light *light);
-void		pixel_specular(t_rt *v, t_light *light);
-double		spotlight(t_vect p, t_light light, double cos_angle);
-void	anti_aliasing(t_rt *v, t_ray *r, double *axis, int a);
-void	motion_blur(t_ray *r, int a);
-void    init_event(t_rt *v, char *file);
-void    init_mlx(t_rt *v);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 19:06:26 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/04 04:33:37 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/04 05:07:57 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int		is_included(double a, double b)
 		return (1);
 	return (0);
 }
+
 int		is_included2(double a, double b)
 {
 	if (a < 0 && b < 0 && a < b)
