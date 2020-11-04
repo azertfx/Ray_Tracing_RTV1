@@ -6,19 +6,34 @@
 /*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:23:37 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/04 01:16:32 by hhamdaou         ###   ########.fr       */
+/*   Updated: 2020/11/04 01:41:25 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-void	set_pixel_color(t_rt *v, int i, int j, t_vect color)
+t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color, t_vect depth)
 {
-	filters(&color, 53);
-	v->m.img_data[(j * IMG_W + i) * 4 + 0] = color.z;
-	v->m.img_data[(j * IMG_W + i) * 4 + 1] = color.y;
-	v->m.img_data[(j * IMG_W + i) * 4 + 2] = color.x;
-	v->m.img_data[(j * IMG_W + i) * 4 + 3] = 0;
+	if (intersection_checker(v, *ray, &v->point) && (depth.x < 4))
+	{
+		objects_normal(*ray, &v->point);
+		apply_noise(&v->point);
+		get_pixel_color(v, &v->point.p_color);
+		if (depth.x != 0)
+			v->point.p_color =
+				ft_vect_div_nbr(v->point.p_color, depth.y ? depth.y : depth.z);
+		*color = ft_vect_add(*color, v->point.p_color);
+		if (v->point.obj->rfl || v->point.obj->trs)
+		{
+			check_refl_refr(v, ray, &depth);
+			depth.x++;
+			ft_vect_norm(&ray->dir);
+			ray->ori = ft_vect_add(v->point.p_inter,
+						ft_vect_mult_nbr(ray->dir, 0.5));
+			ray_trace(v, ray, color, depth);
+		}
+	}
+	return (*color);
 }
 
 void	rt_core(t_rt *v, double *axis)
@@ -98,18 +113,6 @@ void	draw(t_rt v)
 		pthread_join(id[j], NULL);
 		j++;
 	}
-}
-
-int		check_file(t_rt *v)
-{
-	// free_all_object(v);
-	if (!v->event.file || !parse_file(v->event.file, v))
-	{
-		// free_all_object(v);
-		ft_putendl("Try Again! 🙄");
-		return (0);
-	}
-	return (1);
 }
 
 int		rt(t_rt *v, char *file)

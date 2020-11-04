@@ -6,7 +6,7 @@
 /*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:48:32 by hhamdaou          #+#    #+#             */
-/*   Updated: 2020/11/04 01:21:53 by hhamdaou         ###   ########.fr       */
+/*   Updated: 2020/11/04 01:44:58 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,15 @@ void			wood(t_vect pt, t_vect *color);
 double			equation_solve(t_ray ray,double a, double b,
 									double c, t_obj *obj);
 double			check_solution(double t1, double t2);
+void	check_refl_refr(t_rt *v, t_ray *ray, t_vect *depth);
+void	set_pixel_color(t_rt *v, int i, int j, t_vect color);
+void		pixel_ambient(t_rt *v, int i);
+void		pixel_diffuse(t_rt *v, t_light *light);
+void		pixel_specular(t_rt *v, t_light *light);
+double		spotlight(t_vect p, t_light light, double cos_angle);
+void	anti_aliasing(t_rt *v, t_ray *r, double *axis, int a);
+void	motion_blur(t_ray *r, int a);
+
+
 
 #endif
