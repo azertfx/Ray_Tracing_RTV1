@@ -6,11 +6,7 @@
 /*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:48:32 by hhamdaou          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2020/11/04 04:59:24 by hhamdaou         ###   ########.fr       */
-=======
-/*   Updated: 2020/11/04 04:29:35 by hezzahir         ###   ########.fr       */
->>>>>>> 7d1273c2d15007ede20b07851d15f8fd41e0fb09
+/*   Updated: 2020/11/04 05:03:11 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -147,7 +143,6 @@ void			motion_blur(t_ray *r, int a);
 int				add_texture(t_rt *rt);
 void			GetAngle(t_obj *obj , t_vect inter);
 int				getColorFromTexture(t_point *point);
-<<<<<<< HEAD
 void			filters(t_vect *color, int filter);
 void			generate_noise();
 void			wood(t_vect pt, t_vect *color);
@@ -164,6 +159,4 @@ void	motion_blur(t_ray *r, int a);
 void    init_event(t_rt *v, char *file);
 void    init_mlx(t_rt *v);
 
-=======
->>>>>>> 7d1273c2d15007ede20b07851d15f8fd41e0fb09
 #endif
