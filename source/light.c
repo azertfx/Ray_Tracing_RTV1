@@ -6,7 +6,7 @@
 /*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 01:33:24 by hhamdaou          #+#    #+#             */
-/*   Updated: 2020/11/04 01:49:34 by hhamdaou         ###   ########.fr       */
+/*   Updated: 2020/11/04 02:35:32 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,24 @@ void		pixel_ambient(t_rt *v, int i)
 
 void		pixel_diffuse(t_rt *v, t_light *light)
 {
+	double	diff_pow;
+	int		ce;
+
+	ce = 0;
+	diff_pow = fmax(0, ft_vect_dot(v->point.p_dir, v->point.p_normal));
+	if (ce)
+	{
+		if (diff_pow > 0.95)
+			diff_pow = 0.95;
+		else if (diff_pow > 0.5)
+			diff_pow = 0.5;
+		else if (diff_pow > 0.25)
+			diff_pow = 0.25;
+		else
+			diff_pow = 0.1;
+	}
 	v->point.p_light.def = ft_vect_add_nbr(v->point.p_light.def,
-	light->pow * fmax(0, ft_vect_dot(v->point.p_dir, v->point.p_normal)));
+	light->pow * diff_pow);
 }
 
 void		pixel_specular(t_rt *v, t_light *light)
@@ -29,14 +45,27 @@ void		pixel_specular(t_rt *v, t_light *light)
 	t_vect	view_dir;
 	t_vect	reflect;
 	double	str;
+	double	spec_pow;
+	int		ce;
 
+	ce = 0;
 	view_dir = ft_vect_sub(v->c->ori, v->point.p_inter);
 	ft_vect_norm(&view_dir);
 	v->point.p_dir = ft_vect_mult_nbr(v->point.p_dir, -1);
 	reflect = ft_vect_sub(v->point.p_dir, ft_vect_mult_nbr(
 		v->point.p_normal, 2 * ft_vect_dot(
 		v->point.p_normal, v->point.p_dir)));
-	str = light->pow * pow(fmax(ft_vect_dot(view_dir, reflect), 0.4), 80);
+	spec_pow = fmax(ft_vect_dot(view_dir, reflect), 0.4);
+	if (ce)
+	{
+		if (spec_pow > 0.5)
+			spec_pow = 0.9;
+		else if (spec_pow > 0.25)
+			spec_pow = 0.25;
+		else
+			spec_pow = 0.1;
+	}
+	str = light->pow * pow(spec_pow, 80);
 	v->point.p_light.spc = ft_vect_add_nbr(v->point.p_light.spc, str);
 }
 
