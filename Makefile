@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+         #
+#    By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/06 03:38:58 by anabaoui          #+#    #+#              #
-#    Updated: 2020/11/04 00:47:42 by hhamdaou         ###   ########.fr        #
+#    Updated: 2020/11/04 01:10:28 by hezzahir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME = rt
 SRC_NAME = main.c rt.c intersection.c keys_hook.c\
 			objects.c vectors1.c vectors2.c vectors3.c pixel_color.c camera.c\
 			guide_btn.c instruction.c bmp.c slice_xyz.c noise.c noise2.c \
-			texture.c filters.c
+			texture.c filters.c solver.c
 
 OBJ_NAME =	$(SRC_NAME:.c=.o)
 

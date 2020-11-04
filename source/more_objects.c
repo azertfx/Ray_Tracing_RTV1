@@ -3,59 +3,58 @@
 /*                                                        :::      ::::::::   */
 /*   more_objects.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 01:00:56 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/04 00:50:06 by hhamdaou         ###   ########.fr       */
+/*   Updated: 2020/11/04 01:06:19 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "rt.h"
 
-double		Disc_intersection(t_ray r, t_obj *obj)
+double		disc_intersection(t_ray r, t_obj *obj)
 {
-	t_vect	obj_center;
-	double		inter;
-	double		nor_dir;
+	t_inter		i;
 	t_delt		d;
 
-	obj_center = ft_vect_sub(obj->ori, r.ori);
-	if ((nor_dir = ft_vect_dot(r.dir, obj->axi)))
-		inter = ft_vect_dot(obj_center, obj->axi) / nor_dir;
+	i.obj_center = ft_vect_sub(obj->ori, r.ori);
+	if ((i.nor_dir = ft_vect_dot(r.dir, obj->axi)))
+		i.inter = ft_vect_dot(i.obj_center, obj->axi) / i.nor_dir;
 	else
 		return (0);
-	if (inter < MIN_NBR || inter > MAX_NBR)
+	if (i.inter < MIN_NBR || i.inter > MAX_NBR)
 		return (0);
-	t_vect p = ft_vect_add(r.ori, ft_vect_mult_nbr(r.dir, inter));
-	d.v = ft_vect_sub(obj->ori, p);
+	i.pt = ft_vect_add(r.ori, ft_vect_mult_nbr(r.dir, i.inter));
+	d.v = ft_vect_sub(obj->ori, i.pt);
 	d.t = ft_vect_dot(d.v, d.v);
 	if (sqrtf(d.t) <= obj->ray)
-		return (inter + MIN_NBR);
+		return (i.inter + MIN_NBR);
 	else
 		return (0);
 }
 
 double		square_intersection(t_ray r, t_obj *obj)
 {
-	t_vect	obj_center;
-	double		inter;
-	double		nor_dir;
+	t_inter s;
 
-	obj_center = ft_vect_sub(obj->ori, r.ori);
-	if ((nor_dir = ft_vect_dot(r.dir, obj->axi)))
-		inter = ft_vect_dot(obj_center, obj->axi) / nor_dir;
+	s.obj_center = ft_vect_sub(obj->ori, r.ori);
+	if ((s.nor_dir = ft_vect_dot(r.dir, obj->axi)))
+		s.inter = ft_vect_dot(s.obj_center, obj->axi) / s.nor_dir;
 	else
 		return (0);
-	if (inter < MIN_NBR || inter > MAX_NBR)
+	if (s.inter < MIN_NBR || s.inter > MAX_NBR)
 		return (0);
-	t_vect p = ft_vect_add(r.ori, ft_vect_mult_nbr(r.dir, inter));
-	p = ft_vect_sub(p, obj->ori);
+	s.pt = ft_vect_add(r.ori, ft_vect_mult_nbr(r.dir, s.inter));
+	s.pt = ft_vect_sub(s.pt, obj->ori);
 	t_vect e1 = {7,0,0};
 	t_vect e2 = {0,-7,0};
-	double width = ft_vect_length(e1),height = ft_vect_length(e2);
-	double proj1 = ft_vect_dot(p, e1)/ width, proj2 = ft_vect_dot(p, e2)/ height;
-	if ((proj1 < width && proj1 > 0) && (proj2 < height && proj2 > 0))
-		return (inter + MIN_NBR);
+	s.width = ft_vect_length(e1);
+	s.height = ft_vect_length(e2);
+	s.proj1 = ft_vect_dot(s.pt, e1) / s.width;
+	s.proj2 = ft_vect_dot(s.pt, e2) / s.height;
+	if ((s.proj1 < s.width && s.proj1 > 0) &&
+					(s.proj2 < s.height && s.proj2 > 0))
+		return (s.inter + MIN_NBR);
 	return (0);
 }
 
@@ -107,21 +106,6 @@ double		limited_cylinder_intersection(t_ray r, t_obj *obj)
 		if (m <= 30 && m >= -30)
 			return (d.t);
 	}
-	return (0);
-}
-
-double		check_solution(double t1, double t2)
-{
-	double	t;
-
-	t = 0;
-	if (t1 < 0.0)
-		t1 = t2;
-	if (t2 < 0.0)
-		t2 = t1;
-	t = fmax(t1, t2);
-	if (t > MIN_NBR)
-		return (t);
 	return (0);
 }
 

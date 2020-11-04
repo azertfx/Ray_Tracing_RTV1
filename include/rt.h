@@ -6,7 +6,7 @@
 /*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:48:32 by hhamdaou          #+#    #+#             */
-/*   Updated: 2020/11/04 01:14:02 by hhamdaou         ###   ########.fr       */
+/*   Updated: 2020/11/04 01:21:53 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,12 +54,11 @@
 # define noiseWidth 192
 # define noiseHeight 192
 # define noiseDepth 64
-
-double noise[noiseDepth][noiseHeight][noiseWidth];
-
 # define RAD(x) (x * M_PI / 180)
 # define PX_X(x) ((x + 0.5) * 2.0 / (double)IMG_W - 1.0)
 # define PX_Y(y) (1.0 - (y + 0.5) * 2.0 / (double)IMG_H)
+
+double noise[noiseDepth][noiseHeight][noiseWidth];
 
 char			*parse_property(void *obj, char *line, int o_type);
 int				check_file(t_rt *v);
@@ -103,5 +102,8 @@ int				getColorFromTexture(t_point *point);
 void			filters(t_vect *color, int filter);
 void			generate_noise();
 void			wood(t_vect pt, t_vect *color);
+double			equation_solve(t_ray ray,double a, double b,
+									double c, t_obj *obj);
+double			check_solution(double t1, double t2);
 
 #endif
