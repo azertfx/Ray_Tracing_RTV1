@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   solver.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 01:00:37 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/04 01:09:27 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/04 01:50:46 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "rt.h"
+#include "rt.h"
 
-double		check_solution(double t1, double t2)
+double	check_solution(double t1, double t2)
 {
 	double	t;
 
@@ -27,7 +27,7 @@ double		check_solution(double t1, double t2)
 	return (0);
 }
 
-double	equation_solve(t_ray ray,double a, double b, double c, t_obj *obj)
+double	equation_solve(t_ray ray, double a, double b, double c, t_obj *obj)
 {
 	double	delta;
 	double	inter1;
@@ -46,4 +46,16 @@ double	equation_solve(t_ray ray,double a, double b, double c, t_obj *obj)
 		return (ft_slice(ray, fmin(inter1, inter2)));
 	}
 	return (0);
+}
+
+int		check_file(t_rt *v)
+{
+	// free_all_object(v);
+	if (!v->event.file || !parse_file(v->event.file, v))
+	{
+		// free_all_object(v);
+		ft_putendl("Try Again! 🙄");
+		return (0);
+	}
+	return (1);
 }
