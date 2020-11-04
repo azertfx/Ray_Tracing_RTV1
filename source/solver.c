@@ -6,7 +6,7 @@
 /*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 01:00:37 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/04 03:09:31 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/04 04:31:49 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ double	equation_solve(t_ray ray, t_delt d, t_obj *obj)
 								|| (inter2 < inter1 && inter2 > MIN_NBR))
 	{
 		obj->t_max = fmax(inter1, inter2);
-		return (ft_slice(ray, fmin(inter1, inter2)));
+		return (ft_slice(ray, obj, fmin(inter1, inter2)));
 	}
 	return (0);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parent.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:50:16 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/03 03:51:59 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/04 04:34:06 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ int	add_object(t_rt *r)
 	o->trs = 0;
 	o->opt = 0;
 	o->neg = 0;
+	o->slc = 0;
 	o->txt.t = 0;
 	o->dsp = -1;
 	o->width = -1;
