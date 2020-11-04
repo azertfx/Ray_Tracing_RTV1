@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rtv1.h                                             :+:      :+:    :+:   */
+/*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/06 03:17:11 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/03 06:18:06 by hezzahir         ###   ########.fr       */
+/*   Created: 2020/11/04 00:48:32 by hhamdaou          #+#    #+#             */
+/*   Updated: 2020/11/04 00:48:50 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef RTV1_H
-# define RTV1_H
+#ifndef RT_H
+# define RT_H
 
 # include <pthread.h>
 # include "../miniLibX/mlx.h"
@@ -66,7 +66,7 @@ int				check_file(t_rt *v);
 void			ft_instruction(t_rt *v);
 void			ft_draw_btn(t_rt *v, int x, int y);
 void			ft_btn_content(t_rt *v);
-int				rtv1(t_rt *v, char *file);
+int				rt(t_rt *v, char *file);
 void			draw(t_rt v);
 double			intersection_checker(t_rt *v, t_ray r, t_point *point);
 void			calculate_pixel_color(t_rt *v, t_light *light, int i);

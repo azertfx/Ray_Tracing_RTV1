@@ -1,4 +1,4 @@
-#include "rtv1.h"
+#include "rt.h"
 
 int			add_texture(t_rt *rt)
 {

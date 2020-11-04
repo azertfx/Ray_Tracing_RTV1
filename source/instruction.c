@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   instruction.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 12:53:03 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/02/24 13:20:40 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/11/04 00:49:52 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 void	ft_draw_rec(t_rt *v)
 {

@@ -6,11 +6,11 @@
 /*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 02:25:27 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/03 00:14:15 by hhamdaou         ###   ########.fr       */
+/*   Updated: 2020/11/04 00:50:43 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 t_vect	ft_vect_sub(t_vect u, t_vect v)
 {

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   slice_xyz.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/22 19:06:26 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/10/22 19:06:28 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/04 00:50:36 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 // void show_vect(t_vect v)
 // {

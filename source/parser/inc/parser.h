@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:19:20 by hastid            #+#    #+#             */
-/*   Updated: 2020/10/26 17:57:09 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/04 00:50:54 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 # include <fcntl.h>
 # include <stdio.h>
 
-# include "rtv1.h"
+# include "rt.h"
 # include "libft.h"
 # include "struct_rt.h"
 

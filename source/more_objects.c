@@ -6,11 +6,11 @@
 /*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 01:00:56 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/04 01:05:13 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/04 01:06:19 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "rtv1.h"
+# include "rt.h"
 
 double		disc_intersection(t_ray r, t_obj *obj)
 {
@@ -108,7 +108,6 @@ double		limited_cylinder_intersection(t_ray r, t_obj *obj)
 	}
 	return (0);
 }
-
 
 double		hemisphere_intersection(t_ray r, t_obj *obj)
 {

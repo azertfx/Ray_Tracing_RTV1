@@ -6,11 +6,11 @@
 /*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 00:18:45 by hhamdaou          #+#    #+#             */
-/*   Updated: 2020/11/03 00:31:05 by hhamdaou         ###   ########.fr       */
+/*   Updated: 2020/11/04 00:49:45 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 void	black_white(t_vect *color)
 {

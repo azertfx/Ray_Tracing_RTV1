@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rtv1.c                                             :+:      :+:    :+:   */
+/*   rt.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:23:37 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/03 03:56:10 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/04 00:50:32 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 void	set_pixel_color(t_rt *v, int i, int j, t_vect color)
 {
@@ -19,11 +19,6 @@ void	set_pixel_color(t_rt *v, int i, int j, t_vect color)
 	v->m.img_data[(j * IMG_W + i) * 4 + 1] = color.y;
 	v->m.img_data[(j * IMG_W + i) * 4 + 2] = color.x;
 	v->m.img_data[(j * IMG_W + i) * 4 + 3] = 0;
-}
-
-double	ft_random(double a, double b)
-{
-	return (rand() / (double)RAND_MAX) * (b - a) + a;
 }
 
 void	rt_core(t_rt *v, double x, double y)
@@ -118,7 +113,7 @@ int		check_file(t_rt *v)
 	return (1);
 }
 
-int		rtv1(t_rt *v, char *file)
+int		rt(t_rt *v, char *file)
 {
 	ft_bzero(v, sizeof(t_rt));
 	v->event.file = file;
@@ -126,7 +121,7 @@ int		rtv1(t_rt *v, char *file)
 	if (!check_file(v))
 		return (0);
 	v->m.mlx_ptr = mlx_init();
-	v->m.win_ptr = mlx_new_window(v->m.mlx_ptr, WIN_W, IMG_H, "1337 RTV1");
+	v->m.win_ptr = mlx_new_window(v->m.mlx_ptr, WIN_W, IMG_H, "1337 RT");
 	v->m.img_ptr = mlx_new_image(v->m.mlx_ptr, IMG_W, IMG_H);
 	v->m.img_data = (unsigned char *)mlx_get_data_addr(
 		v->m.img_ptr, &v->m.bpp, &v->m.size_l, &v->m.endian);

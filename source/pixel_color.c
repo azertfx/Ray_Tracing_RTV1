@@ -6,11 +6,11 @@
 /*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:12:38 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/03 01:18:49 by hhamdaou         ###   ########.fr       */
+/*   Updated: 2020/11/04 00:50:19 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 double		shadow_checker(t_rt *v, t_light *light)
 {

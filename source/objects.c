@@ -6,11 +6,11 @@
 /*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:27:32 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/04 01:02:44 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/04 01:06:37 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 double	equation_solve(t_ray ray,double a, double b, double c, t_obj *obj)
 {

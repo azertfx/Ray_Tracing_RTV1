@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   guide_btn.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 13:11:07 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/03/04 02:42:31 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/11/04 00:49:48 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 void	ft_btn_content(t_rt *v)
 {

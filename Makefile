@@ -3,16 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+         #
+#    By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/06 03:38:58 by anabaoui          #+#    #+#              #
-#    Updated: 2020/11/03 06:20:57 by hezzahir         ###   ########.fr        #
+#    Updated: 2020/11/04 00:47:42 by hhamdaou         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = rt
 
-SRC_NAME = main.c rtv1.c intersection.c keys_hook.c\
+SRC_NAME = main.c rt.c intersection.c keys_hook.c\
 			objects.c vectors1.c vectors2.c vectors3.c pixel_color.c camera.c\
 			guide_btn.c instruction.c bmp.c slice_xyz.c noise.c noise2.c \
 			texture.c filters.c
@@ -31,7 +31,7 @@ LIB =  libft/libft.a \
 	   source/parser/parser.a \
 	   -L ./miniLibX -lmlx -framework OpenGL -framework AppKit
 
-DEPS = include/rtv1.h
+DEPS = include/rt.h
 
 INC = -Iinclude -Ilibft/inc -Isource/parser/inc
 

@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   keys_hook.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:37:06 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/03 02:31:39 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/04 00:50:00 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "rtv1.h"
+#include "rt.h"
 
 void	ft_clear_and_draw(t_rt *v)
 {
