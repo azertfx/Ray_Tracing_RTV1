@@ -6,11 +6,11 @@
 /*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 01:00:37 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/04 01:09:27 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/04 01:33:20 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "rt.h"
+#include "rt.h"
 
 double		check_solution(double t1, double t2)
 {
@@ -27,7 +27,7 @@ double		check_solution(double t1, double t2)
 	return (0);
 }
 
-double	equation_solve(t_ray ray,double a, double b, double c, t_obj *obj)
+double		equation_solve(t_ray ray, double a, double b, double c, t_obj *obj)
 {
 	double	delta;
 	double	inter1;
@@ -40,7 +40,8 @@ double	equation_solve(t_ray ray,double a, double b, double c, t_obj *obj)
 	inter2 = (-b + sqrt(delta)) / (2 * a);
 	if ((inter2 < MIN_NBR && inter1 < MIN_NBR))
 		return (0);
-	if ((inter1 < inter2 && inter1 > MIN_NBR) || (inter2 < inter1 && inter2 > MIN_NBR))
+	if ((inter1 < inter2 && inter1 > MIN_NBR)
+								|| (inter2 < inter1 && inter2 > MIN_NBR))
 	{
 		obj->t_max = fmax(inter1, inter2);
 		return (ft_slice(ray, fmin(inter1, inter2)));
