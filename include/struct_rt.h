@@ -6,7 +6,7 @@
 /*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 06:38:06 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/03 06:18:40 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/04 00:23:27 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,19 @@ typedef struct s_delt
 	double	t2;
 	t_vect	v;
 } t_delt;
+
+typedef struct s_inter
+{
+	t_vect		obj_center;
+	t_vect		pt;
+	double		inter;
+	double		nor_dir;
+	double		height;
+	double		width;
+	double		proj1;
+	double		proj2;
+
+}				t_inter;
 
 typedef struct	s_texture
 {
