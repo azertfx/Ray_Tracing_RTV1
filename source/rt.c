@@ -6,7 +6,7 @@
 /*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:23:37 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/04 00:50:32 by hhamdaou         ###   ########.fr       */
+/*   Updated: 2020/11/04 01:16:32 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	set_pixel_color(t_rt *v, int i, int j, t_vect color)
 	v->m.img_data[(j * IMG_W + i) * 4 + 3] = 0;
 }
 
-void	rt_core(t_rt *v, double x, double y)
+void	rt_core(t_rt *v, double *axis)
 {
 	t_vect	depth;
 	t_vect	final_color;
@@ -39,7 +39,7 @@ void	rt_core(t_rt *v, double x, double y)
 		anti_aliasing = 1;
 	while (r < anti_aliasing)
 	{
-		generate_camera_ray(v, &v->thread.ray, y, x, r);
+		generate_camera_ray(v, &v->thread.ray, axis, r);
 		final_color = ray_trace(v, &v->thread.ray, &v->thread.color, depth);
 		v->thread.color = ft_vect_div_nbr(final_color,
 							(anti_aliasing == 1) ? 1 : 2);
@@ -52,19 +52,18 @@ void	*draw_threads(void *t)
 	t_rt	*v;
 	double	i;
 	double	j;
-	double	x;
-	double	y;
+	double	axis[2];
 
 	v = (t_rt *)t;
 	j = v->thread.start;
 	while (j < v->thread.end)
 	{
-		y = (double)j;
+		axis[1] = (double)j;
 		i = 0;
 		while (i < IMG_W)
 		{
-			x = (double)i;
-			rt_core(v, x, y);
+			axis[0] = (double)i;
+			rt_core(v, axis);
 			set_pixel_color(v, i, j, v->thread.color);
 			i++;
 		}

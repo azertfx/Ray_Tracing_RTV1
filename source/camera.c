@@ -6,7 +6,7 @@
 /*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:24:16 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/04 00:49:40 by hhamdaou         ###   ########.fr       */
+/*   Updated: 2020/11/04 01:13:34 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	generate_camera(t_rt *v)
 	v->c->width = v->c->height * (IMG_W / IMG_H);
 }
 
-void	anti_aliasing(t_rt *v, t_ray *r, double y, double x, int a)
+void	anti_aliasing(t_rt *v, t_ray *r, double *axis, int a)
 {
 	static double tab[9][2] = {
 		{0, 0},
@@ -45,9 +45,9 @@ void	anti_aliasing(t_rt *v, t_ray *r, double y, double x, int a)
 	r->dir = ft_vect_add(
 			v->c->z,
 			ft_vect_add(
-				ft_vect_mult_nbr(v->c->x, PX_X(x + tab[a][0] + 0.5)
+				ft_vect_mult_nbr(v->c->x, PX_X(axis[0] + tab[a][0] + 0.5)
 								* v->c->width / 2.),
-				ft_vect_mult_nbr(v->c->y, PX_Y(y + tab[a][1] + 0.5)
+				ft_vect_mult_nbr(v->c->y, PX_Y(axis[1] + tab[a][1] + 0.5)
 								* v->c->height / 2.)));
 }
 
@@ -60,7 +60,7 @@ void	motion_blur(t_ray *r, int a)
 	r->ori = ft_vect_sub(r->ori, ft_vect_mult_nbr((t_vect){8, 8, 0}, r->time));
 }
 
-void	generate_camera_ray(t_rt *v, t_ray *r, double y, double x, int a)
+void	generate_camera_ray(t_rt *v, t_ray *r, double *axis, int a)
 {
 	int		aa;
 	int		mb;
@@ -71,12 +71,12 @@ void	generate_camera_ray(t_rt *v, t_ray *r, double y, double x, int a)
 	r->dir = ft_vect_add(
 				v->c->z,
 				ft_vect_add(
-					ft_vect_mult_nbr(v->c->x, PX_X(x + 0.5)
+					ft_vect_mult_nbr(v->c->x, PX_X(axis[0] + 0.5)
 								* v->c->width / 2.),
-					ft_vect_mult_nbr(v->c->y, PX_Y(y + 0.5)
+					ft_vect_mult_nbr(v->c->y, PX_Y(axis[1] + 0.5)
 								* v->c->height / 2.)));
 	if (aa)
-		anti_aliasing(v, r, y, x, a);
+		anti_aliasing(v, r, axis, a);
 	if (mb)
 		motion_blur(r, a);
 	ft_vect_norm(&r->dir);
@@ -108,6 +108,22 @@ t_vect	obj_refraction(t_vect ray_dir, t_vect p_normal)
 	return (ray_dir);
 }
 
+void	check_refl_refr(t_rt *v, t_ray *ray, t_vect *depth)
+{
+	if (v->point.obj->rfl)
+	{
+		ray->dir = obj_reflection(ray->dir, v->point.p_normal);
+		depth->y = v->point.obj->rfl;
+		depth->z = 0;
+	}
+	if (v->point.obj->trs)
+	{
+		ray->dir = obj_refraction(ray->dir, v->point.p_normal);
+		depth->z = v->point.obj->trs;
+		depth->y = 0;
+	}
+}
+
 t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color, t_vect depth)
 {
 	if (intersection_checker(v, *ray, &v->point) && (depth.x < 4))
@@ -116,25 +132,16 @@ t_vect	ray_trace(t_rt *v, t_ray *ray, t_vect *color, t_vect depth)
 		apply_noise(&v->point);
 		get_pixel_color(v, &v->point.p_color);
 		if (depth.x != 0)
-			v->point.p_color = ft_vect_div_nbr(v->point.p_color, depth.y ? depth.y : depth.z);
+			v->point.p_color =
+				ft_vect_div_nbr(v->point.p_color, depth.y ? depth.y : depth.z);
 		*color = ft_vect_add(*color, v->point.p_color);
 		if (v->point.obj->rfl || v->point.obj->trs)
 		{
-			if (v->point.obj->rfl)
-			{
-				ray->dir = obj_reflection(ray->dir, v->point.p_normal);
-				depth.y = v->point.obj->rfl;
-				depth.z = 0;
-			}
-			if (v->point.obj->trs)
-			{
-				ray->dir = obj_refraction(ray->dir, v->point.p_normal);
-				depth.z = v->point.obj->trs;
-				depth.y = 0;
-			}
+			check_refl_refr(v, ray, &depth);
 			depth.x++;
 			ft_vect_norm(&ray->dir);
-			ray->ori = ft_vect_add(v->point.p_inter, ft_vect_mult_nbr(ray->dir, 0.5));
+			ray->ori = ft_vect_add(v->point.p_inter,
+						ft_vect_mult_nbr(ray->dir, 0.5));
 			ray_trace(v, ray, color, depth);
 		}
 	}

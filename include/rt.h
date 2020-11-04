@@ -6,7 +6,7 @@
 /*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:48:32 by hhamdaou          #+#    #+#             */
-/*   Updated: 2020/11/04 00:48:50 by hhamdaou         ###   ########.fr       */
+/*   Updated: 2020/11/04 01:14:02 by hhamdaou         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,7 @@ void			calculate_pixel_color(t_rt *v, t_light *light, int i);
 t_vect			ray_trace(t_rt *v, t_ray *ray, t_vect *color, t_vect depth);
 void			get_pixel_color(t_rt *v, t_vect *light_color);
 void			objects_normal(t_ray r, t_point *point);
-void			generate_camera_ray(t_rt *v, t_ray *r, double y,
-															double x, int a);
+void			generate_camera_ray(t_rt *v, t_ray *r, double *axis, int a);
 void			generate_camera(t_rt *v);
 double			sphere_intersection(t_ray r, t_obj *obj);
 double			cylinder_intersection(t_ray r, t_obj *obj);
