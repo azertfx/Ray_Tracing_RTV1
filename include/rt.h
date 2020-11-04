@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:48:32 by hhamdaou          #+#    #+#             */
-/*   Updated: 2020/11/04 00:48:50 by hhamdaou         ###   ########.fr       */
+/*   Updated: 2020/11/04 01:11:04 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,5 +104,8 @@ int				getColorFromTexture(t_point *point);
 void			filters(t_vect *color, int filter);
 void			generate_noise();
 void			wood(t_vect pt, t_vect *color);
+double			equation_solve(t_ray ray,double a, double b,
+									double c, t_obj *obj);
+double			check_solution(double t1, double t2);
 
 #endif

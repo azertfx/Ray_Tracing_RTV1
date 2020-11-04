@@ -6,11 +6,11 @@
 /*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 01:00:37 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/04 01:04:49 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/04 01:09:27 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "rtv1.h"
+# include "rt.h"
 
 double		check_solution(double t1, double t2)
 {

@@ -6,32 +6,11 @@
 /*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:27:32 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/04 01:06:37 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/04 01:10:10 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
-
-double	equation_solve(t_ray ray,double a, double b, double c, t_obj *obj)
-{
-	double	delta;
-	double	inter1;
-	double	inter2;
-
-	delta = b * b - 4 * a * c;
-	if (delta < 0 || a == 0)
-		return (0);
-	inter1 = (-b - sqrt(delta)) / (2 * a);
-	inter2 = (-b + sqrt(delta)) / (2 * a);
-	if ((inter2 < MIN_NBR && inter1 < MIN_NBR))
-		return (0);
-	if ((inter1 < inter2 && inter1 > MIN_NBR) || (inter2 < inter1 && inter2 > MIN_NBR))
-	{
-		obj->t_max = fmax(inter1, inter2);
-		return (ft_slice(ray, fmin(inter1, inter2)));
-	}
-	return (0);
-}
 
 double	sphere_intersection(t_ray r, t_obj *obj)
 {
