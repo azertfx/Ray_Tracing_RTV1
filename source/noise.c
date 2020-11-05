@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   noise.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 11:05:07 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/04 00:50:10 by hhamdaou         ###   ########.fr       */
+/*   Updated: 2020/11/05 22:43:30 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void		apply_noise(t_point *p)
 	else if (p->obj->dsp == XOR)
 		p->p_color = noise_xor(p->p_color, p->p_inter);
 	else if (p->obj->dsp == WOOD)
-		wood(p->p_inter, &p->p_color);
+		wood(p->p_inter, &p->p_color, 10);
 	/*else if (p->obj->dsp == PERLIN)
 		perlin(p->p_inter, &p->p_color);*/
 }

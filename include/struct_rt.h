@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_rt.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 06:38:06 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/04 04:47:53 by hhamdaou         ###   ########.fr       */
+/*   Updated: 2020/11/05 22:16:01 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@ typedef struct s_vect
 	double y;
 	double z;
 } t_vect;
+
+typedef struct	s_cordin
+{
+	int	x;
+	int	y;
+	int	z;
+}				t_cordin;
 
 typedef struct s_delt
 {

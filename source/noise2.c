@@ -3,73 +3,75 @@
 /*                                                        :::      ::::::::   */
 /*   noise2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 05:57:57 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/04 00:50:13 by hhamdaou         ###   ########.fr       */
+/*   Updated: 2020/11/05 22:43:23 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-double smoothNoise(double x, double y, double z)
+double	smooth_noise(double x, double y, double z)
 {
-  //get fractional part of x and y
-  double fractX = x - (int)x;
-  double fractY = y -(int)y;
-  double fractZ = z - (int)z;
+	t_vect		f;
+	t_cordin	p;
+	t_cordin	p1;
+	double		value;
 
-  //wrap around
-  int x1 = ((int)x + noiseWidth) % noiseWidth;
-  int y1 = ((int)y + noiseHeight) % noiseHeight;
-  int z1 = ((int)z + noiseDepth) % noiseDepth;
-
-  //neighbor values
-  int x2 = (x1 + noiseWidth - 1) % noiseWidth;
-  int y2 = (y1 + noiseHeight - 1) % noiseHeight;
-  int z2 = (z1 + noiseDepth - 1) % noiseDepth;
-
-  //smooth the noise with bilinear interpolation
-  double value = 0.0;
-  value += fractX     * fractY     * fractZ     * noise[z1][y1][x1];
-  value += fractX     * (1 - fractY) * fractZ     * noise[z1][y2][x1];
-  value += (1 - fractX) * fractY     * fractZ     * noise[z1][y1][x2];
-  value += (1 - fractX) * (1 - fractY) * fractZ     * noise[z1][y2][x2];
-
-  value += fractX     * fractY     * (1 - fractZ) * noise[z2][y1][x1];
-  value += fractX     * (1 - fractY) * (1 - fractZ) * noise[z2][y2][x1];
-  value += (1 - fractX) * fractY     * (1 - fractZ) * noise[z2][y1][x2];
-  value += (1 - fractX) * (1 - fractY) * (1 - fractZ) * noise[z2][y2][x2];
-
-  return value;
+	value = 0.0;
+	f.x = x - (int)x;
+	f.y = y - (int)y;
+	f.z = z - (int)z;
+	p.x = ((int)x + noiseWidth) % noiseWidth;
+	p.y = ((int)y + noiseHeight) % noiseHeight;
+	p.z = ((int)z + noiseDepth) % noiseDepth;
+	p1.x = (p.x + noiseWidth - 1) % noiseWidth;
+	p1.y = (p.y + noiseHeight - 1) % noiseHeight;
+	p1.z = (p.z + noiseDepth - 1) % noiseDepth;
+	value += f.x * f.y * f.z * noise[p.z][p.y][p.x];
+	value += f.x * (1 - f.y) * f.z * noise[p.z][p1.y][p.x];
+	value += (1 - f.x) * f.y * f.z * noise[p.z][p.y][p1.x];
+	value += (1 - f.x) * (1 - f.y) * f.z * noise[p.z][p1.y][p1.x];
+	value += f.x * f.y * (1 - f.z) * noise[p1.z][p.y][p.x];
+	value += f.x * (1 - f.y) * (1 - f.z) * noise[p1.z][p1.y][p.x];
+	value += (1 - f.x) * f.y * (1 - f.z) * noise[p1.z][p.y][p1.x];
+	value += (1 - f.x) * (1 - f.y) * (1 - f.z) * noise[p1.z][p1.y][p1.x];
+	return (value);
 }
 
-double turbulence(double x, double y, double z, double size)
+double	turbulence(double x, double y, double z, double size)
 {
-  double value = 0.0, initialSize = size;
+	double	value;
+	double	initial_size;
 
-  while(size >= 1)
-  {
-    value += smoothNoise(x / size, y / size, z / size) * size;
-    size /= 2.0;
-  }
-
-  return(128.0 * value / initialSize);
+	value = 0.0;
+	initial_size = size;
+	while (size >= 1)
+	{
+		value += smooth_noise(x / size, y / size, z / size) * size;
+		size /= 2.0;
+	}
+	return (128.0 * value / initial_size);
 }
 
-void	wood(t_vect pt, t_vect *color)
+void	wood(t_vect pt, t_vect *color, double xy_period)
 {
-	double xyPeriod = 10; //number of rings
-	double turbPower = 0.7; //makes twists
-	double turbSize = 12465.0; //initial size of the turbulence
+	t_vect	value;
+	double	turb_power;
+	double	turb_size;
+	double	sine_value;
+	double	dist_value;
 
-	double xValue = (pt.x - noiseWidth / 2) / (double)noiseWidth;
-    double yValue = (pt.y - noiseHeight / 2) / (double)noiseHeight;
-	double zValue = (pt.z - noiseDepth / 2) / (double)noiseDepth;
-    double distValue = sqrt(xValue * xValue + yValue * yValue + zValue * zValue) + turbPower *
-	turbulence(pt.x, pt.y, pt.z, turbSize) / 256.0;
-    double sineValue = 128.0 * fabs(sin(2 * xyPeriod * distValue * 3.14159));
-    color->x = (uint8_t)(80 + sineValue);
-    color->y = (uint8_t)(30 + sineValue);
-    color->z = 30;
+	turb_power = 0.7;
+	turb_size = 12465.0;
+	value.x = (pt.x - noiseWidth / 2) / (double)noiseWidth;
+	value.y= (pt.y - noiseHeight / 2) / (double)noiseHeight;
+	value.z= (pt.z - noiseDepth / 2) / (double)noiseDepth;
+	dist_value = sqrt(value.x * value.x + value.y * value.y + value.z * value.z)
+			+ turb_power * turbulence(pt.x, pt.y, pt.z, turb_size) / 256.0;
+	sine_value = 128.0 * fabs(sin(2 * xy_period * dist_value * 3.14159));
+	color->x = (uint8_t)(80 + sine_value);
+	color->y = (uint8_t)(30 + sine_value);
+	color->z = 30;
 }
