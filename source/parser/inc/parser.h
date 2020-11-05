@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:19:20 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/04 00:50:54 by hhamdaou         ###   ########.fr       */
+/*   Updated: 2020/11/05 23:10:11 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "libft.h"
 # include "struct_rt.h"
 
-# define P_COUNT 7
+# define P_COUNT 8
 # define ORI_SET 1
 # define TAR_SET 1 << 1
 # define FOV_SET 1 << 2

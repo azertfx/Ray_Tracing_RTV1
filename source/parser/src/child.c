@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:18:26 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/04 00:44:24 by hhamdaou         ###   ########.fr       */
+/*   Updated: 2020/11/05 23:35:24 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,7 +132,7 @@ int	add_rotation(t_rt *r, char *v)
 
 int	add_reflection(t_rt *r, char *v)
 {
-	if (!IS_SET(r->o->opt, REF_SET))
+	if (!IS_SET(r->o->opt, REF_SET) && !IS_SET(r->o->opt, TCP_SET))
 	{
         if (get_int(&(r->o->rfl), v, DIST) == ERROR)
             return (ERROR);
@@ -156,7 +156,7 @@ int	add_translation(t_rt *r, char *v)
 
 int	add_transparence(t_rt *r, char *v)
 {
-	if (!IS_SET(r->o->opt, TCP_SET))
+	if (!IS_SET(r->o->opt, TCP_SET) && !IS_SET(r->o->opt, REF_SET))
 	{
         if (get_int(&(r->o->trs), v, DIST) == ERROR)
             return (ERROR);
@@ -359,14 +359,108 @@ int	parse_lights(t_rt *r, char **tab)
 	return (free_tab(tab, ret));
 }
 
+// scene
+
+int	add_filters(t_rt *r, char *v)
+{
+	if (!IS_SET(r->s.opt, FIL_SET))
+	{
+        if (!ft_strcmp(v, "NONE"))
+            r->s.fil = NONE;
+        else if (!ft_strcmp(v, "SEPIA"))
+            r->s.fil = SEPIA;
+        else if (!ft_strcmp(v, "STEREO"))
+            r->s.fil = STEREO;
+        else if (!ft_strcmp(v, "NEGATIVE"))
+            r->s.fil = NEGATIVE;
+        else if (!ft_strcmp(v, "BLACK_WHITE"))
+            r->s.fil = BLACK_WHITE;
+        else
+            return (ERROR);
+		r->s.opt |= FIL_SET;
+		return (SUCCESS);
+	}
+	return (ERROR);
+}
+
+int	add_ambiance(t_rt *r, char *v)
+{
+	if (!IS_SET(r->s.opt, AMB_SET))
+	{
+        if (get_double(&(r->s.amb), v, DIST) == ERROR)
+            return (ERROR);
+        r->s.opt |= AMB_SET;
+		return (SUCCESS);
+	}
+	return (ERROR);
+}
+
+int	add_anti_aliasing(t_rt *r, char *v)
+{
+	if (!IS_SET(r->s.opt, AAL_SET))
+	{
+        if (!get_int(&(r->s.aal), v, DIST))
+            return (ERROR);
+		r->s.opt |= AAL_SET;
+		return (SUCCESS);
+	}
+	return (ERROR);
+}
+
+int	add_cartoon_effect(t_rt *r, char *v)
+{
+	if (!IS_SET(r->s.opt, CAE_SET))
+	{
+        if (!get_int(&(r->s.cef), v, DIST))
+            return (ERROR);
+		r->s.opt |= CAE_SET;
+		return (SUCCESS);
+	}
+	return (ERROR);
+}
+
+// int	add_depth_of_field(t_rt *r, char *v)
+// {
+// 	if (!IS_SET(r->s.opt, DOF_SET))
+// 	{
+//         if (!get_int(&(r->s.df), v, DIST))
+//             return (ERROR);
+// 		r->s.opt |= DOF_SET;
+// 		return (SUCCESS);
+// 	}
+// 	return (ERROR);
+// }
+
+int	parse_scene(t_rt *r, char **tab)
+{
+	int				i;
+	int				ret;
+	static t_child	c_child[4] = {
+		{"filters:", &add_filters},
+		{"ambiance:", &add_ambiance},
+		{"anti_aliasing:", &add_anti_aliasing},
+		{"cartoon_effect:", &add_cartoon_effect},
+		// {"depth_of_field:", &add_depth_of_field},
+	};
+
+	ret = ERROR;
+	i = -1;
+	while (++i < 5)
+		if (ft_strequ(tab[0], c_child[i].name))
+			break ;
+	if (i < 5 && ft_strequ(tab[0], c_child[i].name))
+		ret = c_child[i].f(r, tab[1]);
+	return (free_tab(tab, ret));
+}
+
 int	add_child(t_rt *r, char **tab)
 {
 	if (!tab[1])
 		return (free_tab(tab, ERROR));
 	if (r->id == CAMERA)
 		return (parse_camera(r, tab));
-	// else if (r->id == SCENE)
-	// 	return (parse_scene(r, tab));
+	else if (r->id == SCENE)
+		return (parse_scene(r, tab));
 	else if (r->id == LIGHT)
 		return (parse_lights(r, tab));
 	else

@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:33:28 by hastid            #+#    #+#             */
-/*   Updated: 2020/10/17 00:16:45 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/05 23:21:58 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ int parse_file(char *file, t_rt *r)
 	r->o = 0;
 	r->l = 0;
 	r->id = -1;
+	r->s.amb = 80;
 	line = 0;
 	while (get_next_line(fd, &line) > 0)
 	{

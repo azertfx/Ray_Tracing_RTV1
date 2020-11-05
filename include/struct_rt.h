@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_rt.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 06:38:06 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/05 22:16:01 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/05 23:29:16 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,6 +81,15 @@ typedef struct s_ray
 	t_vect dir;
 	double time;
 } t_ray;
+
+typedef struct	s_sc
+{
+	int		opt;
+	int		fil;
+	int		aal;
+	int		cef;
+	double	amb;
+}				t_sc;
 
 typedef struct s_cam
 {
@@ -174,10 +183,11 @@ typedef struct s_thread
 typedef struct s_rt
 {
 	int id;
-	t_mlx m;
-	t_cam *c;
-	t_obj *o;
-	t_light *l;
+	t_sc	s;
+	t_mlx	m;
+	t_cam	*c;
+	t_obj	*o;
+	t_light	*l;
 	t_point point;
 	t_event event;
 	t_thread thread;

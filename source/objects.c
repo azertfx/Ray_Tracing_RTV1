@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:27:32 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/04 02:42:10 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/05 23:44:47 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,4 +71,20 @@ double	cone_intersection(t_ray r, t_obj *obj)
 	d.c = ft_vect_dot(obj_center, obj_center) - (1 + pow(tan(RAD(obj->ray)), 2))
 				* pow(ft_vect_dot(obj_center, obj->axi), 2);
 	return (equation_solve(r, d, obj));
+}
+
+double	paraboloid_intersection(t_ray r, t_obj *parab)
+{
+	t_delt	d;
+	t_vect	v;
+	double	a;
+	double	b;
+
+	v = ft_vect_sub(r.ori, parab->ori);
+	a = ft_vect_dot(r.dir, parab->axi);
+	b = ft_vect_dot(v, parab->axi);
+	d.a = ft_vect_dot(r.dir, r.dir) - a * a;
+	d.b = 2 * (ft_vect_dot(r.dir, v) - (a * (b + 2 * parab->ray)));
+	d.c = ft_vect_dot(v, v) - b * (b + 4 * parab->ray);
+	return (equation_solve(r, d, parab));
 }

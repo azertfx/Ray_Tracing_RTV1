@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:48:32 by hhamdaou          #+#    #+#             */
-/*   Updated: 2020/11/05 22:44:21 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/05 23:45:45 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,11 @@ void			generate_camera(t_rt *v);
 /*
 ** Objects
 */
+double			cone_intersection(t_ray r, t_obj *obj);
+double			plane_intersection(t_ray r, t_obj *obj);
 double			sphere_intersection(t_ray r, t_obj *obj);
 double			cylinder_intersection(t_ray r, t_obj *obj);
-double			plane_intersection(t_ray r, t_obj *obj);
-double			cone_intersection(t_ray r, t_obj *obj);
+double          paraboloid_intersection(t_ray r, t_obj *parab);
 double			equation_solve(t_ray ray, t_delt d, t_obj *obj);
 double			check_solution(double t1, double t2);
 /*
