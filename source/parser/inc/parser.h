@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:19:20 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/05 23:10:11 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/06 01:21:07 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "libft.h"
 # include "struct_rt.h"
 
-# define P_COUNT 8
+# define P_COUNT 10
 # define ORI_SET 1
 # define TAR_SET 1 << 1
 # define FOV_SET 1 << 2
@@ -47,6 +47,9 @@
 # define UOD_SET 1 << 22
 # define LIM_SET 1 << 23
 # define DSP_SET 1 << 24
+# define LM1_SET 1 << 25
+# define LM2_SET 1 << 26
+
 
 # define IS_SET(apts, apt) (apts & apt)
 # define V_COLOR(a) (a >= 0 && a <= 255)
@@ -57,7 +60,7 @@ enum {ERROR, SUCCESS};
 enum {POINT, DIRECT, PARALLEL};
 enum {NOTING, COLOR, ROTAT, DIST, ANGL};
 enum {NONE, SEPIA, BLACK_WHITE, NEGATIVE, STEREO};
-enum {LIGHT, CAMERA, CONE, PLANE, SPHERE, CYLINDER, PARABOL, SCENE};
+enum {LIGHT, CAMERA, CONE, PLANE, SPHERE, CYLINDER, PARABOL, DISC, SQUARE, SCENE};
 enum {CHECKBOARD, XOR, WOOD, PERLIN};
 
 

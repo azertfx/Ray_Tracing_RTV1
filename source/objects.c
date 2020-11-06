@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:27:32 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/05 23:44:47 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/06 00:42:30 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ double	sphere_intersection(t_ray r, t_obj *obj)
 
 double	cylinder_intersection(t_ray r, t_obj *obj)
 {
+	double	m;
 	t_delt	d;
 	t_vect	obj_center;
 
@@ -38,7 +39,15 @@ double	cylinder_intersection(t_ray r, t_obj *obj)
 	d.c = ft_vect_dot(obj_center, obj_center) -
 			ft_vect_dot(obj_center, obj->axi) *
 						ft_vect_dot(obj_center, obj->axi) - obj->ray * obj->ray;
-	return (equation_solve(r, d, obj));
+	d.t = equation_solve(r, d, obj);
+	if (obj->height >= 0)
+	{
+		m = ft_vect_dot(r.dir, obj->axi) * d.t
+										+ ft_vect_dot(obj_center, obj->axi);
+		if (!(m <= obj->height / 2 && m >= -obj->height / 2))
+			return (0);
+	}
+	return (d.t);
 }
 
 double	plane_intersection(t_ray r, t_obj *obj)
@@ -59,6 +68,7 @@ double	plane_intersection(t_ray r, t_obj *obj)
 
 double	cone_intersection(t_ray r, t_obj *obj)
 {
+	double	m;
 	t_delt	d;
 	t_vect	obj_center;
 
@@ -70,7 +80,15 @@ double	cone_intersection(t_ray r, t_obj *obj)
 			* ft_vect_dot(r.dir, obj->axi) * ft_vect_dot(obj_center, obj->axi));
 	d.c = ft_vect_dot(obj_center, obj_center) - (1 + pow(tan(RAD(obj->ray)), 2))
 				* pow(ft_vect_dot(obj_center, obj->axi), 2);
-	return (equation_solve(r, d, obj));
+	d.t = equation_solve(r, d, obj);
+	if (obj->height >= 0)
+	{
+		m = ft_vect_dot(r.dir, obj->axi) * d.t
+									+ ft_vect_dot(obj_center, obj->axi);
+		if (!(m <= 0 && m >= -obj->height))
+			return (0);
+	}
+	return (d.t);
 }
 
 double	paraboloid_intersection(t_ray r, t_obj *parab)

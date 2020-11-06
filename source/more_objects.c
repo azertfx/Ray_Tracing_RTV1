@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   more_objects.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 01:00:56 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/04 03:56:32 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/06 01:24:55 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ double		disc_intersection(t_ray r, t_obj *obj)
 double		square_intersection(t_ray r, t_obj *obj)
 {
 	t_inter	s;
-	t_vect	e1 = {7, 0, 0};
-	t_vect	e2 = {0, -7, 0};
 
 	s.obj_center = ft_vect_sub(obj->ori, r.ori);
 	if ((s.nor_dir = ft_vect_dot(r.dir, obj->axi)))
@@ -48,64 +46,13 @@ double		square_intersection(t_ray r, t_obj *obj)
 		return (0);
 	s.pt = ft_vect_add(r.ori, ft_vect_mult_nbr(r.dir, s.inter));
 	s.pt = ft_vect_sub(s.pt, obj->ori);
-	s.width = ft_vect_length(e1);
-	s.height = ft_vect_length(e2);
-	s.proj1 = ft_vect_dot(s.pt, e1) / s.width;
-	s.proj2 = ft_vect_dot(s.pt, e2) / s.height;
+	s.width = ft_vect_length(obj->e1);
+	s.height = ft_vect_length(obj->e2);
+	s.proj1 = ft_vect_dot(s.pt, obj->e1) / s.width;
+	s.proj2 = ft_vect_dot(s.pt, obj->e2) / s.height;
 	if ((s.proj1 < s.width && s.proj1 > 0) &&
 					(s.proj2 < s.height && s.proj2 > 0))
 		return (s.inter + MIN_NBR);
-	return (0);
-}
-
-double		limited_cone_intersection(t_ray r, t_obj *obj)
-{
-	t_delt	d;
-	double	m;
-	t_vect	obj_center;
-
-	obj_center = ft_vect_sub(r.ori, obj->ori);
-	ft_vect_norm(&obj->axi);
-	d.a = ft_vect_dot(r.dir, r.dir) - (1 + pow(tan(RAD(obj->ray)), 2)) *
-										pow(ft_vect_dot(r.dir, obj->axi), 2);
-	d.b = 2 * (ft_vect_dot(r.dir, obj_center) - (1 + pow(tan(RAD(obj->ray)), 2))
-		* ft_vect_dot(r.dir, obj->axi) * ft_vect_dot(obj_center, obj->axi));
-	d.c = ft_vect_dot(obj_center, obj_center) - (1 + pow(tan(RAD(obj->ray)), 2))
-				* pow(ft_vect_dot(obj_center, obj->axi), 2);
-	d.t = equation_solve(r, d, obj);
-	if (d.t)
-	{
-		m = ft_vect_dot(r.dir, obj->axi) * d.t
-									+ ft_vect_dot(obj_center, obj->axi);
-		if (m <= 0 && m >= -30)
-			return (d.t);
-	}
-	return (0);
-}
-
-double		limited_cylinder_intersection(t_ray r, t_obj *obj)
-{
-	t_delt		d;
-	double		m;
-	t_vect		obj_center;
-
-	obj_center = ft_vect_sub(r.ori, obj->ori);
-	ft_vect_norm(&obj->axi);
-	d.a = ft_vect_dot(r.dir, r.dir) - ft_vect_dot(r.dir, obj->axi) *
-												ft_vect_dot(r.dir, obj->axi);
-	d.b = 2 * (ft_vect_dot(r.dir, obj_center) -
-	(ft_vect_dot(r.dir, obj->axi) * ft_vect_dot(obj_center, obj->axi)));
-	d.c = ft_vect_dot(obj_center, obj_center) -
-			ft_vect_dot(obj_center, obj->axi) *
-						ft_vect_dot(obj_center, obj->axi) - obj->ray * obj->ray;
-	d.t = equation_solve(r, d, obj);
-	if (d.t)
-	{
-		m = ft_vect_dot(r.dir, obj->axi) * d.t
-										+ ft_vect_dot(obj_center, obj->axi);
-		if (m <= 30 && m >= -30)
-			return (d.t);
-	}
 	return (0);
 }
 

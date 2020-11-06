@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:50:16 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/05 23:19:01 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/06 01:09:56 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,9 @@ int	add_object(t_rt *r)
 	o->id = r->id;
 	tmp = r->o;
 	r->o = o;
+	o->opt = 0;
 	o->rfl = 0;
 	o->trs = 0;
-	o->opt = 0;
 	o->neg = 0;
 	o->slc = 0;
 	o->txt.t = 0;
@@ -82,6 +82,8 @@ int	parse_parent(char *line, t_rt *r)
 		{"sphere:", &add_object},
 		{"cylinder:", &add_object},
 		{"paraboloid:", &add_object},
+		{"disc:", &add_object},
+		{"square:", &add_object},
 		{"scene:", &add_scene},
 	};
 

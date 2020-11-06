@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:40:01 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/05 23:44:20 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/06 00:41:19 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,6 +137,10 @@ double		objects_intersection(t_ray r, t_obj *obj, t_rt *rt)
 		inter = cylinder_intersection(r, obj);
 	else if (obj->id == PARABOL)
 		inter = paraboloid_intersection(r, obj);
+	else if (obj->id == DISC)
+		inter = disc_intersection(r, obj);
+	else if (obj->id == SQUARE)
+		inter = square_intersection(r, obj);
 	else
 		return (0);
 	return (negative_objects(inter, r, obj->t_max, rt));

@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 06:38:06 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/05 23:29:16 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/06 00:49:52 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,8 @@ typedef struct s_obj
 	int slc;
 	int uod;
 	int dsp;
+	t_vect	e1;
+	t_vect	e2;
 	double ray;
 	t_vect ori;
 	t_vect col;

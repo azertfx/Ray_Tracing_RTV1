@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:18:26 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/05 23:35:24 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/06 01:13:48 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	add_axis(t_rt *r, char *v)
 		r->l->opt |= AXI_SET;
 		return (SUCCESS);
 	}
-	if (r->id >= 2 && r->id <= 6 && !IS_SET(r->o->opt, AXI_SET)
+	if (r->id >= 2 && r->id <= 8 && !IS_SET(r->o->opt, AXI_SET)
 			&& get_vector(&r->o->axi, v, NONE))
 	{
 		r->o->opt |= AXI_SET;
@@ -36,7 +36,7 @@ int	add_color(t_rt *r, char *v)
 		r->l->opt |= COL_SET;
 		return (SUCCESS);
 	}
-	if (r->id >= 2 && r->id <= 6 && !IS_SET(r->o->opt, COL_SET)
+	if (r->id >= 2 && r->id <= 8 && !IS_SET(r->o->opt, COL_SET)
 			&& get_vector(&r->o->col, v, COLOR))
 	{
 		r->o->opt |= COL_SET;
@@ -59,7 +59,7 @@ int	add_origin(t_rt *r, char *v)
 		r->c->opt |= ORI_SET;
 		return (SUCCESS);
 	}
-	if (r->id >= 2 && r->id <= 6 && !IS_SET(r->o->opt, ORI_SET)
+	if (r->id >= 2 && r->id <= 8 && !IS_SET(r->o->opt, ORI_SET)
 			&& get_vector(&r->o->ori, v, NONE))
 	{
 		r->o->opt |= ORI_SET;
@@ -214,11 +214,35 @@ int	add_disruption(t_rt *r, char *v)
 	return (ERROR);
 }
 
+int	add_limvect1(t_rt *r, char *v)
+{
+	if (!IS_SET(r->o->opt, LM1_SET))
+	{
+        if (get_vector(&r->o->e1, v, NONE) == ERROR)
+            return (ERROR);
+		r->o->opt |= LM1_SET;
+		return (SUCCESS);
+	}
+	return (ERROR);
+}
+
+int	add_limvect2(t_rt *r, char *v)
+{
+	if (!IS_SET(r->o->opt, LM2_SET))
+	{
+        if (get_vector(&r->o->e2, v, NONE) == ERROR)
+            return (ERROR);
+		r->o->opt |= LM2_SET;
+		return (SUCCESS);
+	}
+	return (ERROR);
+}
+
 int	parse_objects(t_rt *r, char **tab)
 {
 	int				i;
 	int				ret;
-	static t_child	c_child[15] = {
+	static t_child	c_child[17] = {
 		{"ray:", &add_ray},
 		{"axis:", &add_axis},
 		{"color:", &add_color},
@@ -234,15 +258,16 @@ int	parse_objects(t_rt *r, char **tab)
 		{"upOrDown:", &add_upordown},
 		{"limit:", &add_limit},
 		{"disruption:", &add_disruption},
-
+		{"e1:", &add_limvect1},
+		{"e2:", &add_limvect2},
 	};
 
 	ret = ERROR;
 	i = -1;
-	while (++i < 15)
+	while (++i < 17)
 		if (ft_strequ(tab[0], c_child[i].name))
 			break ;
-	if (i < 15 && ft_strequ(tab[0], c_child[i].name))
+	if (i < 17 && ft_strequ(tab[0], c_child[i].name))
 		ret = c_child[i].f(r, tab[1]);
 	return (free_tab(tab, ret));
 }
