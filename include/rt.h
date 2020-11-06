@@ -3,10 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
+<<<<<<< HEAD
 /*   By: hezzahir <hezzahir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:48:32 by hhamdaou          #+#    #+#             */
 /*   Updated: 2020/11/06 04:35:50 by hezzahir         ###   ########.fr       */
+=======
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/11/04 00:48:32 by hhamdaou          #+#    #+#             */
+/*   Updated: 2020/11/06 01:52:04 by hastid           ###   ########.fr       */
+>>>>>>> 6129e7aa8906684d5c9af6c0b2daae5ccf1d494f
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,10 +108,14 @@ void			generate_camera(t_rt *v);
 /*
 ** Objects
 */
+double			cone_intersection(t_ray r, t_obj *obj);
+double			plane_intersection(t_ray r, t_obj *obj);
 double			sphere_intersection(t_ray r, t_obj *obj);
 double			cylinder_intersection(t_ray r, t_obj *obj);
-double			plane_intersection(t_ray r, t_obj *obj);
-double			cone_intersection(t_ray r, t_obj *obj);
+double          paraboloid_intersection(t_ray r, t_obj *parab);
+double			disc_intersection(t_ray r, t_obj *obj);
+double			square_intersection(t_ray r, t_obj *obj);
+double			hemisphere_intersection(t_ray r, t_obj *obj);
 double			equation_solve(t_ray ray, t_delt d, t_obj *obj);
 double			check_solution(double t1, double t2);
 /*

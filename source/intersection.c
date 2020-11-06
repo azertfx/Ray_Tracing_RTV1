@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:40:01 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/04 02:45:32 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/06 02:11:06 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,22 @@ double	intersect_cylinder_neg(t_ray r, t_obj *obj, double t_min, double t_max)
 	return ((solve_equation_neg(d, t_min, t_max)));
 }
 
+static double	intersect_paraboloid_neg(t_ray r, t_obj *parab, double t_min, double t_max)
+{
+	t_delt	d;
+	t_vect	v;
+	double	a;
+	double	b;
+
+	v = ft_vect_sub(r.ori, parab->ori);
+	a = ft_vect_dot(r.dir, parab->axi);
+	b = ft_vect_dot(v, parab->axi);
+	d.a = ft_vect_dot(r.dir, r.dir) - a * a;
+	d.b = 2 * (ft_vect_dot(r.dir, v) - (a * (b + 2 * parab->ray)));
+	d.c = ft_vect_dot(v, v) - b * (b + 4 * parab->ray);
+	return (solve_equation_neg(d, t_min, t_max));
+}
+
 double	negative_objects(double t_min, t_ray r, double t_max, t_rt *rt)
 {
 	int		i;
@@ -95,9 +111,11 @@ double	negative_objects(double t_min, t_ray r, double t_max, t_rt *rt)
 				dist = intersect_sphere_neg(r, obj, t_min, t_max);
 			else if (obj->id == CYLINDER)
 				dist = intersect_cylinder_neg(r, obj, t_min, t_max);
-			// else if (obj->id == PARABOL)
-			// 	dist = intersect_paraboloid_neg(r, obj, t_min, t_max);
+			else if (obj->id == PARABOL)
+				dist = intersect_paraboloid_neg(r, obj, t_min, t_max);
 		}
+		if (dist != t_min)
+			return (dist);
 		obj = obj->next;
 	}
 	return (dist);
@@ -105,18 +123,29 @@ double	negative_objects(double t_min, t_ray r, double t_max, t_rt *rt)
 
 double		objects_intersection(t_ray r, t_obj *obj, t_rt *rt)
 {
-	double t;
 
-	t = 0;
-	if (obj->id == SPHERE)
-		t = negative_objects(sphere_intersection(r, obj), r, obj->t_max, rt);
-	else if (obj->id == CYLINDER)
-		t = negative_objects(cylinder_intersection(r, obj), r, obj->t_max, rt);
+	double	inter;
+
+	inter = 0;
+	if (obj->id == CONE)
+		inter = cone_intersection(r, obj);
 	else if (obj->id == PLANE)
-		t = negative_objects(plane_intersection(r, obj), r, obj->t_max, rt);
-	else if (obj->id == CONE)
-		t = negative_objects(cone_intersection(r, obj), r, obj->t_max, rt);
-	return (t);
+		inter = plane_intersection(r, obj);
+	else if (obj->id == SPHERE)
+		inter = sphere_intersection(r, obj);
+	else if (obj->id == CYLINDER)
+		inter = cylinder_intersection(r, obj);
+	else if (obj->id == PARABOL)
+		inter = paraboloid_intersection(r, obj);
+	else if (obj->id == DISC)
+		inter = disc_intersection(r, obj);
+	else if (obj->id == SQUARE)
+		inter = square_intersection(r, obj);
+	else if (obj->id == HEMIS)
+		inter = hemisphere_intersection(r, obj);
+	else
+		return (0);
+	return (negative_objects(inter, r, obj->t_max, rt));
 }
 
 double		intersection_checker(t_rt *v, t_ray r, t_point *point)
@@ -154,17 +183,19 @@ void		objects_normal(t_ray r, t_point *point)
 		point->p_color = point->obj->col;
 	if (point->obj->id == SPHERE)
 		point->p_normal = ft_vect_sub(point->p_inter, point->obj->ori);
-	else if (point->obj->id == CONE || point->obj->id == CYLINDER)
+	else if (point->obj->id == CONE || point->obj->id == CYLINDER || point->obj->id == HEMIS)
 	{
 		point->p_normal = ft_vect_sub(point->p_inter, point->obj->ori);
 		point->p_normal = ft_vect_sub(point->p_normal, ft_vect_mult_nbr(
 		point->obj->axi, ft_vect_dot(point->obj->axi, point->p_normal)));
 	}
-	else if (point->obj->id == PLANE)
+	else if (point->obj->id == PLANE || point->obj->id == DISC || point->obj->id == SQUARE)
 		point->p_normal = point->obj->axi;
 	if (point->obj->id == CONE)
 		point->p_normal = ft_vect_add(ft_vect_mult_nbr(point->p_normal,
 		cos(RAD(point->obj->ray))), ft_vect_mult_nbr(point->obj->axi,
 		sin(RAD(point->obj->ray))));
+	if (point->obj->id == PARABOL)
+		point->p_normal = ft_vect_sub(ft_vect_sub(point->p_inter, point->obj->ori), ft_vect_mult_nbr(point->obj->axi, ft_vect_dot(ft_vect_sub(point->p_inter, point->obj->ori), point->obj->axi) + point->obj->ray));
 	ft_vect_norm(&point->p_normal);
 }

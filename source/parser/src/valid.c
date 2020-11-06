@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:56:51 by hastid            #+#    #+#             */
-/*   Updated: 2020/10/26 18:00:29 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/06 01:54:08 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	object_is_valid(int opt, int t)
 {
-	if (t == CONE || t == PLANE || t == SPHERE || t == CYLINDER || t == PARABOL)
+	if (t >= 2 && t <= 9)
 	{
 		if (!IS_SET(opt, ORI_SET))
 			return (ERROR);
@@ -24,9 +24,11 @@ int	object_is_valid(int opt, int t)
 			return (ERROR);
 		if (!IS_SET(opt, TRA_SET))
 			return (ERROR);
-		if (t != PLANE && !IS_SET(opt, RAY_SET))
+		if (t != PLANE && t != SQUARE && !IS_SET(opt, RAY_SET))
 			return (ERROR);
 		if (t != SPHERE && !IS_SET(opt, AXI_SET))
+			return (ERROR);
+		if (t == SQUARE && (!IS_SET(opt, LM1_SET) || !IS_SET(opt, LM2_SET)))
 			return (ERROR);
 		if (IS_SET(opt, SLC_SET))
 			if (!IS_SET(opt, UOD_SET) || !IS_SET(opt, LIM_SET))

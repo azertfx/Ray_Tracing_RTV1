@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:54:38 by hastid            #+#    #+#             */
-/*   Updated: 2020/10/17 00:16:41 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/06 02:43:21 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	get_int(int *p, char *v, int t)
 		return (ERROR);
 	if (t == DIST && *p < 0)
 		return (ERROR);
-	if (t == ANGL && (*p < 0 || *p > 180)) 
+	if (t == ANGL && (*p < 0 || *p > 180))
 		return (ERROR);
 	return (SUCCESS);
 }
@@ -37,7 +37,7 @@ int	get_double(double *p, char *v, int t)
 		return (ERROR);
 	if (t == DIST && *p < 0)
 		return (ERROR);
-	if (t == ANGL && (*p < 0 || *p > 180)) 
+	if (t == ANGL && (*p < 0 || *p > 180))
 		return (ERROR);
 	return (SUCCESS);
 }

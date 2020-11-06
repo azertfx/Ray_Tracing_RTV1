@@ -1,5 +1,5 @@
 camera:
-	origin: 0,0,100
+	origin: 0,0,150
 	target: 0,0,0
 	fov: 60
 
@@ -13,44 +13,11 @@ light:
 	power: 400
 
 
-plane:
-	origin: 500,-100,0
-	color: 19,168,235
-	ray: 20
-	axis: 0,1,0
-	rotation: 0,0,0
-	translation: 0,0,0
-
-plane:
+square:
 	origin: 0,100,-200
 	color: 19,168,235
-	ray: 20
+	e1: 7,0,0
+	e2: 0,-7,0
 	axis: 0,0,1
-	rotation: 0,0,0
-	translation: 0,0,0
-
-sphere:
-	origin: 40,0,0 
-	color: 245,100,36
-	ray: 20
-	axis: 0,0,0
-	rotation: 0,0,0
-	translation: 0,0,0
-	reflection: 0
-
-cylinder:
-	origin:  0,0,-60
-	color: 215,41,223
-	ray: 20
-	negative: 1
-	axis: 0,1,0
-	rotation: 0,0,0
-	translation: 0,0,0
-
-cone:
-	origin: -40,0,0 
-	color: 74,233,41
-	ray: 10
-	axis: 0,1,0
 	rotation: 0,0,0
 	translation: 0,0,0

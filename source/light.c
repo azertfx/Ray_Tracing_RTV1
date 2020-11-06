@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   light.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 01:33:24 by hhamdaou          #+#    #+#             */
-/*   Updated: 2020/11/04 02:35:32 by hhamdaou         ###   ########.fr       */
+/*   Updated: 2020/11/05 23:25:39 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void		pixel_ambient(t_rt *v, int i)
 {
 	v->point.p_light.amb = ft_vect_div_nbr(
-		ft_vect_add_nbr(v->point.p_light.amb, 100), i);
+		ft_vect_add_nbr(v->point.p_light.amb, v->s.amb), i);
 }
 
 void		pixel_diffuse(t_rt *v, t_light *light)

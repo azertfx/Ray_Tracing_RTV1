@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hastid <marvin@42.fr>                      +#+  +:+       +#+         #
+#    By: hastid <hastid@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/01 01:27:28 by hastid            #+#    #+#              #
-#    Updated: 2020/03/01 01:30:39 by hastid           ###   ########.fr        #
+#    Updated: 2020/11/06 02:29:02 by hastid           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,8 +15,12 @@ NAME = parser.a
 SRC_NAME =	child.c \
 			utils.c \
 			valid.c \
+			scene.c \
 			parser.c \
 			parent.c \
+			camera.c \
+			lights.c \
+			objects.c \
 			child_utils.c \
 			get_next_line.c
 

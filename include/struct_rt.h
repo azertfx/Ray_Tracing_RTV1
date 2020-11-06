@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   struct_rt.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 06:38:06 by hastid            #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2020/11/06 00:49:59 by hezzahir         ###   ########.fr       */
+=======
+/*   Updated: 2020/11/06 00:49:52 by hastid           ###   ########.fr       */
+>>>>>>> 6129e7aa8906684d5c9af6c0b2daae5ccf1d494f
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +86,15 @@ typedef struct s_ray
 	double time;
 } t_ray;
 
+typedef struct	s_sc
+{
+	int		opt;
+	int		fil;
+	int		aal;
+	int		cef;
+	double	amb;
+}				t_sc;
+
 typedef struct s_cam
 {
 	int opt;
@@ -107,6 +120,8 @@ typedef struct s_obj
 	int slc;
 	int uod;
 	int dsp;
+	t_vect	e1;
+	t_vect	e2;
 	double ray;
 	t_vect ori;
 	t_vect col;
@@ -174,10 +189,11 @@ typedef struct s_thread
 typedef struct s_rt
 {
 	int id;
-	t_mlx m;
-	t_cam *c;
-	t_obj *o;
-	t_light *l;
+	t_sc	s;
+	t_mlx	m;
+	t_cam	*c;
+	t_obj	*o;
+	t_light	*l;
 	t_point point;
 	t_event event;
 	t_thread thread;

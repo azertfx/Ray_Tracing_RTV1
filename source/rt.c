@@ -6,7 +6,7 @@
 /*   By: hezzahir <hezzahir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:23:37 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/06 04:39:18 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/06 04:43:19 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	*draw_threads(void *t)
 	}
 	return (NULL);
 }
- 
+
 void	draw(t_rt v)
 {
 	t_rt		t[THREADS];

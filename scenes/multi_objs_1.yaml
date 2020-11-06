@@ -8,6 +8,12 @@ light:
 	color: 255,255,255
 	power: 400
 
+scene:
+	# filters: SEPIA
+	ambiance: 0
+	# anti_aliasing:
+	# cartoon_effect:
+
 plane:
 	origin: 0,-30,0
 	color: 0,0,255
@@ -68,7 +74,7 @@ sphere:
 	axis: 0,1,0
 	rotation: 0,0,0
 	translation: 0,0,0
-	reflection: 0
+	# reflection: 0
 	transparence: 2
 
 sphere:
@@ -78,7 +84,7 @@ sphere:
 	axis: 0,1,0
 	rotation: 0,0,0
 	translation: 0,0,0
-	reflection: 0
+	# reflection: 0
 	transparence: 6
 
 # sphere:
@@ -98,7 +104,7 @@ sphere:
 	axis: 0,1,0
 	rotation: 0,0,0
 	translation: 0,0,0
-	reflection: 0
+	# reflection: 2
 	transparence: 0
 
 # cylinder:

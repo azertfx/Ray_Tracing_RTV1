@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: hezzahir <hezzahir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:27:32 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/04 02:42:10 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/06 04:43:05 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ double	sphere_intersection(t_ray r, t_obj *obj)
 
 double	cylinder_intersection(t_ray r, t_obj *obj)
 {
+	double	m;
 	t_delt	d;
 	t_vect	obj_center;
 
@@ -38,7 +39,15 @@ double	cylinder_intersection(t_ray r, t_obj *obj)
 	d.c = ft_vect_dot(obj_center, obj_center) -
 			ft_vect_dot(obj_center, obj->axi) *
 						ft_vect_dot(obj_center, obj->axi) - obj->ray * obj->ray;
-	return (equation_solve(r, d, obj));
+	d.t = equation_solve(r, d, obj);
+	if (obj->height >= 0)
+	{
+		m = ft_vect_dot(r.dir, obj->axi) * d.t
+										+ ft_vect_dot(obj_center, obj->axi);
+		if (!(m <= obj->height / 2 && m >= -obj->height / 2))
+			return (0);
+	}
+	return (d.t);
 }
 
 double	plane_intersection(t_ray r, t_obj *obj)
@@ -59,6 +68,7 @@ double	plane_intersection(t_ray r, t_obj *obj)
 
 double	cone_intersection(t_ray r, t_obj *obj)
 {
+	double	m;
 	t_delt	d;
 	t_vect	obj_center;
 
@@ -70,5 +80,29 @@ double	cone_intersection(t_ray r, t_obj *obj)
 			* ft_vect_dot(r.dir, obj->axi) * ft_vect_dot(obj_center, obj->axi));
 	d.c = ft_vect_dot(obj_center, obj_center) - (1 + pow(tan(RAD(obj->ray)), 2))
 				* pow(ft_vect_dot(obj_center, obj->axi), 2);
-	return (equation_solve(r, d, obj));
+	d.t = equation_solve(r, d, obj);
+	if (obj->height >= 0)
+	{
+		m = ft_vect_dot(r.dir, obj->axi) * d.t
+									+ ft_vect_dot(obj_center, obj->axi);
+		if (!(m <= 0 && m >= -obj->height))
+			return (0);
+	}
+	return (d.t);
+}
+
+double	paraboloid_intersection(t_ray r, t_obj *parab)
+{
+	t_delt	d;
+	t_vect	v;
+	double	a;
+	double	b;
+
+	v = ft_vect_sub(r.ori, parab->ori);
+	a = ft_vect_dot(r.dir, parab->axi);
+	b = ft_vect_dot(v, parab->axi);
+	d.a = ft_vect_dot(r.dir, r.dir) - a * a;
+	d.b = 2 * (ft_vect_dot(r.dir, v) - (a * (b + 2 * parab->ray)));
+	d.c = ft_vect_dot(v, v) - b * (b + 4 * parab->ray);
+	return (equation_solve(r, d, parab));
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:19:20 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/04 00:50:54 by hhamdaou         ###   ########.fr       */
+/*   Updated: 2020/11/06 02:52:04 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "libft.h"
 # include "struct_rt.h"
 
-# define P_COUNT 7
+# define P_COUNT 11
 # define ORI_SET 1
 # define TAR_SET 1 << 1
 # define FOV_SET 1 << 2
@@ -30,7 +30,7 @@
 # define AXI_SET 1 << 6
 # define TRA_SET 1 << 7
 # define ROT_SET 1 << 8
-# define LIGHt_T 1 << 9
+# define LIGHT_T 1 << 9
 # define WID_SET 1 << 10
 # define HEI_SET 1 << 11
 # define NEG_SET 1 << 12
@@ -47,6 +47,8 @@
 # define UOD_SET 1 << 22
 # define LIM_SET 1 << 23
 # define DSP_SET 1 << 24
+# define LM1_SET 1 << 25
+# define LM2_SET 1 << 26
 
 # define IS_SET(apts, apt) (apts & apt)
 # define V_COLOR(a) (a >= 0 && a <= 255)
@@ -57,9 +59,8 @@ enum {ERROR, SUCCESS};
 enum {POINT, DIRECT, PARALLEL};
 enum {NOTING, COLOR, ROTAT, DIST, ANGL};
 enum {NONE, SEPIA, BLACK_WHITE, NEGATIVE, STEREO};
-enum {LIGHT, CAMERA, CONE, PLANE, SPHERE, CYLINDER, PARABOL, SCENE};
+enum {LIGHT, CAMERA, CONE, PLANE, SPHERE, CYLINDER, PARABOL, DISC, SQUARE ,HEMIS, SCENE};
 enum {CHECKBOARD, XOR, WOOD, PERLIN};
-
 
 typedef struct	s_parent
 {
@@ -73,11 +74,10 @@ typedef struct	s_child
 	int			(*f)(t_rt *r, char *l);
 }				t_child;
 
-int	parse_scene(t_rt *r, char **tab);
-int	parse_camera(t_rt *r, char **tab);
-int	parse_lights(t_rt *r, char **tab);
-int	parse_objects(t_rt *r, char **tab);
-
+int				parse_scene(t_rt *r, char **tab);
+int				parse_camera(t_rt *r, char **tab);
+int				parse_lights(t_rt *r, char **tab);
+int				parse_objects(t_rt *r, char **tab);
 
 int				get_int(int *p, char *v, int t);
 int				get_double(double *p, char *v, int t);
@@ -87,10 +87,10 @@ int				get_next_line(const int fd, char **line);
 int				data_is_valid(t_rt *r);
 
 int				add_ray(t_rt *r, char *v);
-int				add_fov(t_rt *r, char *v);
+int				add_axis(t_rt *r, char *v);
 int				add_power(t_rt *r, char *v);
+int				add_color(t_rt *r, char *v);
 int				add_origin(t_rt *r, char *v);
-int				add_target(t_rt *r, char *v);
 
 int				add_child(t_rt *r, char **tab);
 int				parse_parent(char *line, t_rt *r);
