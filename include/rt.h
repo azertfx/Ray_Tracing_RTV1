@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: hezzahir <hezzahir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:48:32 by hhamdaou          #+#    #+#             */
-/*   Updated: 2020/11/05 22:44:21 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/06 04:35:50 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@
 # define T 17
 # define ESC 53
 # define SPACE 49
+# define AMONG_US 0
 # define ORI "Original"
 # define SPH "sphere"
 # define PLA "plane"
@@ -121,6 +122,7 @@ int				ft_keys_hook(int k, t_rt *v);
 int				save_bmp_image(t_mlx image);
 void			init_event(t_rt *v, char *file);
 void			init_mlx(t_rt *v);
+void	        show_loading(t_rt *v);
 /*
 ** Noise
 */

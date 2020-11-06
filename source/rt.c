@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hezzahir <hezzahir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:23:37 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/04 04:55:01 by hhamdaou         ###   ########.fr       */
+/*   Updated: 2020/11/06 04:39:18 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,7 +86,7 @@ void	*draw_threads(void *t)
 	}
 	return (NULL);
 }
-
+ 
 void	draw(t_rt v)
 {
 	t_rt		t[THREADS];
@@ -122,12 +122,14 @@ int		rt(t_rt *v, char *file)
 	if (!check_file(v))
 		return (0);
 	init_mlx(v);
+	show_loading(v);
+	init_mlx(v);
 	ft_instruction(v);
 	generate_noise();
 	draw(*v);
 	mlx_hook(v->m.win_ptr, 2, 0, ft_keys_hook, v);
 	mlx_put_image_to_window(v->m.mlx_ptr, v->m.win_ptr, v->m.img_ptr,
-							210, 0);
+					210, 0);
 	mlx_loop(v->m.mlx_ptr);
 	return (1);
 }
