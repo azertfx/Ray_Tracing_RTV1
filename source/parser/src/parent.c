@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:50:16 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/06 01:09:56 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/06 01:50:12 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,7 @@ int	parse_parent(char *line, t_rt *r)
 		{"paraboloid:", &add_object},
 		{"disc:", &add_object},
 		{"square:", &add_object},
+		{"hemisphere:", &add_object},
 		{"scene:", &add_scene},
 	};
 

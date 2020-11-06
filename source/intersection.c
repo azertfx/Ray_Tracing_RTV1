@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:40:01 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/06 00:41:19 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/06 02:11:06 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,6 +141,8 @@ double		objects_intersection(t_ray r, t_obj *obj, t_rt *rt)
 		inter = disc_intersection(r, obj);
 	else if (obj->id == SQUARE)
 		inter = square_intersection(r, obj);
+	else if (obj->id == HEMIS)
+		inter = hemisphere_intersection(r, obj);
 	else
 		return (0);
 	return (negative_objects(inter, r, obj->t_max, rt));
@@ -181,17 +183,19 @@ void		objects_normal(t_ray r, t_point *point)
 		point->p_color = point->obj->col;
 	if (point->obj->id == SPHERE)
 		point->p_normal = ft_vect_sub(point->p_inter, point->obj->ori);
-	else if (point->obj->id == CONE || point->obj->id == CYLINDER)
+	else if (point->obj->id == CONE || point->obj->id == CYLINDER || point->obj->id == HEMIS)
 	{
 		point->p_normal = ft_vect_sub(point->p_inter, point->obj->ori);
 		point->p_normal = ft_vect_sub(point->p_normal, ft_vect_mult_nbr(
 		point->obj->axi, ft_vect_dot(point->obj->axi, point->p_normal)));
 	}
-	else if (point->obj->id == PLANE)
+	else if (point->obj->id == PLANE || point->obj->id == DISC || point->obj->id == SQUARE)
 		point->p_normal = point->obj->axi;
 	if (point->obj->id == CONE)
 		point->p_normal = ft_vect_add(ft_vect_mult_nbr(point->p_normal,
 		cos(RAD(point->obj->ray))), ft_vect_mult_nbr(point->obj->axi,
 		sin(RAD(point->obj->ray))));
+	if (point->obj->id == PARABOL)
+		point->p_normal = ft_vect_sub(ft_vect_sub(point->p_inter, point->obj->ori), ft_vect_mult_nbr(point->obj->axi, ft_vect_dot(ft_vect_sub(point->p_inter, point->obj->ori), point->obj->axi) + point->obj->ray));
 	ft_vect_norm(&point->p_normal);
 }

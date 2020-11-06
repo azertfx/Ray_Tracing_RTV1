@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:18:26 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/06 01:13:48 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/06 01:53:42 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	add_axis(t_rt *r, char *v)
 		r->l->opt |= AXI_SET;
 		return (SUCCESS);
 	}
-	if (r->id >= 2 && r->id <= 8 && !IS_SET(r->o->opt, AXI_SET)
+	if (r->id >= 2 && r->id <= 9 && !IS_SET(r->o->opt, AXI_SET)
 			&& get_vector(&r->o->axi, v, NONE))
 	{
 		r->o->opt |= AXI_SET;
@@ -36,7 +36,7 @@ int	add_color(t_rt *r, char *v)
 		r->l->opt |= COL_SET;
 		return (SUCCESS);
 	}
-	if (r->id >= 2 && r->id <= 8 && !IS_SET(r->o->opt, COL_SET)
+	if (r->id >= 2 && r->id <= 9 && !IS_SET(r->o->opt, COL_SET)
 			&& get_vector(&r->o->col, v, COLOR))
 	{
 		r->o->opt |= COL_SET;
@@ -59,7 +59,7 @@ int	add_origin(t_rt *r, char *v)
 		r->c->opt |= ORI_SET;
 		return (SUCCESS);
 	}
-	if (r->id >= 2 && r->id <= 8 && !IS_SET(r->o->opt, ORI_SET)
+	if (r->id >= 2 && r->id <= 9 && !IS_SET(r->o->opt, ORI_SET)
 			&& get_vector(&r->o->ori, v, NONE))
 	{
 		r->o->opt |= ORI_SET;

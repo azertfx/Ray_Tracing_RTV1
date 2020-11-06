@@ -8,10 +8,10 @@ light:
 	color: 255,255,255
 	power: 400
 
-cylinder:
-	origin:  0,0,0
+paraboloid:
+	origin:  0,-10,0
 	color: 255,255,0
-	ray: 10
+	ray: 2
 	axis: 0,1,0
 	rotation: 0,0,0
 	translation: 0,0,0

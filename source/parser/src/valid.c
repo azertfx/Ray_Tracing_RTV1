@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:56:51 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/06 01:22:51 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/06 01:54:08 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	object_is_valid(int opt, int t)
 {
-	if (t >= 2 && t <= 8)
+	if (t >= 2 && t <= 9)
 	{
 		if (!IS_SET(opt, ORI_SET))
 			return (ERROR);

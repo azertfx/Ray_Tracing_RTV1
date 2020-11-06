@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:48:32 by hhamdaou          #+#    #+#             */
-/*   Updated: 2020/11/06 00:37:36 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/06 01:52:04 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,6 +107,7 @@ double			cylinder_intersection(t_ray r, t_obj *obj);
 double          paraboloid_intersection(t_ray r, t_obj *parab);
 double			disc_intersection(t_ray r, t_obj *obj);
 double			square_intersection(t_ray r, t_obj *obj);
+double			hemisphere_intersection(t_ray r, t_obj *obj);
 double			equation_solve(t_ray ray, t_delt d, t_obj *obj);
 double			check_solution(double t1, double t2);
 /*
