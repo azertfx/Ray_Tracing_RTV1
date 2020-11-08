@@ -6,7 +6,7 @@
 /*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 12:16:21 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/08 16:11:43 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/08 18:14:32 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,18 @@ static int permutation[] = { 151,160,137,91,90,15,
 115,121,50,45,127,4,150,254,138,236,205,93,222,114,67,29,24,72,243,
 141,128,195,78,66,215,61,156,180
 };
+
+typedef struct	s_perlin
+{
+	int	A;
+	int	AA;
+	int	AB;
+	int	B;
+	int	BA;
+	int	BB;
+
+
+}				t_perlin;
 
 void	init_noise()
 {
@@ -53,7 +65,7 @@ double lerp(double t, double a, double b)
 	return (a + t * (b - a));
 }
 
-double grad(int hash, double x, double y, double z)
+double	grad(int hash, double x, double y, double z)
 {
 	int		h;
 	double	u;
@@ -65,10 +77,13 @@ double grad(int hash, double x, double y, double z)
 	return (((h&1) == 0 ? u : -u) + ((h&2) == 0 ? v : -v));
 }
 
+
+
 double	pnoise(double x, double y, double z)
 {
 	t_vect		v;
 	t_cordin	pt;
+	t_perlin	perl;
 
 	pt.x = (int)floor(x) & 255;
 	pt.y = (int)floor(y) & 255;
@@ -79,14 +94,13 @@ double	pnoise(double x, double y, double z)
 	v.x = fade(x);
 	v.y = fade(y);
 	v.z = fade(z);
-	int	A = p[pt.x]+pt.y;
-	int	AA = p[A]+pt.z;
-	int AB = p[A+1]+pt.z;
-	int B = p[pt.x+1]+pt.y;
-	int BA = p[B]+pt.z;
-	int BB = p[B+1]+pt.z;
-
-return lerp(v.y,lerp(v.z,lerp(v.x, grad(p[AA  ], x, y, z),   /* AND ADD */
+	perl.A = p[pt.x]+pt.y;
+	perl.AA = p[A]+pt.z;
+	perl.AB = p[A+1]+pt.z;
+	perl.B = p[pt.x+1]+pt.y;
+	perl.BA = p[B]+pt.z;
+	perl.BB = p[B+1]+pt.z;
+	return lerp(v.y,lerp(v.z,lerp(v.x, grad(p[AA  ], x, y, z),   /* AND ADD */
                      grad(p[BA  ], x-1, y, z)),        /* BLENDED */
              lerp(v.x, grad(p[AB  ], x, y-1, z),         /* RESULTS */
                      grad(p[BB  ], x-1, y-1, z))),     /* FROM  8 */
