@@ -134,8 +134,9 @@ int		getColorFromTexture(t_point *point)
 	// t_vect	inter;
 	t_repere rep;
 
-	rep = set_repere(constrector(0.0, 0.0, 1.0));
-    p = constrector(ft_vect_dot(point->p_inter,rep.i), ft_vect_dot(point->p_inter, rep.j), ft_vect_dot(point->p_inter, rep.k));
+	rep = set_repere(constrector(0.0, 1.0, 0.0));
+	p = ft_vect_sub(point->obj->ori,constrector(ft_vect_dot(point->p_inter,rep.i), ft_vect_dot(point->p_inter, rep.j), ft_vect_dot(point->p_inter, rep.k)));
+    // p = constrector(ft_vect_dot(point->p_inter,rep.i), ft_vect_dot(point->p_inter, rep.j), ft_vect_dot(point->p_inter, rep.k));
     Get(point->obj, p);
     i = point->obj->txt.Um * point->obj->txt.width;
     j = (1.0 - point->obj->txt.Vm) * point->obj->txt.height - 0.001;
