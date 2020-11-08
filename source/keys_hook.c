@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys_hook.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:37:06 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/04 05:00:00 by hhamdaou         ###   ########.fr       */
+/*   Updated: 2020/11/08 05:19:42 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,17 +47,17 @@ void	move_camera(int k, t_rt *v)
 void	other_files(int k, t_rt *v)
 {
 	if (k == Q)
-		v->event.file = "scenes/translation.yaml";
+		v->event.file = "scenes/parallel_light.yaml";
 	else if (k == W)
-		v->event.file = "scenes/rotation.yaml";
+		v->event.file = "scenes/reflection.yaml";
 	else if (k == P)
-		v->event.file = "scenes/camera_y.yaml";
+		v->event.file = "scenes/refraction.yaml";
 	else if (k == L)
-		v->event.file = "scenes/multi_spots.yaml";
+		v->event.file = "scenes/trans_shadow.yaml";
 	else if (k == R)
-		v->event.file = "scenes/multi_objs_1.yaml";
+		v->event.file = "scenes/textures.yaml";
 	else if (k == T)
-		v->event.file = "scenes/multi_objs_2.yaml";
+		v->event.file = "scenes/composed_elements.yaml";
 	else if (k == SPACE)
 		save_bmp_image(v->m);
 	else
@@ -74,13 +74,13 @@ int		ft_keys_hook(int k, t_rt *v)
 	else if (k == O)
 		v->event.file = v->event.file_origin;
 	else if (k == S)
-		v->event.file = "scenes/sphere.yaml";
+		v->event.file = "scenes/objects.yaml";
 	else if (k == X)
-		v->event.file = "scenes/plane.yaml";
+		v->event.file = "scenes/light.yaml";
 	else if (k == Y)
-		v->event.file = "scenes/cone.yaml";
+		v->event.file = "scenes/limited_objs.yaml";
 	else if (k == Z)
-		v->event.file = "scenes/cylinder.yaml";
+		v->event.file = "scenes/disruptions.yaml";
 	else
 		other_files(k, v);
 	ft_clear_and_draw(v);

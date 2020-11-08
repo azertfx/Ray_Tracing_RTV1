@@ -6,7 +6,7 @@ camera:
 light:
 	origin: 20,20,60
 	color: 255,255,255
-	power: 400
+	power: 1
 
 plane:
 	origin: 0,0,-100

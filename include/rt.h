@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hezzahir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:48:32 by hhamdaou          #+#    #+#             */
-/*   Updated: 2020/11/06 05:04:31 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/08 05:24:18 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,16 +41,16 @@
 # define ESC 53
 # define SPACE 49
 # define ORI "Original"
-# define SPH "sphere"
-# define PLA "plane"
-# define CON "cone"
-# define CYL "cylinder"
-# define TRA "translation"
-# define ROT "rotation"
-# define CAM "camera_y"
-# define MULTIS "multi_spots"
-# define MULTI1 "multi_objs_1"
-# define MULTI2 "multi_objs_2"
+# define OBJ "objects"
+# define LGH "lights"
+# define LIM "limited_obj"
+# define DIS "disruptions"
+# define PAR "parallel"
+# define RFL "reflection"
+# define RFR "refraction"
+# define TRSHDW "trs_shadow"
+# define TEXTUR "textures"
+# define CMPELE "composed_elem"
 # define noiseWidth 192
 # define noiseHeight 192
 # define noiseDepth 64

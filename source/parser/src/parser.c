@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:33:28 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/06 02:42:55 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/08 04:00:08 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	parse_file(char *file, t_rt *r)
 	r->o = 0;
 	r->l = 0;
 	r->id = -1;
-	r->s.amb = 80;
+	r->s.amb = 100;
 	line = 0;
 	while (get_next_line(fd, &line) > 0)
 	{

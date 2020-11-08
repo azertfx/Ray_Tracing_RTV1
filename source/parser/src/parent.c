@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parent.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:50:16 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/06 01:50:12 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/08 04:00:13 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	add_scene(t_rt *r)
 	r->s.aal = 0;
 	r->s.cef = 0;
 	r->s.fil = 0;
-	r->s.amb = 80;
+	r->s.amb = 100;
 	return (SUCCESS);
 }
 
