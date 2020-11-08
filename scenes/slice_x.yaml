@@ -17,36 +17,20 @@ plane:
 	translation: 0,0,0
 
 plane:
-	origin: 40,0,-100
-	color: 0,0,255
-	ray: 20
-	axis: -1,0,0
-	rotation: 0,0,0
-	translation: 0,0,0
-	disruption: 1
-
-plane:
 	origin: 0,-20,-50
 	color: 255,0,0
 	ray: 20
 	axis: 0,1,0
-	rotation: 0,0,1
+	rotation: 0,0,0
 	translation: 0,0,0
-	disruption: 0
 
-sphere:
-	origin: 5,5,30
-	color: 10,50,255
-	ray: 12
+cylinder:
+	origin:  0,0,30
+	color: 255,255,0
+	ray: 8
 	axis: 0,1,0
 	rotation: 0,0,0
 	translation: 0,0,0
-	disruption: 2
-
-cone:
-	origin: -30,10,30
-	color: 0,255,255
-	ray: 20
-	axis: 0,1,0
-	rotation: 0,0,30
-	translation: 0,0,0
+  slice: 1
+  upOrDown: 1
+  limit: 1,0,0
