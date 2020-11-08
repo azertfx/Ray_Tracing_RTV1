@@ -6,7 +6,7 @@
 /*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:23:37 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/08 05:37:09 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/11/08 06:05:30 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,9 @@ int		rt(t_rt *v, char *file)
 		return (0);
 	init_mlx(v);
 	show_loading(v);
-	init_mlx(v);
+	v->m.img_ptr = mlx_new_image(v->m.mlx_ptr, IMG_W, IMG_H);
+	v->m.img_data = (unsigned char *)mlx_get_data_addr(
+		v->m.img_ptr, &v->m.bpp, &v->m.size_l, &v->m.endian);
 	ft_instruction(v);
 	generate_noise();
 	draw(*v);
