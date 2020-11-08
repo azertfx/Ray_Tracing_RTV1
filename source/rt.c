@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hezzahir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:23:37 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/06 05:03:47 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/08 00:59:30 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,7 +122,7 @@ int		rt(t_rt *v, char *file)
 	if (!check_file(v))
 		return (0);
 	init_mlx(v);
-	show_loading(v);
+	// show_loading(v);
 	init_mlx(v);
 	ft_instruction(v);
 	generate_noise();
