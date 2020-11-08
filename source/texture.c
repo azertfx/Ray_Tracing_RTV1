@@ -1,5 +1,60 @@
 #include "rt.h"
 
+typedef struct		s_repere
+{
+	t_vect				i;
+	t_vect				j;
+	t_vect				k;
+}					t_repere;
+
+int		equal(t_vect vect1, t_vect vect2)
+{
+	if (vect1.y == vect2.y)
+		return (1);
+	if (vect1.y == -vect2.y)
+		return (2);
+	return (0);
+}
+
+t_vect	constrector(double x, double y, double z)
+{
+	t_vect vect;
+
+	vect.x = x;
+	vect.y = y;
+	vect.z = z;
+	return (vect);
+}
+
+
+t_repere set_repere(t_vect dir)
+{
+    t_repere rep;
+    t_vect up;
+
+    up = constrector(0.0, 1.0, 0.0);
+    rep.j = dir;
+	if (equal(up, rep.j) == 1)
+	{
+		rep.i = constrector(1.0, 0.0, 0.0);
+		rep.k = constrector(0.0, 0.0, 1.0);
+	}
+	else
+	{
+		if (equal(up, rep.j) == 2)
+		{
+			rep.i = constrector(-1.0, 0.0, 0.0);
+			rep.k = constrector(0.0, 0.0, 1.0);
+		}
+		else
+		{
+			rep.i = ft_vect_cross(up, rep.j);
+			rep.k = ft_vect_cross(rep.i, rep.j);
+		}
+	}
+    return (rep);
+}
+
 int			add_texture(t_rt *rt)
 {
 	t_obj *temp;
@@ -19,25 +74,17 @@ int			add_texture(t_rt *rt)
 	return (1);
 }
 
-t_vect	constrector(double x, double y, double z)
-{
-	t_vect vect;
 
-	vect.x = x;
-	vect.y = y;
-	vect.z = z;
-	return (vect);
-}
-
-void GetAnglePlan(t_obj *plane_temp , t_vect p)
+int GetPlan(t_obj *plane_temp , t_vect p)
 {
 	plane_temp->txt.Um = p.x * 0.01;
 	plane_temp->txt.Vm = p.y * 0.01;
 	plane_temp->txt.Um -= floor(plane_temp->txt.Um);
 	plane_temp->txt.Vm -= floor(plane_temp->txt.Vm);
+	return (1);
 }
 
-void 	GetAngleSphere(t_obj *sphere_temp , t_vect p)
+int 	GetSphere(t_obj *sphere_temp , t_vect p)
 {
 	double phi;
 	double theta;
@@ -46,34 +93,37 @@ void 	GetAngleSphere(t_obj *sphere_temp , t_vect p)
 	theta = asin(p.y / sphere_temp->ray) ;
 	sphere_temp->txt.Um = 1 - (phi + M_PI) / (2.0 * M_PI);
     sphere_temp->txt.Vm = (theta + M_PI / 2.0) / M_PI;
+	return (1);
 }
 
-void GetAngleCylinder(t_obj *plane_temp , t_vect p)
+int GetCylinder(t_obj *plane_temp , t_vect p)
 {
 	plane_temp->txt.Um = (atan2(p.x, p.z) / (2.0 * M_PI));
-	plane_temp->txt.Vm = (p.y + 5.0 /2 )/ 5.0;
+	plane_temp->txt.Vm = (p.y + 4.0 /2 )/ 4.0;
 	plane_temp->txt.Um -= floor(plane_temp->txt.Um);
 	plane_temp->txt.Vm -= floor(plane_temp->txt.Vm);
+	return (1);
 }
 
-void GetAngleCone(t_obj *cone_temp, t_vect p)
+int GetCone(t_obj *cone_temp, t_vect p)
 {
 	cone_temp->txt.Um = (atan2(p.x, p.z) / (2.0 * M_PI));
 	cone_temp->txt.Vm = (p.y + 5.0 /2 )/ 5.0;
 	cone_temp->txt.Um -= floor(cone_temp->txt.Um);
 	cone_temp->txt.Vm -= floor(cone_temp->txt.Vm);
+	return (1);
 }
 
-void   GetAngle(t_obj *obj , t_vect inter)
+void   Get(t_obj *obj , t_vect inter)
 {
 	if(obj->id == SPHERE)
-		GetAngleSphere(obj , inter);
+		GetSphere(obj , inter);
 	else if (obj->id  == PLANE)
-		GetAnglePlan(obj , inter);
+		GetPlan(obj , inter);
 	else if (obj->id  == CYLINDER)
-		GetAngleCylinder(obj , inter);
+		GetCylinder(obj , inter);
 	else if (obj->id  == CONE)
-		GetAngleCone(obj , inter);
+		GetCone(obj , inter);
 }
 
 int		getColorFromTexture(t_point *point)
@@ -81,9 +131,12 @@ int		getColorFromTexture(t_point *point)
 	int		i;
 	int		j;
 	t_vect  p;
+	// t_vect	inter;
+	t_repere rep;
 
-    p = ft_vect_sub(point->obj->ori,constrector(ft_vect_dot(point->p_inter,constrector(0.0 ,0.0, 1.0)), ft_vect_dot(point->p_inter, constrector(0.0 ,-1.0, 0.0)), ft_vect_dot(point->p_inter, constrector(1.0 ,0.0, 0.0))));
-    GetAngle(point->obj, p);
+	rep = set_repere(constrector(0.0, 0.0, 1.0));
+    p = constrector(ft_vect_dot(point->p_inter,rep.i), ft_vect_dot(point->p_inter, rep.j), ft_vect_dot(point->p_inter, rep.k));
+    Get(point->obj, p);
     i = point->obj->txt.Um * point->obj->txt.width;
     j = (1.0 - point->obj->txt.Vm) * point->obj->txt.height - 0.001;
     i = (i < 0) ? 0 : i;

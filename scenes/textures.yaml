@@ -1,5 +1,5 @@
 camera:
-	origin: 0,0,100
+	origin: 0,0,35
 	target: 0,0,0
 	fov: 60
 
@@ -17,25 +17,19 @@ plane:
 	translation: 0,0,0
 
 sphere:
-	origin: 0,0,30
+	origin: -1,0,30
 	color: 10,50,255
-	ray: 20
-	axis: 0,1,0
-	rotation: 0,0,0
-	translation: 0,0,0
-
-sphere:
-	origin: 30,20,0
-	color: 10,50,100
-	ray: 6
-	axis: 0,1,0
-	rotation: 0,0,0
-	translation: 0,0,0
-
-sphere:
-	origin: -4,-4,80
-	color: 100,100,100
 	ray: 1
 	axis: 0,1,0
 	rotation: 0,0,0
 	translation: 0,0,0
+	texture: 1
+
+cylinder:
+	origin: 1,0,30
+	color: 10,50,255
+	ray: 1
+	axis: 0,1,0
+	rotation: 0,0,0
+	translation: 0,0,0
+	texture: 1

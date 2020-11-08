@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:23:37 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/08 06:05:30 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/11/08 21:13:35 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	rt_core(t_rt *v, double *axis)
 	final_color = (t_vect){0, 0, 0};
 	depth = (t_vect){0, 0, 0};
 	r = 0;
-	visual_effect = 0;
+	visual_effect = (v->s.cef || v->s.aal) ? 1 : 0;
 	if (visual_effect)
 		visual_effect = 9;
 	else

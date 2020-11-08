@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 02:20:15 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/06 02:45:59 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/08 19:42:18 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,11 +168,23 @@ int	add_limvect2(t_rt *r, char *v)
 	return (ERROR);
 }
 
+int	add_textures(t_rt *r, char *v)
+{
+	if (!IS_SET(r->o->opt, TXT_SET))
+	{
+		if (get_int(&(r->o->txt.t), v, NONE) == ERROR)
+			return (ERROR);
+		r->o->opt |= TXT_SET;
+		return (SUCCESS);
+	}
+	return (ERROR);
+}
+
 int	parse_objects(t_rt *r, char **tab)
 {
 	int				i;
 	int				ret;
-	static t_child	c_child[17] = {
+	static t_child	c_child[18] = {
 		{"ray:", &add_ray},
 		{"axis:", &add_axis},
 		{"color:", &add_color},
@@ -190,14 +202,15 @@ int	parse_objects(t_rt *r, char **tab)
 		{"disruption:", &add_disruption},
 		{"e1:", &add_limvect1},
 		{"e2:", &add_limvect2},
+		{"texture:", &add_textures},
 	};
 
 	ret = ERROR;
 	i = -1;
-	while (++i < 17)
+	while (++i < 18)
 		if (ft_strequ(tab[0], c_child[i].name))
 			break ;
-	if (i < 17 && ft_strequ(tab[0], c_child[i].name))
+	if (i < 18 && ft_strequ(tab[0], c_child[i].name))
 		ret = c_child[i].f(r, tab[1]);
 	return (free_tab(tab, ret));
 }

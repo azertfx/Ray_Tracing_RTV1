@@ -32,5 +32,6 @@ cylinder:
 	rotation: 0,0,0
 	translation: 0,0,0
   slice: 1
-  upOrDown: 1
-  limit: 1,0,0
+	upOrDown: 1
+	limit: 1,0,0
+

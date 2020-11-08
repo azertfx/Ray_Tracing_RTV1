@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   camera.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:24:16 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/04 04:07:24 by hhamdaou         ###   ########.fr       */
+/*   Updated: 2020/11/08 21:12:38 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,6 @@ void	generate_camera(t_rt *v)
 
 void	generate_camera_ray(t_rt *v, t_ray *r, double *axis, int a)
 {
-	int		aa;
-	int		mb;
-
-	aa = 0;
-	mb = 0;
 	r->ori = v->c->ori;
 	r->dir = ft_vect_add(
 				v->c->z,
@@ -48,9 +43,9 @@ void	generate_camera_ray(t_rt *v, t_ray *r, double *axis, int a)
 								* v->c->width / 2.),
 					ft_vect_mult_nbr(v->c->y, PX_Y(axis[1] + 0.5)
 								* v->c->height / 2.)));
-	if (aa)
+	if (v->s.aal)
 		anti_aliasing(v, r, axis, a);
-	if (mb)
+	if (v->s.cef)
 		motion_blur(r, a);
 	ft_vect_norm(&r->dir);
 }
