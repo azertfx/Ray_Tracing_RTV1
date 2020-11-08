@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:48:32 by hhamdaou          #+#    #+#             */
-/*   Updated: 2020/11/08 05:24:18 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/11/08 21:19:14 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ void	        show_loading(t_rt *v);
 void			apply_noise(t_point *p);
 void			generate_noise();
 void			wood(t_vect pt, t_vect *color, double xy_period);
+double			pnoise(double x, double y, double z);
 /*
 ** Slice
 */

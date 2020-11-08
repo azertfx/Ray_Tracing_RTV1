@@ -6,7 +6,7 @@
 /*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 11:05:07 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/08 18:35:18 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/08 22:21:02 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,17 +65,17 @@ t_vect		noise_xor(t_vect color, t_vect v)
 	return (color);
 }
 
-t_vect		perlin(t_vect color, t_vect v)
-{
-	double	n;
+// t_vect		perlin(t_vect color, t_vect v)
+// {
+// 	double	n;
 
-	n = pnoise(v.x, v.y, v.z);
-	n = n - floor(n);
-	color.x = floor(255 * n);
-	color.y = floor(255 * n);
-	color.z = floor(255 * n);
-	return (color);
-}
+// 	n = pnoise(v.x, v.y, v.z);
+// 	n = n - floor(n);
+// 	color.x = floor(255 * n);
+// 	color.y = floor(255 * n);
+// 	color.z = floor(255 * n);
+// 	return (color);
+// }
 
 
 void		apply_noise(t_point *p)

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hezzahir <hezzahir@student.42.fr>          +#+  +:+       +#+         #
+#    By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/06 03:38:58 by anabaoui          #+#    #+#              #
-#    Updated: 2020/11/06 05:04:52 by hezzahir         ###   ########.fr        #
+#    Updated: 2020/11/08 22:20:38 by hezzahir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
