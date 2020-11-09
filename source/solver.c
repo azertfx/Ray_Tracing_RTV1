@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 01:00:37 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/09 02:15:00 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/09 05:30:49 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,7 @@ double	equation_solve(t_ray ray, t_delt d, t_obj *obj)
 		return (0);
 	inter1 = (-d.b - sqrt(delta)) / (2 * d.a);
 	inter2 = (-d.b + sqrt(delta)) / (2 * d.a);
-	if ((inter2 < MIN_NBR && inter1 < MIN_NBR))
-		return (0);
-	if ((inter1 <= inter2 && inter1 > MIN_NBR)
-								|| (inter2 < inter1 && inter2 > MIN_NBR))
+	if ((inter1 <= inter2 && inter1 > MIN_NBR) || (inter2 < inter1 && inter2 > MIN_NBR))
 	{
 		obj->t_max = fmax(inter1, inter2);
 		return (ft_slice(ray, obj, fmin(inter1, inter2)));

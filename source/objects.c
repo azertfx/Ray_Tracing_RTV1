@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:27:32 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/09 00:33:55 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/09 05:17:46 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ double	sphere_intersection(t_ray r, t_obj *obj)
 	d.b = 2 * ft_vect_dot(r.dir, obj_center);
 	d.c = ft_vect_dot(obj_center, obj_center) - obj->ray * obj->ray;
 	d.t = equation_solve(r, d, obj);
-	if (obj->height >= 0)
+	if (d.t && obj->height >= 0)
 	{
 		m = ft_vect_dot(r.dir, obj->axi) * d.t
 										+ ft_vect_dot(obj_center, obj->axi);
@@ -31,7 +31,6 @@ double	sphere_intersection(t_ray r, t_obj *obj)
 			return (0);
 	}
 	return (d.t);
-	// return (equation_solve(r, d, obj));
 }
 
 double	cylinder_intersection(t_ray r, t_obj *obj)
@@ -41,7 +40,6 @@ double	cylinder_intersection(t_ray r, t_obj *obj)
 	t_vect	obj_center;
 
 	obj_center = ft_vect_sub(r.ori, obj->ori);
-	ft_vect_norm(&obj->axi);
 	d.a = ft_vect_dot(r.dir, r.dir) - ft_vect_dot(r.dir, obj->axi) *
 												ft_vect_dot(r.dir, obj->axi);
 	d.b = 2 * (ft_vect_dot(r.dir, obj_center) -
@@ -50,7 +48,7 @@ double	cylinder_intersection(t_ray r, t_obj *obj)
 			ft_vect_dot(obj_center, obj->axi) *
 						ft_vect_dot(obj_center, obj->axi) - obj->ray * obj->ray;
 	d.t = equation_solve(r, d, obj);
-	if (obj->height >= 0)
+	if (d.t && obj->height >= 0)
 	{
 		m = ft_vect_dot(r.dir, obj->axi) * d.t
 										+ ft_vect_dot(obj_center, obj->axi);
@@ -83,7 +81,6 @@ double	cone_intersection(t_ray r, t_obj *obj)
 	t_vect	obj_center;
 
 	obj_center = ft_vect_sub(r.ori, obj->ori);
-	ft_vect_norm(&obj->axi);
 	d.a = ft_vect_dot(r.dir, r.dir) - (1 + pow(tan(RAD(obj->ray)), 2)) *
 										pow(ft_vect_dot(r.dir, obj->axi), 2);
 	d.b = 2 * (ft_vect_dot(r.dir, obj_center) - (1 + pow(tan(RAD(obj->ray)), 2))
@@ -91,7 +88,7 @@ double	cone_intersection(t_ray r, t_obj *obj)
 	d.c = ft_vect_dot(obj_center, obj_center) - (1 + pow(tan(RAD(obj->ray)), 2))
 				* pow(ft_vect_dot(obj_center, obj->axi), 2);
 	d.t = equation_solve(r, d, obj);
-	if (obj->height >= 0)
+	if (d.t && obj->height >= 0)
 	{
 		m = ft_vect_dot(r.dir, obj->axi) * d.t
 									+ ft_vect_dot(obj_center, obj->axi);
