@@ -1,21 +1,5 @@
 #include "rt.h"
 
-typedef struct		s_repere
-{
-	t_vect				i;
-	t_vect				j;
-	t_vect				k;
-}					t_repere;
-
-int		equal(t_vect vect1, t_vect vect2)
-{
-	if (vect1.y == vect2.y)
-		return (1);
-	if (vect1.y == -vect2.y)
-		return (2);
-	return (0);
-}
-
 t_vect	constrector(double x, double y, double z)
 {
 	t_vect vect;
@@ -26,35 +10,6 @@ t_vect	constrector(double x, double y, double z)
 	return (vect);
 }
 
-
-t_repere set_repere(t_vect dir)
-{
-    t_repere rep;
-    t_vect up;
-
-    up = constrector(0.0, 1.0, 0.0);
-    rep.j = dir;
-	if (equal(up, rep.j) == 1)
-	{
-		rep.i = constrector(1.0, 0.0, 0.0);
-		rep.k = constrector(0.0, 0.0, 1.0);
-	}
-	else
-	{
-		if (equal(up, rep.j) == 2)
-		{
-			rep.i = constrector(-1.0, 0.0, 0.0);
-			rep.k = constrector(0.0, 0.0, 1.0);
-		}
-		else
-		{
-			rep.i = ft_vect_cross(up, rep.j);
-			rep.k = ft_vect_cross(rep.i, rep.j);
-		}
-	}
-    return (rep);
-}
-
 int			add_texture(t_rt *rt)
 {
 	t_obj *temp;
@@ -62,9 +17,16 @@ int			add_texture(t_rt *rt)
 	temp = rt->o;
 	while(temp)
 	{
-        if (temp->txt.t)
-        {
-            temp->txt.img = mlx_xpm_file_to_image(rt->m.mlx_ptr, "xpm/earth.xpm", &temp->txt.width,&temp->txt.height);
+		if (temp->txt.t)
+		{
+			if (temp->txt.t == 1)
+            	temp->txt.img = mlx_xpm_file_to_image(rt->m.mlx_ptr,"xpm/earth.xpm", &temp->txt.width,&temp->txt.height);
+			else if (temp->txt.t == 2)
+            	temp->txt.img = mlx_xpm_file_to_image(rt->m.mlx_ptr, "xpm/0.xpm", &temp->txt.width,&temp->txt.height);
+			else if (temp->txt.t == 3)
+            	temp->txt.img = mlx_xpm_file_to_image(rt->m.mlx_ptr, "xpm/3.xpm", &temp->txt.width,&temp->txt.height);
+			else
+            	temp->txt.img = mlx_xpm_file_to_image(rt->m.mlx_ptr, "xpm/5.xpm", &temp->txt.width,&temp->txt.height);
             if (!temp->txt.img)
                 return (0);
             temp->txt.buf = (int *)mlx_get_data_addr(temp->txt.img, &rt->m.bpp,&rt->m.size_l, &rt->m.endian);
@@ -132,10 +94,8 @@ int		getColorFromTexture(t_point *point)
 	int		j;
 	t_vect  p;
 	// t_vect	inter;
-	t_repere rep;
 
-	rep = set_repere(constrector(0.0, 1.0, 0.0));
-	p = ft_vect_sub(point->obj->ori,constrector(ft_vect_dot(point->p_inter,rep.i), ft_vect_dot(point->p_inter, rep.j), ft_vect_dot(point->p_inter, rep.k)));
+	p = ft_vect_sub(point->obj->ori,constrector(ft_vect_dot(point->p_inter,constrector(1.0, 0.0, 0.0)), ft_vect_dot(point->p_inter, constrector(0.0, -1.0, 0.0)), ft_vect_dot(point->p_inter, constrector(0.0, 0.0, 1.0))));
     // p = constrector(ft_vect_dot(point->p_inter,rep.i), ft_vect_dot(point->p_inter, rep.j), ft_vect_dot(point->p_inter, rep.k));
     Get(point->obj, p);
     i = point->obj->txt.Um * point->obj->txt.width;

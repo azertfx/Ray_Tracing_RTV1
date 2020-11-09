@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:27:32 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/06 00:42:30 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/09 00:33:55 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,13 +15,23 @@
 double	sphere_intersection(t_ray r, t_obj *obj)
 {
 	t_delt	d;
+	double	m;
 	t_vect	obj_center;
 
 	obj_center = ft_vect_sub(r.ori, obj->ori);
 	d.a = ft_vect_dot(r.dir, r.dir);
 	d.b = 2 * ft_vect_dot(r.dir, obj_center);
 	d.c = ft_vect_dot(obj_center, obj_center) - obj->ray * obj->ray;
-	return (equation_solve(r, d, obj));
+	d.t = equation_solve(r, d, obj);
+	if (obj->height >= 0)
+	{
+		m = ft_vect_dot(r.dir, obj->axi) * d.t
+										+ ft_vect_dot(obj_center, obj->axi);
+		if (!(m <= obj->height / 2))
+			return (0);
+	}
+	return (d.t);
+	// return (equation_solve(r, d, obj));
 }
 
 double	cylinder_intersection(t_ray r, t_obj *obj)

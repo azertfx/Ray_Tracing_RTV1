@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct_rt.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 06:38:06 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/08 22:36:17 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/09 00:51:39 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ typedef struct	s_sc
 	int		fil;
 	int		aal;
 	int		cef;
+	int		mbl;
 	double	amb;
 }				t_sc;
 
@@ -182,7 +183,7 @@ typedef struct s_thread
 	t_vect color;
 } t_thread;
 
-typedef struct s_rt
+typedef struct	s_rt
 {
 	int id;
 	t_sc	s;
@@ -193,8 +194,6 @@ typedef struct s_rt
 	t_point point;
 	t_event event;
 	t_thread thread;
-} t_rt;
-
-
+}	t_rt;
 
 #endif

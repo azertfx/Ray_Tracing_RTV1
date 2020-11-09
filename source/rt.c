@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:23:37 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/08 21:13:35 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/09 01:15:49 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ void	rt_core(t_rt *v, double *axis)
 	final_color = (t_vect){0, 0, 0};
 	depth = (t_vect){0, 0, 0};
 	r = 0;
-	visual_effect = (v->s.cef || v->s.aal) ? 1 : 0;
+	visual_effect = (v->s.mbl || v->s.aal) ? 1 : 0;
 	if (visual_effect)
 		visual_effect = 9;
 	else
@@ -96,7 +96,8 @@ void	draw(t_rt v)
 
 	i = 0;
 	v.thread.start = 0;
-	add_texture(&v);
+	if (!add_texture(&v))
+		exit_err(&v);
 	generate_camera(&v);
 	while (i < THREADS)
 	{
@@ -122,7 +123,7 @@ int		rt(t_rt *v, char *file)
 	if (!check_file(v))
 		return (0);
 	init_mlx(v);
-	show_loading(v);
+	// show_loading(v);
 	v->m.img_ptr = mlx_new_image(v->m.mlx_ptr, IMG_W, IMG_H);
 	v->m.img_data = (unsigned char *)mlx_get_data_addr(
 		v->m.img_ptr, &v->m.bpp, &v->m.size_l, &v->m.endian);

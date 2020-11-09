@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 02:27:58 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/06 02:45:09 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/09 00:54:02 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,28 @@ int	add_cartoon_effect(t_rt *r, char *v)
 	return (ERROR);
 }
 
+int	add_motion_blur(t_rt *r, char *v)
+{
+	if (!IS_SET(r->s.opt, MBL_SET))
+	{
+		if (!get_int(&(r->s.mbl), v, DIST))
+			return (ERROR);
+		r->s.opt |= MBL_SET;
+		return (SUCCESS);
+	}
+	return (ERROR);
+}
+
 int	parse_scene(t_rt *r, char **tab)
 {
 	int				i;
 	int				ret;
-	static t_child	c_child[4] = {
+	static t_child	c_child[5] = {
 		{"filters:", &add_filters},
 		{"ambiance:", &add_ambiance},
-		{"anti_aliasing:", &add_anti_aliasing},
+		{"antialiasing:", &add_anti_aliasing},
 		{"cartoon_effect:", &add_cartoon_effect},
+		{"motion_blur:", &add_motion_blur},
 	};
 
 	ret = ERROR;

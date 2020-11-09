@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parent.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:50:16 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/08 20:59:31 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/09 00:55:57 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ int	add_scene(t_rt *r)
 	r->s.aal = 0;
 	r->s.cef = 0;
 	r->s.fil = 0;
+	r->s.mbl = 0;
 	r->s.amb = 100;
 	return (SUCCESS);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:48:32 by hhamdaou          #+#    #+#             */
-/*   Updated: 2020/11/08 21:19:14 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/09 01:25:03 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -150,5 +150,8 @@ void			motion_blur(t_ray *r, int a);
 int				add_texture(t_rt *rt);
 void			GetAngle(t_obj *obj , t_vect inter);
 int				getColorFromTexture(t_point *point);
+
+int				exit_err(t_rt *r);
+
 
 #endif

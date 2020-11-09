@@ -42,10 +42,11 @@ disc:
 	rotation: 0,0,0
 	translation: 0,0,0
 
-hemisphere:
+sphere:
 	origin: -26,5,30
 	color: 10,50,255
 	ray: 10
+	height: 0
 	axis: 0,1,0
 	rotation: 0,0,0
 	translation: 0,0,0

@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:12:38 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/06 01:50:59 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/09 02:43:56 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	set_pixel_color(t_rt *v, int i, int j, t_vect color)
 {
-	filters(&color, 53);
+	filters(&color, v->s.fil);
 	v->m.img_data[(j * IMG_W + i) * 4 + 0] = color.z;
 	v->m.img_data[(j * IMG_W + i) * 4 + 1] = color.y;
 	v->m.img_data[(j * IMG_W + i) * 4 + 2] = color.x;

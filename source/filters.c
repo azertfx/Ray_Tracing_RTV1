@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   filters.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hhamdaou <hhamdaou@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 00:18:45 by hhamdaou          #+#    #+#             */
-/*   Updated: 2020/11/04 00:49:45 by hhamdaou         ###   ########.fr       */
+/*   Updated: 2020/11/09 01:04:12 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ void	filters(t_vect *color, int filter)
 	color->x = fmin(255, fmax(0, pow(color->x, 1 / 2.2)));
 	color->y = fmin(255, fmax(0, pow(color->y, 1 / 2.2)));
 	color->z = fmin(255, fmax(0, pow(color->z, 1 / 2.2)));
-	if (filter == 0)
-		black_white(color);
-	if (filter == 1)
-		negatif(color);
 	if (filter == 2)
+		black_white(color);
+	if (filter == 3)
+		negatif(color);
+	if (filter == 1)
 		spia(color);
 }

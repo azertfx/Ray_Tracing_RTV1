@@ -8,6 +8,9 @@ light:
 	color: 255,255,255
 	power: 400
 
+scene:
+	motion_blur: 1
+
 plane:
 	origin: 0,0,-100
 	color: 0,0,255

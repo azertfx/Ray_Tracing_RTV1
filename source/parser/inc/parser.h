@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:19:20 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/08 19:40:03 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/09 00:53:45 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@
 # define CAE_SET 1 << 18
 # define DOF_SET 1 << 19
 # define ANG_SET 1 << 20
-# define ANG_SET 1 << 20
 # define SLC_SET 1 << 21
 # define UOD_SET 1 << 22
 # define LIM_SET 1 << 23
 # define DSP_SET 1 << 24
 # define LM1_SET 1 << 25
 # define LM2_SET 1 << 26
-# define TXT_SET 1 << 26
+# define MBL_SET 1 << 27
+# define TXT_SET 1 << 28
 
 # define IS_SET(apts, apt) (apts & apt)
 # define V_COLOR(a) (a >= 0 && a <= 255)

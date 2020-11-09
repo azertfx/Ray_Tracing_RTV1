@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 01:33:24 by hhamdaou          #+#    #+#             */
-/*   Updated: 2020/11/05 23:25:39 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/09 00:58:20 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,9 @@ void		pixel_ambient(t_rt *v, int i)
 void		pixel_diffuse(t_rt *v, t_light *light)
 {
 	double	diff_pow;
-	int		ce;
 
-	ce = 0;
 	diff_pow = fmax(0, ft_vect_dot(v->point.p_dir, v->point.p_normal));
-	if (ce)
+	if (v->s.cef)
 	{
 		if (diff_pow > 0.95)
 			diff_pow = 0.95;
@@ -46,9 +44,7 @@ void		pixel_specular(t_rt *v, t_light *light)
 	t_vect	reflect;
 	double	str;
 	double	spec_pow;
-	int		ce;
 
-	ce = 0;
 	view_dir = ft_vect_sub(v->c->ori, v->point.p_inter);
 	ft_vect_norm(&view_dir);
 	v->point.p_dir = ft_vect_mult_nbr(v->point.p_dir, -1);
@@ -56,7 +52,7 @@ void		pixel_specular(t_rt *v, t_light *light)
 		v->point.p_normal, 2 * ft_vect_dot(
 		v->point.p_normal, v->point.p_dir)));
 	spec_pow = fmax(ft_vect_dot(view_dir, reflect), 0.4);
-	if (ce)
+	if (v->s.cef)
 	{
 		if (spec_pow > 0.5)
 			spec_pow = 0.9;
