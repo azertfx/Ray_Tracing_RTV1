@@ -11,9 +11,10 @@ light:
 cone:
 	origin:  0,30,0
 	color: 255,0,0
-	ray: 8
+	ray: 26
 	axis: 0,1,0
 	rotation: 0,0,0
+	height: 10
 	translation: 0,0,0
 
 cylinder:
@@ -23,6 +24,7 @@ cylinder:
 	axis: 0,1,0
 	rotation: 0,0,0
 	translation: 0,0,0
+	height: 40
 	disruption: 0
 
 
