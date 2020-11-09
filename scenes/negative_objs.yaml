@@ -10,7 +10,7 @@ light:
 
 plane:
 	origin: 0,0,-100
-	color: 0,0,255
+	color: 0,255,100
 	ray: 20
 	axis: 0,0,1
 	rotation: 0,0,0
