@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:48:32 by hhamdaou          #+#    #+#             */
-/*   Updated: 2020/11/09 01:25:03 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/09 03:05:54 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@
 # define PX_X(x) ((x + 0.5) * 2.0 / (double)IMG_W - 1.0)
 # define PX_Y(y) (1.0 - (y + 0.5) * 2.0 / (double)IMG_H)
 
-double noise[noiseDepth][noiseHeight][noiseWidth];
+double g_noise[noiseDepth][noiseHeight][noiseWidth];
+static int g_p[512];
 
 /*
 ** Vectors functions
@@ -104,7 +105,7 @@ double			cone_intersection(t_ray r, t_obj *obj);
 double			plane_intersection(t_ray r, t_obj *obj);
 double			sphere_intersection(t_ray r, t_obj *obj);
 double			cylinder_intersection(t_ray r, t_obj *obj);
-double          paraboloid_intersection(t_ray r, t_obj *parab);
+double			paraboloid_intersection(t_ray r, t_obj *parab);
 double			disc_intersection(t_ray r, t_obj *obj);
 double			square_intersection(t_ray r, t_obj *obj);
 double			hemisphere_intersection(t_ray r, t_obj *obj);

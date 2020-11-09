@@ -15,6 +15,7 @@ plane:
 	axis: 0,0,1
 	rotation: 0,0,0
 	translation: 0,0,0
+	disruption: 3
 
 plane:
 	origin: 40,0,-100
@@ -50,3 +51,4 @@ cone:
 	axis: 0,1,0
 	rotation: 0,0,30
 	translation: 0,0,0
+	disruption: 4

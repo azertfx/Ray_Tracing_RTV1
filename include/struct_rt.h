@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/02 06:38:06 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/09 00:51:39 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/09 03:05:34 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct	s_cordin
 	int	z;
 }				t_cordin;
 
-typedef struct s_delt
+typedef struct	s_delt
 {
 	double	a;
 	double	b;
@@ -37,9 +37,19 @@ typedef struct s_delt
 	double	t1;
 	double	t2;
 	t_vect	v;
-} t_delt;
+}				t_delt;
 
-typedef struct s_inter
+typedef struct	s_perlin
+{
+	int			a;
+	int			aa;
+	int			ab;
+	int			b;
+	int			ba;
+	int			bb;
+}				t_perlin;
+
+typedef struct	s_inter
 {
 	t_vect		obj_center;
 	t_vect		pt;

@@ -6,61 +6,18 @@
 /*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/07 12:16:21 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/08 18:14:32 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/09 01:52:15 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-# include "rt.h"
-
-static int p[512];
-static int permutation[] = { 151,160,137,91,90,15,
-131,13,201,95,96,53,194,233,7,225,140,36,103,30,69,142,8,99,37,240,
-21,10,23,190,6,148,247,120,234,75,0,26,197,62,94,252,219,203,117,
-35,11,32,57,177,33,88,237,149,56,87,174,20,125,136,171,168,68,175,
-74,165,71,134,139,48,27,166,77,146,158,231,83,111,229,122,60,211,133,
-230,220,105,92,41,55,46,245,40,244,102,143,54,65,25,63,161,1,216,
-80,73,209,76,132,187,208,89,18,169,200,196,135,130,116,188,159,86,
-164,100,109,198,173,186,3,64,52,217,226,250,124,123,5,202,38,147,
-118,126,255,82,85,212,207,206,59,227,47,16,58,17,182,189,28,42,223,
-183,170,213,119,248,152,2,44,154,163,70,221,153,101,155,167,43,
-172,9,129,22,39,253,19,98,108,110,79,113,224,232,178,185,112,104,
-218,246,97,228,251,34,242,193,238,210,144,12,191,179,162,241,81,51,
-145,235,249,14,239,107,49,192,214,31,181,199,106,157,184,84,204,176,
-115,121,50,45,127,4,150,254,138,236,205,93,222,114,67,29,24,72,243,
-141,128,195,78,66,215,61,156,180
-};
-
-typedef struct	s_perlin
-{
-	int	A;
-	int	AA;
-	int	AB;
-	int	B;
-	int	BA;
-	int	BB;
-
-
-}				t_perlin;
-
-void	init_noise()
-{
-	int	i;
-
-	i = 0;
-	while (i < 256)
-	{
-		p[i] = permutation[i];
-		p[256+i] = p[i];
-		i++;
-	}
-}
+#include "rt.h"
 
 double	fade(double t)
 {
 	return (t * t * t * (t * (t * 6 - 15) + 10));
 }
 
-double lerp(double t, double a, double b)
+double	lerp(double t, double a, double b)
 {
 	return (a + t * (b - a));
 }
@@ -71,19 +28,29 @@ double	grad(int hash, double x, double y, double z)
 	double	u;
 	double	v;
 
-	h = hash & 15;
+	h = hash & 15000;
 	u = h < 8 ? x : y;
-	v = h < 4 ? y : h == 12||h==14 ? x : z;
-	return (((h&1) == 0 ? u : -u) + ((h&2) == 0 ? v : -v));
+	if (h < 4)
+		v = y;
+	else if (h == 12 || h == 14)
+		v = x;
+	else
+		v = z;
+	return (((h & 1) == 0 ? u : -u) + ((h & 2) == 0 ? v : -v));
 }
 
-
+void	faded_values(t_vect *v, double x, double y, double z)
+{
+	v->x = fade(x);
+	v->y = fade(y);
+	v->z = fade(z);
+}
 
 double	pnoise(double x, double y, double z)
 {
+	t_perlin	perl;
 	t_vect		v;
 	t_cordin	pt;
-	t_perlin	perl;
 
 	pt.x = (int)floor(x) & 255;
 	pt.y = (int)floor(y) & 255;
@@ -91,21 +58,19 @@ double	pnoise(double x, double y, double z)
 	x -= floor(pt.x);
 	y -= floor(pt.y);
 	z -= floor(pt.z);
-	v.x = fade(x);
-	v.y = fade(y);
-	v.z = fade(z);
-	perl.A = p[pt.x]+pt.y;
-	perl.AA = p[A]+pt.z;
-	perl.AB = p[A+1]+pt.z;
-	perl.B = p[pt.x+1]+pt.y;
-	perl.BA = p[B]+pt.z;
-	perl.BB = p[B+1]+pt.z;
-	return lerp(v.y,lerp(v.z,lerp(v.x, grad(p[AA  ], x, y, z),   /* AND ADD */
-                     grad(p[BA  ], x-1, y, z)),        /* BLENDED */
-             lerp(v.x, grad(p[AB  ], x, y-1, z),         /* RESULTS */
-                     grad(p[BB  ], x-1, y-1, z))),     /* FROM  8 */
-             lerp(v.z, lerp(v.x, grad(p[AA+1], x, y, z-1 ),/* CORNERS */
-                     grad(p[BA+1], x-1, y, z-1)),      /* OF CUBE */
-             lerp(v.x, grad(p[AB+1], x, y-1, z-1),
-                     grad(p[BB+1], x-1, y-1, z-1))));
+	faded_values(&v, x, y, z);
+	perl.a = g_p[pt.x] + pt.y;
+	perl.aa = g_p[perl.a] + pt.z;
+	perl.ab = g_p[perl.a + 1] + pt.z;
+	perl.b = g_p[pt.x + 1] + pt.y;
+	perl.ba = g_p[perl.b] + pt.z;
+	perl.bb = g_p[perl.b + 1] + pt.z;
+	return (lerp(v.y, lerp(v.z, lerp(v.x, grad(g_p[perl.aa], x, y, z),
+					grad(g_p[perl.ba], x - 1, y, z)),
+					lerp(v.x, grad(g_p[perl.ab], x, y - 1, z),
+					grad(g_p[perl.bb], x - 1, y - 1, z))),
+					lerp(v.z, lerp(v.x, grad(g_p[perl.aa + 1], x, y, z - 1),
+					grad(g_p[perl.ba + 1], x - 1, y, z - 1)),
+					lerp(v.x, grad(g_p[perl.ab + 1], x, y - 1, z - 1),
+					grad(g_p[perl.bb + 1], x - 1, y - 1, z - 1)))));
 }
