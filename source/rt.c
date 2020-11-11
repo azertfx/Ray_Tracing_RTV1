@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:23:37 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/09 01:15:49 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/11 17:28:46 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,7 +123,7 @@ int		rt(t_rt *v, char *file)
 	if (!check_file(v))
 		return (0);
 	init_mlx(v);
-	// show_loading(v);
+	show_loading(v);
 	v->m.img_ptr = mlx_new_image(v->m.mlx_ptr, IMG_W, IMG_H);
 	v->m.img_data = (unsigned char *)mlx_get_data_addr(
 		v->m.img_ptr, &v->m.bpp, &v->m.size_l, &v->m.endian);
