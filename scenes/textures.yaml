@@ -1,0 +1,53 @@
+camera:
+	origin: 0,0,30
+	target: 0,0,0
+	fov: 60
+
+light:
+	origin: 20,20,60
+	color: 255,255,255
+	power: 400
+
+plane:
+	origin: 0,0,-10
+	color: 0,0,255
+	ray: 1
+	axis: 0,0,1
+	rotation: 0,0,0
+	translation: 0,0,0
+	texture: 1
+
+plane:
+	origin: 0,-10,0
+	color: 255,0,0
+	ray: 1
+	axis: 0,1,0
+	rotation: 0,0,0
+	translation: 0,0,0
+
+sphere:
+	origin: 0,0,10
+	color: 10,50,255
+	ray: 3
+	axis: 0,1,0
+	rotation: 0,0,0
+	translation: 0,0,0
+	texture: 1
+
+cylinder:
+	origin:  5,0,14
+	color: 255,255,0
+	ray: 2
+	axis: 0,1,0
+	rotation: 0,0,0
+	translation: 0,0,0
+	texture: 1
+
+cone:
+	origin: -1,0,26
+	color: 0,255,255
+	ray: 10
+	axis: 0,1,0
+	rotation: 0,0,30
+	translation: 0,0,0
+	texture: 1

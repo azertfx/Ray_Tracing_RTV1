@@ -1,0 +1,36 @@
+camera:
+	origin: 0,0,100
+	target: 0,0,0
+	fov: 60
+
+light:
+	origin: 20,20,60
+	color: 255,255,255
+	power: 400
+
+plane:
+	origin: 0,0,-100
+	color: 0,80,255
+	ray: 20
+	axis: 0,0,1
+	rotation: 0,0,0
+	translation: 0,0,0
+
+plane:
+	origin: 0,-20,-50
+	color: 215,10,50
+	ray: 20
+	axis: 0,1,0
+	rotation: 0,0,0
+	translation: 0,0,0
+
+cylinder:
+	origin:  0,0,30
+	color: 255,255,0
+	ray: 8
+	axis: 0,1,0
+	rotation: 0,0,0
+	translation: 0,0,0
+	slice: 1
+	upOrDown: 1
+	limit: 0,10,0
