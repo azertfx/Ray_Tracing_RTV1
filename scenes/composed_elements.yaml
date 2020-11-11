@@ -17,7 +17,7 @@ light:
 # 	height: 10
 # 	translation: 0,0,0
 
-sphere:
+pen:
 	origin:  0,-5,0
 	color: 255,255,0
 	ray: 9

@@ -51,4 +51,4 @@ cone:
 	axis: 0,1,0
 	rotation: 0,0,30
 	translation: 0,0,0
-	disruption: 4
+	disruption: -1
