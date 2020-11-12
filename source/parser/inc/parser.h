@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:19:20 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/09 00:53:45 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/12 23:30:58 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 # include "libft.h"
 # include "struct_rt.h"
 
-# define P_COUNT 11
+# define P_COUNT 12
 # define ORI_SET 1
 # define TAR_SET 1 << 1
 # define FOV_SET 1 << 2
@@ -60,7 +60,7 @@ enum {ERROR, SUCCESS};
 enum {POINT, DIRECT, PARALLEL};
 enum {NOTING, COLOR, ROTAT, DIST, ANGL};
 enum {NONE, SEPIA, BLACK_WHITE, NEGATIVE, STEREO};
-enum {LIGHT, CAMERA, CONE, PLANE, SPHERE, CYLINDER, PARABOL, DISC, SQUARE ,HEMIS, SCENE};
+enum {LIGHT, CAMERA, CONE, PLANE, SPHERE, CYLINDER, PARABOL, DISC, SQUARE ,HEMIS, PEN, SCENE};
 enum {CHECKBOARD, XOR, WOOD, PERLIN};
 
 typedef struct	s_parent

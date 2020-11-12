@@ -6,7 +6,7 @@
 /*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 04:36:08 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/09 06:14:24 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/12 23:49:29 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,14 @@ double		pen_intersection(t_ray r, t_obj *obj)
 	double	t_cyl;
 	t_obj	cone;
 
+	t_cyl = 0;
+	t_cone = 0;
 	t_cyl = cylinder_intersection(r, obj);
 	if (t_cyl)
+	{
+		obj->WhatIfound = 1;
 		return (t_cyl);
+	}
 	ft_memcpy(&cone, obj, sizeof(t_obj));
 	cone.dsp = 0;
 	cone.ori = update_origin(obj);
@@ -44,6 +49,9 @@ double		pen_intersection(t_ray r, t_obj *obj)
 	cone.ray = atan(obj->ray / cone.height) * (180.0 / M_PI);
 	t_cone = cone_intersection(r, &cone);
 	if (t_cone)
+	{
+		obj->WhatIfound = -1;
 		return (t_cone);
+	}
 	return (0);
 }

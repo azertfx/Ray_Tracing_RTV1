@@ -6,7 +6,7 @@
 /*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 11:05:07 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/09 01:06:07 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/12 23:44:26 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,12 +69,15 @@ void		perlin(t_vect v, t_vect *color)
 
 void		apply_noise(t_point *p)
 {
-	if (p->obj->dsp == CHECKBOARD)
-		checkboard(p->p_inter, &p->p_color, 0.3);
-	else if (p->obj->dsp == XOR)
-		p->p_color = noise_xor(p->p_color, p->p_inter);
-	else if (p->obj->dsp == WOOD)
-		wood(p->p_inter, &p->p_color, 10);
-	else if (p->obj->dsp == PERLIN)
-		perlin(p->p_inter, &p->p_color);
+	if (p->obj->WhatIfound != -1)
+	{
+		if (p->obj->dsp == CHECKBOARD)
+			checkboard(p->p_inter, &p->p_color, 0.3);
+		else if (p->obj->dsp == XOR)
+			p->p_color = noise_xor(p->p_color, p->p_inter);
+		else if (p->obj->dsp == WOOD)
+			wood(p->p_inter, &p->p_color, 10);
+		else if (p->obj->dsp == PERLIN)
+			perlin(p->p_inter, &p->p_color);
+	}
 }

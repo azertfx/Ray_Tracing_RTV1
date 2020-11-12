@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parent.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:50:16 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/09 05:10:44 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/12 23:40:29 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ int	add_object(t_rt *r)
 	o->dsp = -1;
 	o->width = -1;
 	o->height = -1;
+	o->WhatIfound = -1;
 	o->next = tmp;
 	return (SUCCESS);
 }
@@ -87,6 +88,7 @@ int	parse_parent(char *line, t_rt *r)
 		{"disc:", &add_object},
 		{"square:", &add_object},
 		{"hemisphere:", &add_object},
+		{"pen:", &add_object},
 		{"scene:", &add_scene},
 	};
 

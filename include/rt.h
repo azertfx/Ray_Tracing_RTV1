@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:48:32 by hhamdaou          #+#    #+#             */
-/*   Updated: 2020/11/09 03:05:54 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/12 23:32:29 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,7 @@ double			paraboloid_intersection(t_ray r, t_obj *parab);
 double			disc_intersection(t_ray r, t_obj *obj);
 double			square_intersection(t_ray r, t_obj *obj);
 double			hemisphere_intersection(t_ray r, t_obj *obj);
+double			pen_intersection(t_ray r, t_obj *obj);
 double			equation_solve(t_ray ray, t_delt d, t_obj *obj);
 double			check_solution(double t1, double t2);
 /*

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   child_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:29:06 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/06 02:33:13 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/12 23:35:32 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	add_axis(t_rt *r, char *v)
 		r->l->opt |= AXI_SET;
 		return (SUCCESS);
 	}
-	if (r->id >= 2 && r->id <= 9 && !IS_SET(r->o->opt, AXI_SET)
+	if (r->id >= 2 && r->id <= 10 && !IS_SET(r->o->opt, AXI_SET)
 			&& get_vector(&r->o->axi, v, NONE))
 	{
 		r->o->opt |= AXI_SET;
@@ -49,7 +49,7 @@ int	add_color(t_rt *r, char *v)
 		r->l->opt |= COL_SET;
 		return (SUCCESS);
 	}
-	if (r->id >= 2 && r->id <= 9 && !IS_SET(r->o->opt, COL_SET)
+	if (r->id >= 2 && r->id <= 10 && !IS_SET(r->o->opt, COL_SET)
 			&& get_vector(&r->o->col, v, COLOR))
 	{
 		r->o->opt |= COL_SET;
@@ -72,7 +72,7 @@ int	add_origin(t_rt *r, char *v)
 		r->c->opt |= ORI_SET;
 		return (SUCCESS);
 	}
-	if (r->id >= 2 && r->id <= 9 && !IS_SET(r->o->opt, ORI_SET)
+	if (r->id >= 2 && r->id <= 10 && !IS_SET(r->o->opt, ORI_SET)
 			&& get_vector(&r->o->ori, v, NONE))
 	{
 		r->o->opt |= ORI_SET;

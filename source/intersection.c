@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:40:01 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/09 05:32:05 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/12 23:57:43 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,6 +123,8 @@ double		objects_intersection(t_ray r, t_obj *obj, t_rt *rt)
 		inter = square_intersection(r, obj);
 	else if (obj->id == HEMIS)
 		inter = hemisphere_intersection(r, obj);
+	else if (obj->id == PEN)
+		inter = pen_intersection(r, obj);
 	else
 		return (0);
 	return (negative_objects(inter, r, obj->t_max, rt));
