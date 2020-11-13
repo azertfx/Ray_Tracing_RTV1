@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:19:20 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/12 23:30:58 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/13 10:23:24 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ enum {ERROR, SUCCESS};
 enum {POINT, DIRECT, PARALLEL};
 enum {NOTING, COLOR, ROTAT, DIST, ANGL};
 enum {NONE, SEPIA, BLACK_WHITE, NEGATIVE, STEREO};
-enum {LIGHT, CAMERA, CONE, PLANE, SPHERE, CYLINDER, PARABOL, DISC, SQUARE ,HEMIS, PEN, SCENE};
+enum {LIGHT, CAMERA, CONE, PLA, SPH, CYL, PARA, DISC, SQUAR, HEMIS, PEN, SCENE};
 enum {CHECKBOARD, XOR, WOOD, PERLIN};
 
 typedef struct	s_parent
@@ -100,5 +100,18 @@ int				parse_file(char *file, t_rt *r);
 
 int				free_rt(t_rt *r);
 int				free_tab(char **t, int ret);
+
+int				add_width(t_rt *r, char *v);
+int				add_height(t_rt *r, char *v);
+int				add_negative(t_rt *r, char *v);
+int				add_rotation(t_rt *r, char *v);
+int				add_reflection(t_rt *r, char *v);
+int				add_translation(t_rt *r, char *v);
+int				add_transparence(t_rt *r, char *v);
+int				add_slice(t_rt *r, char *v);
+int				add_limit(t_rt *r, char *v);
+int				add_upordown(t_rt *r, char *v);
+
+int				add_filters(t_rt *r, char *v);
 
 #endif

@@ -78,11 +78,11 @@ int GetCone(t_obj *cone_temp, t_vect p)
 
 void   Get(t_obj *obj , t_vect inter)
 {
-	if(obj->id == SPHERE)
+	if(obj->id == SPH)
 		GetSphere(obj , inter);
-	else if (obj->id  == PLANE)
+	else if (obj->id  == PLA)
 		GetPlan(obj , inter);
-	else if (obj->id  == CYLINDER)
+	else if (obj->id  == CYL)
 		GetCylinder(obj , inter);
 	else if (obj->id  == CONE)
 		GetCone(obj , inter);

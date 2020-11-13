@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   valid.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:56:51 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/12 23:35:14 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/13 10:23:53 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,11 @@ int	object_is_valid(int opt, int t)
 			return (ERROR);
 		if (!IS_SET(opt, TRA_SET))
 			return (ERROR);
-		if (t != PLANE && t != SQUARE && !IS_SET(opt, RAY_SET))
+		if (t != PLA && t != SQUAR && !IS_SET(opt, RAY_SET))
 			return (ERROR);
-		if (t != SPHERE && !IS_SET(opt, AXI_SET))
+		if (t != SPH && !IS_SET(opt, AXI_SET))
 			return (ERROR);
-		if (t == SQUARE && (!IS_SET(opt, LM1_SET) || !IS_SET(opt, LM2_SET)))
+		if (t == SQUAR && (!IS_SET(opt, LM1_SET) || !IS_SET(opt, LM2_SET)))
 			return (ERROR);
 		if (IS_SET(opt, SLC_SET))
 			if (!IS_SET(opt, UOD_SET) || !IS_SET(opt, LIM_SET))

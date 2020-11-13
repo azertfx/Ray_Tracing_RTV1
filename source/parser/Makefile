@@ -6,7 +6,7 @@
 #    By: hastid <hastid@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/03/01 01:27:28 by hastid            #+#    #+#              #
-#    Updated: 2020/11/06 02:29:02 by hastid           ###   ########.fr        #
+#    Updated: 2020/11/13 09:40:45 by hastid           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,8 @@ SRC_NAME =	child.c \
 			lights.c \
 			objects.c \
 			child_utils.c \
+			object_more.c \
+			object_utils.c \
 			get_next_line.c
 
 OBJ_NAME =	$(SRC_NAME:.c=.o)
