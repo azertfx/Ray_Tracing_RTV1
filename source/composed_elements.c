@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 04:36:08 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/13 12:06:36 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/13 12:14:03 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ double		pen_intersection(t_ray r, t_obj *obj)
 	t_cyl = cylinder_intersection(r, obj);
 	if (t_cyl)
 	{
-		obj->WhatIfound = 1;
+		obj->what_found = 1;
 		return (t_cyl);
 	}
 	ft_memcpy(&cone, obj, sizeof(t_obj));
@@ -50,7 +50,7 @@ double		pen_intersection(t_ray r, t_obj *obj)
 	t_cone = cone_intersection(r, &cone);
 	if (t_cone)
 	{
-		obj->WhatIfound = -1;
+		obj->what_found = -1;
 		return (t_cone);
 	}
 	return (0);

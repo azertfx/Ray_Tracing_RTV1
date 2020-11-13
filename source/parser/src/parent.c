@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parent.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:50:16 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/12 23:40:29 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/13 12:14:03 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	add_object(t_rt *r)
 	o->dsp = -1;
 	o->width = -1;
 	o->height = -1;
-	o->WhatIfound = -1;
+	o->what_found = -1;
 	o->next = tmp;
 	return (SUCCESS);
 }

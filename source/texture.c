@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 10:45:16 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/13 11:28:16 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/13 12:17:43 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,8 +61,8 @@ int		color_texture(t_point *p)
 	constrector(0.0, -1.0, 0.0)), ft_vect_dot(p->p_inter,
 	constrector(0.0, 0.0, 1.0))));
 	get_angle(p->obj, pol);
-	i = p->obj->txt.Um * p->obj->txt.width;
-	j = (1.0 - p->obj->txt.Vm) * p->obj->txt.height - 0.001;
+	i = p->obj->txt.um * p->obj->txt.width;
+	j = (1.0 - p->obj->txt.vm) * p->obj->txt.height - 0.001;
 	i = (i < 0) ? 0 : i;
 	j = (j < 0) ? 0 : j;
 	i = (i > p->obj->txt.width - 1) ? p->obj->txt.width - 1 : i;

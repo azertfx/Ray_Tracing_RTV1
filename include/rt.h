@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:48:32 by hhamdaou          #+#    #+#             */
-/*   Updated: 2020/11/13 11:27:31 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/13 12:17:17 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,7 +127,7 @@ int				ft_keys_hook(int k, t_rt *v);
 int				save_bmp_image(t_mlx image);
 void			init_event(t_rt *v, char *file);
 void			init_mlx(t_rt *v);
-void	        show_loading(t_rt *v);
+void			show_loading(t_rt *v);
 /*
 ** Noise
 */
@@ -156,6 +156,5 @@ int				color_texture(t_point *point);
 double			negative_objects(double t_min, t_ray r, double t_max, t_rt *rt);
 
 int				exit_err(t_rt *r);
-
 
 #endif

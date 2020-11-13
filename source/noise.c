@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   noise.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 11:05:07 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/12 23:44:26 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/13 12:14:53 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void		perlin(t_vect v, t_vect *color)
 
 void		apply_noise(t_point *p)
 {
-	if (p->obj->WhatIfound != -1)
+	if (p->obj->what_found != -1)
 	{
 		if (p->obj->dsp == CHECKBOARD)
 			checkboard(p->p_inter, &p->p_color, 0.3);
