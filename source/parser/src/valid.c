@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:56:51 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/13 10:23:53 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/13 13:38:05 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,22 +16,22 @@ int	object_is_valid(int opt, int t)
 {
 	if (t >= 2 && t <= 10)
 	{
-		if (!IS_SET(opt, ORI_SET))
+		if (!is_set(opt, g_ori))
 			return (ERROR);
-		if (!IS_SET(opt, COL_SET))
+		if (!is_set(opt, g_col))
 			return (ERROR);
-		if (!IS_SET(opt, ROT_SET))
+		if (!is_set(opt, g_rot))
 			return (ERROR);
-		if (!IS_SET(opt, TRA_SET))
+		if (!is_set(opt, g_tra))
 			return (ERROR);
-		if (t != PLA && t != SQUAR && !IS_SET(opt, RAY_SET))
+		if (t != PLA && t != SQUAR && !is_set(opt, g_ray))
 			return (ERROR);
-		if (t != SPH && !IS_SET(opt, AXI_SET))
+		if (t != SPH && !is_set(opt, g_axi))
 			return (ERROR);
-		if (t == SQUAR && (!IS_SET(opt, LM1_SET) || !IS_SET(opt, LM2_SET)))
+		if (t == SQUAR && (!is_set(opt, g_lmo) || !is_set(opt, g_lmt)))
 			return (ERROR);
-		if (IS_SET(opt, SLC_SET))
-			if (!IS_SET(opt, UOD_SET) || !IS_SET(opt, LIM_SET))
+		if (is_set(opt, g_slc))
+			if (!is_set(opt, g_uod) || !is_set(opt, g_lim))
 				return (ERROR);
 		return (SUCCESS);
 	}
@@ -66,15 +66,15 @@ int	lights_is_valid(t_light *l)
 	tmp = l;
 	while (tmp)
 	{
-		if (!IS_SET(tmp->opt, ORI_SET))
+		if (!is_set(tmp->opt, g_ori))
 			return (ERROR);
-		if (!IS_SET(tmp->opt, COL_SET))
+		if (!is_set(tmp->opt, g_col))
 			return (ERROR);
-		if (!IS_SET(tmp->opt, POW_SET))
+		if (!is_set(tmp->opt, g_pow))
 			return (ERROR);
-		if (tmp->id == DIRECT && !IS_SET(tmp->opt, AXI_SET))
+		if (tmp->id == DIRECT && !is_set(tmp->opt, g_axi))
 			return (ERROR);
-		if (tmp->id == DIRECT && !IS_SET(tmp->opt, ANG_SET))
+		if (tmp->id == DIRECT && !is_set(tmp->opt, g_ang))
 			return (ERROR);
 		tmp = tmp->next;
 	}
@@ -85,11 +85,11 @@ int	camera_is_valid(t_cam *c)
 {
 	if (!c)
 		return (ERROR);
-	if (!IS_SET(c->opt, ORI_SET))
+	if (!is_set(c->opt, g_ori))
 		return (ERROR);
-	if (!IS_SET(c->opt, TAR_SET))
+	if (!is_set(c->opt, g_tar))
 		return (ERROR);
-	if (!IS_SET(c->opt, FOV_SET))
+	if (!is_set(c->opt, g_fov))
 		return (ERROR);
 	return (SUCCESS);
 }

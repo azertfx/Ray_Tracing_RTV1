@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:18:26 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/13 09:43:37 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/13 13:38:43 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	add_filters(t_rt *r, char *v)
 {
-	if (!IS_SET(r->s.opt, FIL_SET))
+	if (!is_set(r->s.opt, g_fil))
 	{
 		if (!ft_strcmp(v, "NONE"))
 			r->s.fil = NONE;
@@ -28,10 +28,15 @@ int	add_filters(t_rt *r, char *v)
 			r->s.fil = BLACK_WHITE;
 		else
 			return (ERROR);
-		r->s.opt |= FIL_SET;
+		r->s.opt |= g_fil;
 		return (SUCCESS);
 	}
 	return (ERROR);
+}
+
+int	is_set(int opts, int opt)
+{
+	return (opts & opt);
 }
 
 int	add_child(t_rt *r, char **tab)

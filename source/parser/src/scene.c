@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 02:27:58 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/13 09:43:32 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/13 13:38:05 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	add_ambiance(t_rt *r, char *v)
 {
-	if (!IS_SET(r->s.opt, AMB_SET))
+	if (!is_set(r->s.opt, g_amb))
 	{
 		if (!get_double(&(r->s.amb), v, DIST))
 			return (ERROR);
-		r->s.opt |= AMB_SET;
+		r->s.opt |= g_amb;
 		return (SUCCESS);
 	}
 	return (ERROR);
@@ -26,11 +26,11 @@ int	add_ambiance(t_rt *r, char *v)
 
 int	add_anti_aliasing(t_rt *r, char *v)
 {
-	if (!IS_SET(r->s.opt, AAL_SET))
+	if (!is_set(r->s.opt, g_aal))
 	{
 		if (!get_int(&(r->s.aal), v, DIST))
 			return (ERROR);
-		r->s.opt |= AAL_SET;
+		r->s.opt |= g_aal;
 		return (SUCCESS);
 	}
 	return (ERROR);
@@ -38,11 +38,11 @@ int	add_anti_aliasing(t_rt *r, char *v)
 
 int	add_cartoon_effect(t_rt *r, char *v)
 {
-	if (!IS_SET(r->s.opt, CAE_SET))
+	if (!is_set(r->s.opt, g_cae))
 	{
 		if (!get_int(&(r->s.cef), v, DIST))
 			return (ERROR);
-		r->s.opt |= CAE_SET;
+		r->s.opt |= g_cae;
 		return (SUCCESS);
 	}
 	return (ERROR);
@@ -50,11 +50,11 @@ int	add_cartoon_effect(t_rt *r, char *v)
 
 int	add_motion_blur(t_rt *r, char *v)
 {
-	if (!IS_SET(r->s.opt, MBL_SET))
+	if (!is_set(r->s.opt, g_mbl))
 	{
 		if (!get_int(&(r->s.mbl), v, DIST))
 			return (ERROR);
-		r->s.opt |= MBL_SET;
+		r->s.opt |= g_mbl;
 		return (SUCCESS);
 	}
 	return (ERROR);

@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 09:38:23 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/13 09:42:23 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/13 13:38:05 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	add_translation(t_rt *r, char *v)
 {
-	if (!IS_SET(r->o->opt, TRA_SET))
+	if (!is_set(r->o->opt, g_tra))
 	{
 		if (get_vector(&r->o->tra, v, NONE) == ERROR)
 			return (ERROR);
-		r->o->opt |= TRA_SET;
+		r->o->opt |= g_tra;
 		return (SUCCESS);
 	}
 	return (ERROR);
@@ -26,11 +26,11 @@ int	add_translation(t_rt *r, char *v)
 
 int	add_transparence(t_rt *r, char *v)
 {
-	if (!IS_SET(r->o->opt, TCP_SET) && !IS_SET(r->o->opt, REF_SET))
+	if (!is_set(r->o->opt, g_tcp) && !is_set(r->o->opt, g_ref))
 	{
 		if (get_int(&(r->o->trs), v, DIST) == ERROR)
 			return (ERROR);
-		r->o->opt |= TCP_SET;
+		r->o->opt |= g_tcp;
 		return (SUCCESS);
 	}
 	return (ERROR);
@@ -38,11 +38,11 @@ int	add_transparence(t_rt *r, char *v)
 
 int	add_slice(t_rt *r, char *v)
 {
-	if (!IS_SET(r->o->opt, SLC_SET))
+	if (!is_set(r->o->opt, g_slc))
 	{
 		if (get_int(&(r->o->slc), v, NONE) == ERROR)
 			return (ERROR);
-		r->o->opt |= SLC_SET;
+		r->o->opt |= g_slc;
 		return (SUCCESS);
 	}
 	return (ERROR);
@@ -50,11 +50,11 @@ int	add_slice(t_rt *r, char *v)
 
 int	add_limit(t_rt *r, char *v)
 {
-	if (!IS_SET(r->o->opt, LIM_SET))
+	if (!is_set(r->o->opt, g_lim))
 	{
 		if (get_vector(&r->o->lim, v, NONE) == ERROR)
 			return (ERROR);
-		r->o->opt |= LIM_SET;
+		r->o->opt |= g_lim;
 		return (SUCCESS);
 	}
 	return (ERROR);
@@ -62,11 +62,11 @@ int	add_limit(t_rt *r, char *v)
 
 int	add_upordown(t_rt *r, char *v)
 {
-	if (!IS_SET(r->o->opt, UOD_SET))
+	if (!is_set(r->o->opt, g_uod))
 	{
 		if (get_int(&(r->o->uod), v, NONE) == ERROR)
 			return (ERROR);
-		r->o->opt |= UOD_SET;
+		r->o->opt |= g_uod;
 		return (SUCCESS);
 	}
 	return (ERROR);

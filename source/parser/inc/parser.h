@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:19:20 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/13 10:23:24 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/13 13:48:24 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,39 +21,6 @@
 # include "struct_rt.h"
 
 # define P_COUNT 12
-# define ORI_SET 1
-# define TAR_SET 1 << 1
-# define FOV_SET 1 << 2
-# define COL_SET 1 << 3
-# define POW_SET 1 << 4
-# define RAY_SET 1 << 5
-# define AXI_SET 1 << 6
-# define TRA_SET 1 << 7
-# define ROT_SET 1 << 8
-# define LIGHT_T 1 << 9
-# define WID_SET 1 << 10
-# define HEI_SET 1 << 11
-# define NEG_SET 1 << 12
-# define REF_SET 1 << 13
-# define TCP_SET 1 << 14
-# define AMB_SET 1 << 15
-# define FIL_SET 1 << 16
-# define AAL_SET 1 << 17
-# define CAE_SET 1 << 18
-# define DOF_SET 1 << 19
-# define ANG_SET 1 << 20
-# define SLC_SET 1 << 21
-# define UOD_SET 1 << 22
-# define LIM_SET 1 << 23
-# define DSP_SET 1 << 24
-# define LM1_SET 1 << 25
-# define LM2_SET 1 << 26
-# define MBL_SET 1 << 27
-# define TXT_SET 1 << 28
-
-# define IS_SET(apts, apt) (apts & apt)
-# define V_COLOR(a) (a >= 0 && a <= 255)
-
 # define BUFF_SIZE 100
 
 enum {ERROR, SUCCESS};
@@ -75,6 +42,38 @@ typedef struct	s_child
 	int			(*f)(t_rt *r, char *l);
 }				t_child;
 
+int				g_ori;
+int				g_tar;
+int				g_fov;
+int				g_col;
+int				g_pow;
+int				g_ray;
+int				g_axi;
+int				g_tra;
+int				g_rot;
+int				g_lgt;
+int				g_wid;
+int				g_hei;
+int				g_neg;
+int				g_ref;
+int				g_tcp;
+int				g_amb;
+int				g_fil;
+int				g_aal;
+int				g_cae;
+int				g_dof;
+int				g_ang;
+int				g_slc;
+int				g_uod;
+int				g_lim;
+int				g_dsp;
+int				g_lmo;
+int				g_lmt;
+int				g_mbl;
+int				g_txt;
+
+void			init_parser(void);
+void			init_rt_parser(t_rt *r);
 int				parse_scene(t_rt *r, char **tab);
 int				parse_camera(t_rt *r, char **tab);
 int				parse_lights(t_rt *r, char **tab);
@@ -113,5 +112,7 @@ int				add_limit(t_rt *r, char *v);
 int				add_upordown(t_rt *r, char *v);
 
 int				add_filters(t_rt *r, char *v);
+
+int				is_set(int opts, int opt);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:33:28 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/08 04:00:08 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/11/13 13:50:18 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	free_rt(t_rt *r)
 	t_light	*tmp_l;
 
 	if (r->c)
-		ft_memdel((void **)&(r->c->tar));
+		ft_memdel((void **)&(r->c));
 	if (r->o)
 	{
 		while (r->o)
@@ -81,12 +81,9 @@ int	parse_file(char *file, t_rt *r)
 
 	if ((fd = open(file, O_RDONLY)) == -1)
 		return (ERROR);
-	r->c = 0;
-	r->o = 0;
-	r->l = 0;
-	r->id = -1;
-	r->s.amb = 100;
 	line = 0;
+	init_parser();
+	init_rt_parser(r);
 	while (get_next_line(fd, &line) > 0)
 	{
 		if (!line)

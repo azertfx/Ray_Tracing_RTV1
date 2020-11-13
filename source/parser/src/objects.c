@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/06 02:20:15 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/13 09:46:42 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/13 13:38:05 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 int	add_disruption(t_rt *r, char *v)
 {
-	if (!IS_SET(r->o->opt, DSP_SET))
+	if (!is_set(r->o->opt, g_dsp))
 	{
 		if (get_int(&(r->o->dsp), v, NONE) == ERROR)
 			return (ERROR);
-		r->o->opt |= DSP_SET;
+		r->o->opt |= g_dsp;
 		return (SUCCESS);
 	}
 	return (ERROR);
@@ -26,11 +26,11 @@ int	add_disruption(t_rt *r, char *v)
 
 int	add_limvect1(t_rt *r, char *v)
 {
-	if (!IS_SET(r->o->opt, LM1_SET))
+	if (!is_set(r->o->opt, g_lmo))
 	{
 		if (get_vector(&r->o->e1, v, NONE) == ERROR)
 			return (ERROR);
-		r->o->opt |= LM1_SET;
+		r->o->opt |= g_lmo;
 		return (SUCCESS);
 	}
 	return (ERROR);
@@ -38,11 +38,11 @@ int	add_limvect1(t_rt *r, char *v)
 
 int	add_limvect2(t_rt *r, char *v)
 {
-	if (!IS_SET(r->o->opt, LM2_SET))
+	if (!is_set(r->o->opt, g_lmt))
 	{
 		if (get_vector(&r->o->e2, v, NONE) == ERROR)
 			return (ERROR);
-		r->o->opt |= LM2_SET;
+		r->o->opt |= g_lmt;
 		return (SUCCESS);
 	}
 	return (ERROR);
@@ -50,11 +50,11 @@ int	add_limvect2(t_rt *r, char *v)
 
 int	add_textures(t_rt *r, char *v)
 {
-	if (!IS_SET(r->o->opt, TXT_SET))
+	if (!is_set(r->o->opt, g_txt))
 	{
 		if (get_int(&(r->o->txt.t), v, NONE) == ERROR)
 			return (ERROR);
-		r->o->opt |= TXT_SET;
+		r->o->opt |= g_txt;
 		return (SUCCESS);
 	}
 	return (ERROR);

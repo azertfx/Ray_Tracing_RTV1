@@ -6,11 +6,18 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:54:38 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/06 02:43:21 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/13 13:40:59 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parser.h"
+
+int	check_c(double c)
+{
+	if (c >= 0 && c <= 255)
+		return (1);
+	return (0);
+}
 
 int	get_int(int *p, char *v, int t)
 {
@@ -51,7 +58,7 @@ int	get_vector(t_vect *o, char *v, int t)
 	res = sscanf(v, "%lf,%lf,%lf%n", &(o->x), &(o->y), &(o->z), &i);
 	if (res != 3 || v[i] != '\0')
 		return (ERROR);
-	if (t == COLOR && !(V_COLOR(o->x) && V_COLOR(o->y) && V_COLOR(o->x)))
+	if (t == COLOR && !(check_c(o->x) && check_c(o->y) && check_c(o->x)))
 		return (ERROR);
 	if (t != ROTAT)
 		return (SUCCESS);
