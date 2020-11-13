@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   composed_elements.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/09 04:36:08 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/12 23:49:29 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/13 12:06:36 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,11 @@ t_vect		update_origin(t_obj *obj)
 	res.y = obj->ori.y;
 	res.z = obj->ori.z;
 	if (obj->axi.x)
-		res.x += obj->height;
+		res.x += obj->height * obj->axi.x;
 	if (obj->axi.y)
-		res.y += obj->height;
+		res.y += obj->height * obj->axi.y;
 	if (obj->axi.z)
-		res.z += obj->height;
+		res.z += obj->height * obj->axi.z;
 	return (res);
 }
 
