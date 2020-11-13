@@ -15,7 +15,7 @@ plane:
 	axis: 0,0,1
 	rotation: 0,0,0
 	translation: 0,0,0
-	texture: 1
+	texture: 3
 
 plane:
 	origin: 0,-10,0
@@ -32,7 +32,7 @@ sphere:
 	axis: 0,1,0
 	rotation: 0,0,0
 	translation: 0,0,0
-	texture: 1
+	texture: 4
 
 cylinder:
 	origin:  5,0,14
@@ -41,7 +41,7 @@ cylinder:
 	axis: 0,1,0
 	rotation: 0,0,0
 	translation: 0,0,0
-	texture: 1
+	texture: 2
 
 cone:
 	origin: -1,0,26

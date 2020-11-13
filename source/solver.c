@@ -6,13 +6,13 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 01:00:37 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/09 05:46:39 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/13 10:40:58 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "rt.h"
 
-int	exit_err(t_rt *r)
+int		exit_err(t_rt *r)
 {
 	free_rt(r);
 	ft_putstr_fd("ERROR\n", 2);
@@ -46,7 +46,8 @@ double	equation_solve(t_ray ray, t_delt d, t_obj *obj)
 		return (0);
 	inter1 = (-d.b - sqrt(delta)) / (2 * d.a);
 	inter2 = (-d.b + sqrt(delta)) / (2 * d.a);
-	if ((inter1 <= inter2 && inter1 > MIN_NBR) || (inter2 < inter1 && inter2 > MIN_NBR))
+	if ((inter1 <= inter2 && inter1 > MIN_NBR) ||
+			(inter2 < inter1 && inter2 > MIN_NBR))
 	{
 		obj->t_max = fmax(inter1, inter2);
 		if (obj->slc)

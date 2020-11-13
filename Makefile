@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+         #
+#    By: hastid <hastid@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/06 03:38:58 by anabaoui          #+#    #+#              #
-#    Updated: 2020/11/12 23:32:04 by hezzahir         ###   ########.fr        #
+#    Updated: 2020/11/13 11:27:21 by hastid           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ SRC_NAME = main.c rt.c intersection.c keys_hook.c\
 			objects.c vectors1.c vectors2.c vectors3.c pixel_color.c camera.c\
 			guide_btn.c instruction.c bmp.c slice_xyz.c noise.c noise2.c \
 			texture.c filters.c solver.c refl_refr.c visual_effects.c light.c \
-			init.c more_objects.c loading.c perlin.c composed_elements.c
+			init.c more_objects.c loading.c perlin.c composed_elements.c \
+			negative_objects.c texture_utils.c
 
 OBJ_NAME =	$(SRC_NAME:.c=.o)
 
