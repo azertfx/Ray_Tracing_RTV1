@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 10:45:16 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/13 12:17:43 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/13 12:34:12 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int		add_texture(t_rt *rt)
 		{
 			if (temp->txt.t == 1)
 				ft_strcpy(txt, "xpm/earth.xpm");
-			else if (temp->txt.t == 3)
+			else if (temp->txt.t == 2)
 				ft_strcpy(txt, "xpm/4.xpm");
 			else
 				ft_strcpy(txt, "xpm/5.xpm");
