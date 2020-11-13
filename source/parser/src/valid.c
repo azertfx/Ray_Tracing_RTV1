@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:56:51 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/13 13:38:05 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/14 00:35:25 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	objects_is_valid(t_obj *o)
 	tmp = o;
 	while (tmp)
 	{
-		if (!object_is_valid(tmp->opt, o->id))
+		if (!object_is_valid(tmp->opt, tmp->id))
 			return (ERROR);
 		tmp->ori = ft_vect_add(tmp->ori, tmp->tra);
 		tmp->axi = ft_vect_rotate(tmp->axi, tmp->rot);
