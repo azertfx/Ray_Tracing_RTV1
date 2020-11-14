@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   texture.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/13 10:45:16 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/13 12:34:12 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/14 02:53:15 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,9 +22,33 @@ t_vect	constrector(double x, double y, double z)
 	return (vect);
 }
 
+char	*get_path(int i)
+{
+	char *file;
+
+	file = NULL;
+	if (i == 1)
+		file = ft_strdup("xpm/1.xpm");
+	else if (i == 2)
+		file = ft_strdup("xpm/2.xpm");
+	else if (i == 3)
+		file = ft_strdup("xpm/3.xpm");
+	else if (i == 4)
+		file = ft_strdup("xpm/4.xpm");
+	else if (i == 5)
+		file = ft_strdup("xpm/5.xpm");
+	else if (i == 6)
+		file = ft_strdup("xpm/6.xpm");
+	else if (i == 7)
+		file = ft_strdup("xpm/7.xpm");
+	else if (i == 8)
+		file = ft_strdup("xpm/space.xpm");
+	return (file);
+}
+
 int		add_texture(t_rt *rt)
 {
-	char	txt[50];
+	char	*txt;
 	t_obj	*temp;
 
 	temp = rt->o;
@@ -32,18 +56,14 @@ int		add_texture(t_rt *rt)
 	{
 		if (temp->txt.t)
 		{
-			if (temp->txt.t == 1)
-				ft_strcpy(txt, "xpm/earth.xpm");
-			else if (temp->txt.t == 2)
-				ft_strcpy(txt, "xpm/4.xpm");
-			else
-				ft_strcpy(txt, "xpm/5.xpm");
+			txt = get_path(temp->txt.t);
 			temp->txt.img = mlx_xpm_file_to_image(rt->m.mlx_ptr,
 				txt, &temp->txt.width, &temp->txt.height);
 			if (!temp->txt.img)
 				return (0);
 			temp->txt.buf = (int *)mlx_get_data_addr(temp->txt.img,
 			&rt->m.bpp, &rt->m.size_l, &rt->m.endian);
+			free(txt);
 		}
 		temp = temp->next;
 	}
