@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 04:51:21 by hhamdaou          #+#    #+#             */
-/*   Updated: 2020/11/14 01:26:54 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/14 03:40:58 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,8 @@ void	init_mlx(t_rt *v)
 
 int		check_file(t_rt *v)
 {
-	// free_all_object(v);
 	if (!v->event.file || !parse_file(v->event.file, v))
 	{
-		// free_all_object(v);
 		ft_putendl("Try Again! 🙄");
 		return (0);
 	}

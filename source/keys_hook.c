@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys_hook.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/06 03:37:06 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/08 05:19:42 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/11/14 03:46:36 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ void	ft_clear_and_draw(t_rt *v)
 	v->m.img_ptr = mlx_new_image(v->m.mlx_ptr, IMG_W, IMG_H);
 	mlx_clear_window(v->m.mlx_ptr, v->m.win_ptr);
 	ft_instruction(v);
+	free_rt(v);
 	if (check_file(v))
 		draw(*v);
 	mlx_put_image_to_window(v->m.mlx_ptr, v->m.win_ptr,
@@ -68,7 +69,7 @@ int		ft_keys_hook(int k, t_rt *v)
 {
 	if (k == 53)
 	{
-		// free_all_object(v);
+		free_rt(v);
 		exit(0);
 	}
 	else if (k == O)
