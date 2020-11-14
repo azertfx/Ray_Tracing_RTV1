@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:48:32 by hhamdaou          #+#    #+#             */
-/*   Updated: 2020/11/13 12:17:17 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/14 01:19:44 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,14 +51,14 @@
 # define TRSHDW "trs_shadow"
 # define TEXTUR "textures"
 # define CMPELE "composed_elem"
-# define noiseWidth 192
-# define noiseHeight 192
-# define noiseDepth 64
+# define NOISEWIDTH 192
+# define NOISEHEIGHT 192
+# define NOISEDEPTH 64
 # define RAD(x) (x * M_PI / 180)
 # define PX_X(x) ((x + 0.5) * 2.0 / (double)IMG_W - 1.0)
 # define PX_Y(y) (1.0 - (y + 0.5) * 2.0 / (double)IMG_H)
 
-double g_noise[noiseDepth][noiseHeight][noiseWidth];
+double g_noise[NOISEDEPTH][NOISEHEIGHT][NOISEWIDTH];
 static int g_p[512];
 
 /*

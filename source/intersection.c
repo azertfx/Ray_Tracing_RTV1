@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   intersection.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:40:01 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/13 10:57:37 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/14 01:01:05 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,13 @@ double		intersection_checker(t_rt *v, t_ray r, t_point *point)
 	return (i);
 }
 
+int			check_condition(int id)
+{
+	if (id == 2 || id == 5 || id == 9 || id == PEN)
+		return (1);
+	return (0);
+}
+
 void		objects_normal(t_ray r, t_point *p)
 {
 	p->p_inter = ft_vect_add(r.ori,
@@ -75,7 +82,7 @@ void		objects_normal(t_ray r, t_point *p)
 		p->p_color = p->obj->col;
 	if (p->obj->id == SPH)
 		p->p_normal = ft_vect_sub(p->p_inter, p->obj->ori);
-	else if (p->obj->id == 2 || p->obj->id == 5 || p->obj->id == 9)
+	else if (check_condition(p->obj->id))
 	{
 		p->p_normal = ft_vect_sub(p->p_inter, p->obj->ori);
 		p->p_normal = ft_vect_sub(p->p_normal, ft_vect_mult_nbr(p->obj->axi,
@@ -83,7 +90,7 @@ void		objects_normal(t_ray r, t_point *p)
 	}
 	else if (p->obj->id == 3 || p->obj->id == 7 || p->obj->id == 8)
 		p->p_normal = p->obj->axi;
-	if (p->obj->id == CONE)
+	if (p->obj->id == CONE || p->obj->id == PEN)
 		p->p_normal = ft_vect_add(ft_vect_mult_nbr(p->p_normal,
 		cos(RAD(p->obj->ray))), ft_vect_mult_nbr(p->obj->axi,
 		sin(RAD(p->obj->ray))));

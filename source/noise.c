@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   noise.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 11:05:07 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/13 12:14:53 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/13 22:59:54 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void		generate_noise(void)
 	x = -1;
 	y = -1;
 	z = -1;
-	while (z++ < noiseDepth)
-		while (y++ < noiseHeight)
-			while (x++ < noiseWidth)
+	while (z++ < NOISEDEPTH)
+		while (y++ < NOISEHEIGHT)
+			while (x++ < NOISEWIDTH)
 				g_noise[z][y][x] = (rand() % 32768) / 32768.0;
 	x = 0;
 	while (x < 256)
@@ -69,7 +69,7 @@ void		perlin(t_vect v, t_vect *color)
 
 void		apply_noise(t_point *p)
 {
-	if (p->obj->what_found != -1)
+	if (p->obj->what_found == -1)
 	{
 		if (p->obj->dsp == CHECKBOARD)
 			checkboard(p->p_inter, &p->p_color, 0.3);
