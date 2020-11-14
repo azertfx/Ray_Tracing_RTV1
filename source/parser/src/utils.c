@@ -62,9 +62,9 @@ int	get_vector(t_vect *o, char *v, int t)
 		return (ERROR);
 	if (t != ROTAT)
 		return (SUCCESS);
-	o->x = RAD(o->x);
-	o->y = RAD(o->y);
-	o->z = RAD(o->z);
+	o->x = rad(o->x);
+	o->y = rad(o->y);
+	o->z = rad(o->z);
 	return (SUCCESS);
 }
 

@@ -28,9 +28,9 @@ void	anti_aliasing(t_rt *v, t_ray *r, double *axis, int a)
 	r->dir = ft_vect_add(
 			v->c->z,
 			ft_vect_add(
-				ft_vect_mult_nbr(v->c->x, PX_X(axis[0] + tab[a][0] + 0.5)
+				ft_vect_mult_nbr(v->c->x, px_x(axis[0] + tab[a][0] + 0.5)
 								* v->c->width / 2.),
-				ft_vect_mult_nbr(v->c->y, PX_Y(axis[1] + tab[a][1] + 0.5)
+				ft_vect_mult_nbr(v->c->y, px_y(axis[1] + tab[a][1] + 0.5)
 								* v->c->height / 2.)));
 }
 

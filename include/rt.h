@@ -6,7 +6,7 @@
 /*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:48:32 by hhamdaou          #+#    #+#             */
-/*   Updated: 2020/11/14 03:20:16 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/14 04:09:21 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,9 +54,6 @@
 # define NOISEWIDTH 192
 # define NOISEHEIGHT 192
 # define NOISEDEPTH 64
-# define RAD(x) (x * M_PI / 180)
-# define PX_X(x) ((x + 0.5) * 2.0 / (double)IMG_W - 1.0)
-# define PX_Y(y) (1.0 - (y + 0.5) * 2.0 / (double)IMG_H)
 
 double g_noise[NOISEDEPTH][NOISEHEIGHT][NOISEWIDTH];
 static int g_p[512];
@@ -78,6 +75,12 @@ double			ft_vect_dist(t_vect u, t_vect v);
 t_vect			ft_vect_rotate(t_vect v, t_vect r);
 t_vect			*check_vector(char *str);
 t_vect			ft_vect_sub(t_vect u, t_vect v);
+/*
+** Addictional function
+*/
+double			rad(double x);
+double			px_x(double x);
+double			px_y(double y);
 /*
 ** Parsing
 */

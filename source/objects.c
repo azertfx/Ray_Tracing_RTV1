@@ -85,11 +85,11 @@ double	cone_intersection(t_ray r, t_obj *obj)
 	t_vect	obj_center;
 
 	obj_center = ft_vect_sub(r.ori, obj->ori);
-	d.a = ft_vect_dot(r.dir, r.dir) - (1 + pow(tan(RAD(obj->ray)), 2)) *
+	d.a = ft_vect_dot(r.dir, r.dir) - (1 + pow(tan(rad(obj->ray)), 2)) *
 										pow(ft_vect_dot(r.dir, obj->axi), 2);
-	d.b = 2 * (ft_vect_dot(r.dir, obj_center) - (1 + pow(tan(RAD(obj->ray)), 2))
+	d.b = 2 * (ft_vect_dot(r.dir, obj_center) - (1 + pow(tan(rad(obj->ray)), 2))
 			* ft_vect_dot(r.dir, obj->axi) * ft_vect_dot(obj_center, obj->axi));
-	d.c = ft_vect_dot(obj_center, obj_center) - (1 + pow(tan(RAD(obj->ray)), 2))
+	d.c = ft_vect_dot(obj_center, obj_center) - (1 + pow(tan(rad(obj->ray)), 2))
 				* pow(ft_vect_dot(obj_center, obj->axi), 2);
 	if (obj->height < 0)
 		return (equation_solve(r, d, obj));

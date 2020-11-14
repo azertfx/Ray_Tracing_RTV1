@@ -84,7 +84,7 @@ double		spotlight(t_vect p, t_light light, double cos_angle)
 
 	v = ft_vect_sub(p, light.ori);
 	ft_vect_norm(&v);
-	cos_in = fabs(cos(RAD(cos_angle)));
+	cos_in = fabs(cos(rad(cos_angle)));
 	cos_out = cos_in - 0.07;
 	cos_direction = ft_vect_dot(v, light.axi);
 	return (cast_light(cos_out, cos_in, cos_direction));

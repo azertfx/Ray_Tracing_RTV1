@@ -21,7 +21,7 @@ void	generate_camera(t_rt *v)
 	v->c->ori.x += v->event.move_x;
 	v->c->tar.y += v->event.rot_y;
 	v->c->tar.x += v->event.rot_x;
-	fov = RAD(v->c->fov);
+	fov = rad(v->c->fov);
 	up = (t_vect){0, 1, 0};
 	v->c->z = ft_vect_sub(v->c->tar, v->c->ori);
 	v->c->z.z -= 0.001;
@@ -39,9 +39,9 @@ void	generate_camera_ray(t_rt *v, t_ray *r, double *axis, int a)
 	r->dir = ft_vect_add(
 				v->c->z,
 				ft_vect_add(
-					ft_vect_mult_nbr(v->c->x, PX_X(axis[0] + 0.5)
+					ft_vect_mult_nbr(v->c->x, px_x(axis[0] + 0.5)
 								* v->c->width / 2.),
-					ft_vect_mult_nbr(v->c->y, PX_Y(axis[1] + 0.5)
+					ft_vect_mult_nbr(v->c->y, px_y(axis[1] + 0.5)
 								* v->c->height / 2.)));
 	if (v->s.aal)
 		anti_aliasing(v, r, axis, a);

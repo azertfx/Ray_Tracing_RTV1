@@ -92,8 +92,8 @@ void		objects_normal(t_ray r, t_point *p)
 		p->p_normal = p->obj->axi;
 	if (p->obj->id == CONE || p->obj->id == PEN)
 		p->p_normal = ft_vect_add(ft_vect_mult_nbr(p->p_normal,
-		cos(RAD(p->obj->ray))), ft_vect_mult_nbr(p->obj->axi,
-		sin(RAD(p->obj->ray))));
+		cos(rad(p->obj->ray))), ft_vect_mult_nbr(p->obj->axi,
+		sin(rad(p->obj->ray))));
 	if (p->obj->id == PARA)
 		p->p_normal = ft_vect_sub(ft_vect_sub(p->p_inter, p->obj->ori),
 		ft_vect_mult_nbr(p->obj->axi, ft_vect_dot(ft_vect_sub(p->p_inter,
