@@ -1,0 +1,144 @@
+camera:
+	origin: 0,0,170
+	target: 0,0,0
+	fov: 60
+
+# Light =============================
+light:
+	origin: 80,20,150
+	color: 255,255,255
+	power: 400
+
+light:
+	origin: -80,20,150
+	color: 255,255,255
+	power: 400
+
+# Plans =============================
+plane:
+	origin: 0,0,-40
+	color: 0,0,170
+	axis: 0,0,1
+	rotation: 0,0,0
+	translation: 0,0,0
+
+
+plane:
+	origin: 0,-30,0
+	color: 119,119,119
+	axis: 0,1,0
+	rotation: 0,0,0
+	translation: 0,0,0
+	disruption: 4
+# =====================================
+# Spheres =============================
+sphere:
+	origin: -30,-30,0
+	color: 221,221,221
+	ray: 10
+	axis: 0,1,0
+	rotation: 0,0,0
+	translation: 0,0,0
+
+sphere:
+	origin: 30,-30,0
+	color: 221,221,221
+	ray: 10
+	axis: 0,1,0
+	rotation: 0,0,0
+	translation: 0,0,0
+
+sphere:
+	origin: -30,30,0
+	color: 221,221,221
+	ray: 10
+	axis: 0,1,0
+	rotation: 0,0,0
+	translation: 0,0,0
+
+sphere:
+	origin: 30,30,0
+	color: 221,221,221
+	ray: 10
+	axis: 0,1,0
+	rotation: 0,0,0
+	translation: 0,0,0
+
+sphere:
+	origin: -30,-30,70
+	color: 221,221,221
+	ray: 10
+	axis: 0,1,0
+	rotation: 0,0,0
+	translation: 0,0,0
+
+sphere:
+	origin: 30,-30,70
+	color: 221,221,221
+	ray: 10
+	axis: 0,1,0
+	rotation: 0,0,0
+	translation: 0,0,0
+
+sphere:
+	origin: -30,30,70
+	color: 221,221,221
+	ray: 10
+	axis: 0,1,0
+	rotation: 0,0,0
+	translation: 0,0,0
+
+sphere:
+	origin: 30,30,70
+	color: 221,221,221
+	ray: 10
+	axis: 0,1,0
+	rotation: 0,0,0
+	translation: 0,0,0
+# =====================================
+# Cylinder : ==========================
+
+cylinder:
+	origin: -30,0,0
+	color: 221,221,221
+	ray: 6
+	axis: 0,1,0
+	rotation: 0,0,0
+	translation: 0,0,0
+	disruption: 2
+
+cylinder:
+	origin: 30,0,0
+	color: 221,221,221
+	ray: 6
+	axis: 0,1,0
+	rotation: 0,0,0
+	translation: 0,0,0
+	disruption: 2
+
+cylinder:
+	origin: -30,0,70
+	color: 221,221,221
+	ray: 6
+	axis: 0,1,0
+	rotation: 0,0,0
+	translation: 0,0,0
+	disruption: 2
+
+cylinder:
+	origin: 30,0,70
+	color: 221,221,221
+	ray: 6
+	axis: 0,1,0
+	rotation: 0,0,0
+	translation: 0,0,0
+	disruption: 2
+
+# =====================================
+
+plane:
+	origin: 0,30,0
+	color: 119,119,119
+	axis: 0,-1,0
+	rotation: 0,0,0
+	translation: 0,0,0

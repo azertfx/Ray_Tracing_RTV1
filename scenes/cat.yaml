@@ -1,0 +1,99 @@
+camera:
+	origin: 0,0,170
+	target: 0,0,-100
+	fov: 60
+
+light:
+	origin: 0,0,170
+	color: 255,255,255
+	power: 500
+
+disc:
+	origin: 0,-5,150
+	color: 5,5,5
+	ray: 10
+	axis: 0,0,1
+	rotation: 0,0,0
+	translation: 0,0,0
+
+
+disc:
+	origin: 4.5,-3.5,150
+	color: 255,255,255
+	ray: 3
+	axis: 0,0,1
+	rotation: 0,0,0
+	translation: 0,0,0
+
+disc:
+	origin: -4.5,-3.5,150
+	color: 255,255,255
+	ray: 3
+	axis: 0,0,1
+	rotation: 0,0,0
+	translation: 0,0,0
+
+disc:
+	origin: -5.5,-4.3,150
+	color: 0,0,0
+	ray: 2.15
+	axis: 0,0,1
+	rotation: 0,0,0
+	translation: 0,0,0
+
+disc:
+	origin: 3.3,-4.3,150
+	color: 0,0,0
+	ray: 2.15
+	axis: 0,0,1
+	rotation: 0,0,0
+	translation: 0,0,0
+
+disc:
+	origin: -6.3,-4.8,150
+	color: 255,255,255
+	ray: 1
+	axis: 0,0,1
+	rotation: 0,0,0
+	translation: 0,0,0
+
+disc:
+	origin: 2.9,-4.8,150
+	color: 255,255,255
+	ray: 1
+	axis: 0,0,1
+	rotation: 0,0,0
+	translation: 0,0,0
+
+cone:
+	origin: -10,9,146
+	color: 5,5,5
+	ray: 25
+	axis: 0,1,0
+	rotation: 0,0,35
+	translation: 0,0,0
+	height: 8
+
+cone:
+	origin: 10,9,146
+	color: 5,5,5
+	ray: 25
+	axis: 0,1,0
+	rotation: 0,0,-35
+	translation: 0,0,0
+	height: 8
+
+disc:
+	origin: 0,-10,150
+	color: 255,255,255
+	ray: 1
+	axis: 0,0,1
+	rotation: 0,0,0
+	translation: 0,0,0
+
+plane:
+	origin: 0,0,-100
+	color: 0,126,141
+	axis: 0,0,1
+	rotation: 0,0,0
+	translation: 0,0,0
