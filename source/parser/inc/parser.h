@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:19:20 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/13 13:48:24 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/14 03:21:37 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ enum {POINT, DIRECT, PARALLEL};
 enum {NOTING, COLOR, ROTAT, DIST, ANGL};
 enum {NONE, SEPIA, BLACK_WHITE, NEGATIVE, STEREO};
 enum {LIGHT, CAMERA, CONE, PLA, SPH, CYL, PARA, DISC, SQUAR, HEMIS, PEN, SCENE};
-enum {CHECKBOARD, XOR, WOOD, PERLIN};
+enum {CHECKBOARD, XOR, WOOD, PERLIN, WHITE_BLACK};
 
 typedef struct	s_parent
 {

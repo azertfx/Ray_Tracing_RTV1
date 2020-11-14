@@ -6,7 +6,7 @@
 /*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/03 05:57:57 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/09 00:18:31 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/14 03:23:50 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,4 +74,15 @@ void	wood(t_vect pt, t_vect *color, double xy_period)
 	color->x = (uint8_t)(80 + sine_value);
 	color->y = (uint8_t)(30 + sine_value);
 	color->z = 30;
+}
+
+void	perlin(t_vect v, t_vect *color)
+{
+	double	n;
+
+	n = pnoise(v.x, v.y, v.z);
+	n = n - floor(n);
+	color->x = floor(255 * n);
+	color->y = floor(255 * n);
+	color->z = floor(255 * n);
 }

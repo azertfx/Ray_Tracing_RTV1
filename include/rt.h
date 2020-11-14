@@ -6,7 +6,7 @@
 /*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:48:32 by hhamdaou          #+#    #+#             */
-/*   Updated: 2020/11/14 01:19:44 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/14 03:20:16 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,6 +135,7 @@ void			apply_noise(t_point *p);
 void			generate_noise();
 void			wood(t_vect pt, t_vect *color, double xy_period);
 double			pnoise(double x, double y, double z);
+void			perlin(t_vect v, t_vect *color);
 /*
 ** Slice
 */

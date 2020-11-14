@@ -6,7 +6,7 @@
 /*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/10/20 11:05:07 by hezzahir          #+#    #+#             */
-/*   Updated: 2020/11/13 22:59:54 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/14 03:22:26 by hezzahir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,15 +56,15 @@ t_vect		noise_xor(t_vect color, t_vect v)
 	return (color);
 }
 
-void		perlin(t_vect v, t_vect *color)
+void		damier(t_vect point, t_vect *color, double x)
 {
-	double	n;
+	float	sines;
 
-	n = pnoise(v.x, v.y, v.z);
-	n = n - floor(n);
-	color->x = floor(255 * n);
-	color->y = floor(255 * n);
-	color->z = floor(255 * n);
+	sines = sin(x * point.x) * sin(x * point.y) * sin(x * point.z);
+	if (sines < 0)
+		*color = (t_vect){0.0, 0.0, 0.0};
+	else
+		*color = (t_vect){255.0, 255.0, 255.0};
 }
 
 void		apply_noise(t_point *p)
@@ -79,5 +79,7 @@ void		apply_noise(t_point *p)
 			wood(p->p_inter, &p->p_color, 10);
 		else if (p->obj->dsp == PERLIN)
 			perlin(p->p_inter, &p->p_color);
+		else if (p->obj->dsp == WHITE_BLACK)
+			damier(p->p_inter, &p->p_color, 0.3);
 	}
 }
