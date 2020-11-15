@@ -3,12 +3,15 @@ camera:
 	target: 0,10,30
 	fov: 60
 
+scene:
+	ambiance: 120
+
 light:
-	type: PARALLEL
-	origin: -60,10,30
+	origin: 0,60,0
 	color: 255,255,255
-	axis: 1,0,0
-	power: 400
+	axis: 0,-1,0
+	power: 700
+	angle: 20
 
 # light:
 # 	origin: -12,40,60
@@ -22,19 +25,20 @@ plane:
 	axis: 0,0,1
 	rotation: 0,0,0
 	translation: 0,0,0
+	# reflection: 1
 
 plane:
 	origin: 0,-20,-50
-	color: 255,0,0
+	color: 12,12,12
 	ray: 20
 	axis: 0,1,0
 	rotation: 0,0,1
 	translation: 0,0,0
 
 sphere:
-	origin: 0,10,30
-	color: 10,50,255
-	ray: 12
+	origin: 0,10,0
+	color: 2,2,2
+	ray: 15
 	axis: 0,1,0
 	rotation: 0,0,0
 	translation: 0,0,0
