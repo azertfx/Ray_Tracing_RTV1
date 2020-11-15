@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:12:38 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/09 02:43:56 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/15 20:53:02 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,28 +50,27 @@ double	shadow_checker(t_rt *v, t_light *light)
 void	calculate_pixel_color(t_rt *v, t_light *light, int i)
 {
 	double	dir;
-	int		shadow;
+	int		shad;
 
 	dir = 1.0;
-	shadow = shadow_checker(v, light);
+	shad = shadow_checker(v, light);
 	pixel_ambient(v, i);
 	if (light->id == DIRECT &&
 		!(dir = spotlight(v->point.p_inter, *light, light->ang)))
 		return ;
-	if (!shadow || shadow > 1)
+	if (!shad || shad > 1)
 	{
-		v->point.p_dir = ft_vect_sub(light->ori, v->point.p_inter);
+		v->point.p_dir = (light->id == PARALLEL) ? ft_vect_mult_nbr(light->axi,
+			-1) : ft_vect_sub(light->ori, v->point.p_inter);
 		ft_vect_norm(&v->point.p_dir);
 		pixel_diffuse(v, light);
 		v->point.p_light.def = ft_vect_mult_nbr(v->point.p_light.def, dir);
 		pixel_specular(v, light);
-		if (shadow > 1)
+		if (shad > 1)
 		{
-			shadow--;
-			v->point.p_light.def =
-				ft_vect_div_nbr(v->point.p_light.def, shadow);
-			v->point.p_light.spc =
-				ft_vect_div_nbr(v->point.p_light.spc, shadow);
+			shad--;
+			v->point.p_light.def = ft_vect_div_nbr(v->point.p_light.def, shad);
+			v->point.p_light.spc = ft_vect_div_nbr(v->point.p_light.spc, shad);
 		}
 	}
 }

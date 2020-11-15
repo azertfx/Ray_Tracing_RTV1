@@ -6,7 +6,7 @@
 /*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/01 04:56:51 by hastid            #+#    #+#             */
-/*   Updated: 2020/11/14 00:35:25 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/15 20:55:03 by hastid           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,13 @@ int	lights_is_valid(t_light *l)
 			return (ERROR);
 		if (!is_set(tmp->opt, g_pow))
 			return (ERROR);
-		if (tmp->id == DIRECT && !is_set(tmp->opt, g_axi))
+		if ((tmp->id == DIRECT || tmp->id == PARALLEL) &&
+			!is_set(tmp->opt, g_axi))
 			return (ERROR);
 		if (tmp->id == DIRECT && !is_set(tmp->opt, g_ang))
 			return (ERROR);
+		if (tmp->id == DIRECT || tmp->id == PARALLEL)
+			ft_vect_norm(&tmp->axi);
 		tmp = tmp->next;
 	}
 	return (SUCCESS);
