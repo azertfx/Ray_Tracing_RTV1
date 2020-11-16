@@ -38,9 +38,23 @@
 
 ## How to use the xml file 
 
-## Parsing file format
+### 1- composants 
 
-```yaml
+
+| id | Shape |
+| ------ | ------ |
+| 1 | light |
+| 1 | sphere |
+| 2 | plane |
+| 3 | cylinder |
+| 4 | cone |
+| 5 | pen |
+| 6 | parabolic |
+
+
+### 2- Parsing file format
+
+``` ssh
 camera:
 	origin: 0,0,100
 	target: 0,0,0
@@ -83,17 +97,6 @@ cone:
 	translation: 0,0,0
 
 ```
-
-
-| id | Shape |
-| ------ | ------ |
-| 1 | sphere |
-| 2 | plane |
-| 3 | cylinder |
-| 4 | cone |
-| 5 | pen |
-| 6 | parabolic |
-
 
 
 ## Getting Started
