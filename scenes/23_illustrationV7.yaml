@@ -3,6 +3,9 @@ camera:
 	target: 0,0,0
 	fov: 60
 
+scene:
+	antialiasing: 1
+
 # Light =============================
 light:
 	origin: 80,20,150

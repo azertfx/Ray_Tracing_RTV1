@@ -8,15 +8,6 @@ light:
 	color: 255,255,255
 	power: 400
 
-plane:
-	origin: 0,0,1
-	color: 0,0,255
-	ray: 1
-	axis: 0,0,1
-	rotation: 0,0,0
-	translation: 0,0,0
-	texture: 8
-
 sphere:
 	origin: 0,0,10
 	color: 10,50,255

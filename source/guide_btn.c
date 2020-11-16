@@ -6,7 +6,7 @@
 /*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 13:11:07 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/08 05:23:59 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/11/16 03:36:38 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	ft_btn_content(t_rt *v)
 	mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 30, 313, 0xFFFFFF, "Z");
 	mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 30, 363, 0xFFFFFF, "Q");
 	mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 60, 313, 0xFFFFFF, DIS);
-	mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 60, 363, 0xFFFFFF, PAR);
+	mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 60, 363, 0xFFFFFF, SPL);
 	mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 30, 413, 0x00EAFF, "W");
 	mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 30, 463, 0xFFAA85, "P");
 	mlx_string_put(v->m.mlx_ptr, v->m.win_ptr, 60, 413, 0x00EAFF, RFL);

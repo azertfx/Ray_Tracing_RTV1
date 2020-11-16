@@ -3,13 +3,13 @@ camera:
 	target: 0,10,30
 	fov: 60
 
-scene:
-	ambiance: 100
-
 light:
-	origin: 30,60,60
+	type: DIRECT
+	angle: 20
+	axis: 0,-1,0
+	origin: 0,100,0
 	color: 255,255,255
-	power: 0
+	power: 400
 
 plane:
 	origin: 0,0,-100

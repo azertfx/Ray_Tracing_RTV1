@@ -6,7 +6,7 @@
 /*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:48:32 by hhamdaou          #+#    #+#             */
-/*   Updated: 2020/11/16 00:56:35 by anabaoui         ###   ########.fr       */
+/*   Updated: 2020/11/16 03:36:22 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@
 # define LGH "lights"
 # define LIM "limited_obj"
 # define DIS "disruptions"
-# define PAR "parallel"
+# define SPL "spot light"
 # define RFL "reflection"
 # define RFR "refraction"
 # define TRSHDW "trs_shadow"

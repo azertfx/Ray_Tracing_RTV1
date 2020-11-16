@@ -8,9 +8,6 @@ light:
 	color: 255,255,255
 	power: 400
 
-scene:
-	filters: BLACK_WHITE
-
 plane:
 	origin: 0,0,-100
 	color: 0,0,255
@@ -27,26 +24,11 @@ plane:
 	rotation: 0,0,1
 	translation: 0,0,0
 
-sphere:
-	origin: 5,5,30
-	color: 10,50,255
-	ray: 12
-	axis: 0,1,0
-	rotation: 0,0,0
-	translation: 0,0,0
 
-cylinder:
-	origin:  28,0,30
-	color: 255,255,0
-	ray: 8
-	axis: 0,1,0
-	rotation: 0,0,0
-	translation: 0,0,0
-
-cone:
-	origin: -30,10,30
+paraboloid:
+	origin: 0,0,10
 	color: 0,255,255
-	ray: 20
+	ray: 1
 	axis: 0,1,0
 	rotation: 0,0,30
 	translation: 0,0,0

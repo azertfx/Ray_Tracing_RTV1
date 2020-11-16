@@ -24,6 +24,7 @@ plane:
 	axis: 0,1,0
 	rotation: 0,0,0
 	translation: 0,0,0
+	texture: 8
 
 sphere:
 	origin: 0,0,10
