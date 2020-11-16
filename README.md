@@ -12,7 +12,9 @@
 <h1 align="center">
   Ray Tracing Using C
 </h1>
+
 ## About
+
 **RT** is a project i made it during my student years at 1337 School khouribga (one of 42 Network), This project is the first step to create a Raytracing program, for you to finally be able to render computer-generated images.
 
 ## Project Contents :
@@ -134,7 +136,11 @@ To run the program:
 - **[Scratchapixel : Introduction to Ray Tracing: a Simple Method for Creating 3D Images](https://www.scratchapixel.com/lessons/3d-basic-rendering/introduction-to-ray-tracing)**
 - **[Geogebra : Draw objects in 3D](https://www.geogebra.org/3d?lang=en)**
 - **[Ray Tracing Tutorial - Youtube Playlist](https://www.youtube.com/playlist?list=PLAqGIYgEAxrUO6ODA0pnLkM2UOijerFPv)**
-- 
+
+## RT video
+
+[![RT video](https://img.youtube.com/vi/BsUOQ-gf76g/0.jpg)](https://youtu.be/BsUOQ-gf76g "RT video")
+
 ## ScreenShots
 
 <h2 align="center">Multi Objects 1</h2>
