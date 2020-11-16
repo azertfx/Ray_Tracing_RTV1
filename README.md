@@ -43,13 +43,15 @@
 
 | id | Shape |
 | ------ | ------ |
-| 1 | light |
+| 0 | light |
 | 1 | sphere |
 | 2 | plane |
 | 3 | cylinder |
 | 4 | cone |
 | 5 | pen |
 | 6 | parabolic |
+| 7 | square |
+| 8 | Disc |
 
 
 ### 2- Parsing file format
