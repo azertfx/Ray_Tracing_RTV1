@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pixel_color.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:12:38 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/16 00:34:51 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/16 00:57:44 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,14 +47,13 @@ double	shadow_checker(t_rt *v, t_light *light)
 	return (0);
 }
 
-void	calculate_pixel_color(t_rt *v, t_light *light, int i)
+void	calculate_pixel_color(t_rt *v, t_light *light)
 {
 	double	dir;
 	int		shad;
 
 	dir = 1.0;
 	shad = shadow_checker(v, light);
-	pixel_ambient(v, i);
 	if (light->id == DIRECT &&
 		!(dir = spotlight(v->point.p_inter, *light, light->ang)))
 		return ;
@@ -79,9 +78,9 @@ void	get_pixel_color(t_rt *v, t_vect *light_color)
 {
 	t_light *head;
 	double	i;
-	t_vect	color_light;
+	t_vect	c_light;
 
-	color_light = (t_vect){1, 1, 1};
+	c_light = (t_vect){1, 1, 1};
 	v->point.p_light.amb = (t_vect){0, 0, 0};
 	v->point.p_light.def = (t_vect){0, 0, 0};
 	v->point.p_light.spc = (t_vect){0, 0, 0};
@@ -89,15 +88,16 @@ void	get_pixel_color(t_rt *v, t_vect *light_color)
 	i = 1;
 	while (head)
 	{
+		pixel_ambient(v, i);
 		if (head->pow)
 		{
-			calculate_pixel_color(v, head, i);
-			color_light = ft_vect_mult(color_light, ft_vect_div_nbr(head->col, 255));
+			calculate_pixel_color(v, head);
+			c_light = ft_vect_mult(c_light, ft_vect_div_nbr(head->col, 255));
 			i++;
 		}
 		head = head->next;
 	}
 	*light_color = ft_vect_mult(ft_vect_mult(v->point.p_color,
 					ft_vect_add(ft_vect_add(v->point.p_light.def,
-								v->point.p_light.amb), v->point.p_light.spc)), color_light);
+					v->point.p_light.amb), v->point.p_light.spc)), c_light);
 }

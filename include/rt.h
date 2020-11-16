@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rt.h                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hezzahir <hamza.ezzahiry@gmail.com>        +#+  +:+       +#+        */
+/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/11/04 00:48:32 by hhamdaou          #+#    #+#             */
-/*   Updated: 2020/11/14 04:09:21 by hezzahir         ###   ########.fr       */
+/*   Updated: 2020/11/16 00:56:35 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,7 @@ int				rt(t_rt *v, char *file);
 void			draw(t_rt v);
 double			intersection_checker(t_rt *v, t_ray r, t_point *point);
 void			get_pixel_color(t_rt *v, t_vect *light_color);
-void			calculate_pixel_color(t_rt *v, t_light *light, int i);
+void			calculate_pixel_color(t_rt *v, t_light *light);
 void			objects_normal(t_ray r, t_point *point);
 void			generate_camera_ray(t_rt *v, t_ray *r, double *axis, int a);
 void			generate_camera(t_rt *v);
