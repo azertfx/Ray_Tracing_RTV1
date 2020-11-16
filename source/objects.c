@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   objects.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hastid <hastid@student.42.fr>              +#+  +:+       +#+        */
+/*   By: anabaoui <anabaoui@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/23 13:27:32 by anabaoui          #+#    #+#             */
-/*   Updated: 2020/11/13 10:39:45 by hastid           ###   ########.fr       */
+/*   Updated: 2020/11/16 02:33:48 by anabaoui         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ double	plane_intersection(t_ray r, t_obj *obj)
 		return (0);
 	if (inter < MIN_NBR || inter > MAX_NBR)
 		return (0);
-	return (inter + MIN_NBR);
+	return (ft_slice(r, obj, inter + MIN_NBR));
 }
 
 double	cone_intersection(t_ray r, t_obj *obj)
