@@ -27,7 +27,7 @@
 
 # Features!
 
-  - multi objects 
+  - Multi objects 
   - Multi spots
   - light : normal + direct + parallel
   - Composed elements : PEN
@@ -37,6 +37,8 @@
   - Textures
   - Save the draw as bmp image
   - noise : perlin + damier + XOR + wood
+  - Negative objects
+  - Beautiful UI and loading bar (Among US)
 
 ## How to use the xml file 
 
